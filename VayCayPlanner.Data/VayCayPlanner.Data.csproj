@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Configurations\Entities\" />
     <Folder Include="Contracts\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
