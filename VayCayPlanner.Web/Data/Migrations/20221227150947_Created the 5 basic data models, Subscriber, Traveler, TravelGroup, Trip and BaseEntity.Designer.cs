@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VayCayPlanner.Web.Data;
 
@@ -11,9 +12,10 @@ using VayCayPlanner.Web.Data;
 namespace VayCayPlanner.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221227150947_Created the 5 basic data models, Subscriber, Traveler, TravelGroup, Trip and BaseEntity")]
+    partial class Createdthe5basicdatamodelsSubscriberTravelerTravelGroupTripandBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,10 +176,6 @@ namespace VayCayPlanner.Web.Data.Migrations
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DefaultTravelGroupKey")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -228,8 +226,8 @@ namespace VayCayPlanner.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TravelerEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasMaxLength(456)
+                        .HasColumnType("nvarchar(456)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -294,8 +292,8 @@ namespace VayCayPlanner.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InvitationKey")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("SubscriberId")
                         .HasColumnType("nvarchar(450)");

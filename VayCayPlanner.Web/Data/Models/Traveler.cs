@@ -8,6 +8,6 @@ namespace VayCayPlanner.Web.Data.Models
         [MaxLength(256)]
         public string? FullName { get; set; }
         [MaxLength(256)]
-        public string? EmailAdress { get; set; }
+        public string? EmailAddress { get; set; }
     }
 }

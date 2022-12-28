@@ -29,7 +29,7 @@ namespace VayCayPlanner.Web.Services
             message.To.Add(new MailAddress(email));
 
             using var client = new SmtpClient(smtpServer, smtpPort);
-            client.Send(message);
+            //client.Send(message);
 
             return Task.CompletedTask;
         }

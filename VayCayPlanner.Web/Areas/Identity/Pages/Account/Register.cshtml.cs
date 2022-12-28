@@ -75,6 +75,11 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+             
+            //[Required]
+            //[Display(Name = "User Name (You can use your email address)")]
+            //public string UserName { get; set; }
+
             [Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
@@ -83,6 +88,10 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            [Required]
+            [Display(Name = "Mobile Number")]
+            public string Mobile_Number { get; set; }
+
             [Display(Name = "Date Joined")]
             public DateTime DateJoined { get; set; }
 
@@ -90,6 +99,11 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            //[Required]
+            //[EmailAddress]
+            [Display(Name = "Enter the Group Key from the invite email")]
+            public string TravelGroupKey { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -120,53 +134,72 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            try
             {
-                var user = CreateUser();
-
-                await _userStore.SetUserNameAsync((Subscriber)user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync((Subscriber)user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync((Subscriber)user, Input.Password);
-
-                if (result.Succeeded)
+                //this is actually a security feature that only allows you to return the home page
+                returnUrl ??= Url.Content("~/");
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                if (ModelState.IsValid)
                 {
-                    _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync((Subscriber)user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync((Subscriber)user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    var user = CreateUser();
+                    //the user name IS the email address
+                    await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                    await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                    ////TODO: This is where you add all the other default properties of a subscriber
+                    user.FirstName = Input.FirstName;
+                    user.LastName = Input.LastName;
+                    user.TravelerEmail = Input.Email;
+                    user.DateJoined = DateTime.Now;
+                    user.FullName = ($"{Input.FirstName} {Input.LastName}");
+                    user.DefaultTravelGroupKey = Input.TravelGroupKey;
+                    user.Mobile_Number = Input.Mobile_Number;
+                    user.PhoneNumber = Input.Mobile_Number;
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    var result = await _userManager.CreateAsync(user, Input.Password);
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (result.Succeeded)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        _logger.LogInformation("User created a new account with password.");
+
+                        var userId = await _userManager.GetUserIdAsync(user);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                            protocol: Request.Scheme);
+
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        {
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync((Subscriber)user, isPersistent: false);
+                            return LocalRedirect(returnUrl);
+                        }
                     }
-                    else
+                    foreach (var error in result.Errors)
                     {
-                        await _signInManager.SignInAsync((Subscriber)user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+
             }
-
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error encountered creating a new user: {ex.StackTrace}");
+            }
             // If we got this far, something failed, redisplay form
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private Subscriber CreateUser()
         {
             try
             {

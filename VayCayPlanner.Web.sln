@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VayCayPlanner.Web", "VayCayPlanner.Web\VayCayPlanner.Web.csproj", "{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VayCayPlanner.Data", "VayCayPlanner.Data\VayCayPlanner.Data.csproj", "{C1092B81-CEC2-449B-83D4-D36744797998}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1092B81-CEC2-449B-83D4-D36744797998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1092B81-CEC2-449B-83D4-D36744797998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1092B81-CEC2-449B-83D4-D36744797998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1092B81-CEC2-449B-83D4-D36744797998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
