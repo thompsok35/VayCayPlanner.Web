@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace VayCayPlanner.Web.Data.Models
+namespace VayCayPlanner.Data.Models
 {
     public class Subscriber : IdentityUser
     {

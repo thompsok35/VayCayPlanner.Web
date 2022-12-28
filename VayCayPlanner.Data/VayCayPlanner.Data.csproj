@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,6 +20,15 @@
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Expressions" Version="3.4.1" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\Entities\" />
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VayCayPlanner.Common\VayCayPlanner.Common.csproj" />
   </ItemGroup>
 
 </Project>

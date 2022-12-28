@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using VayCayPlanner.Web.Data.Models;
+using VayCayPlanner.Data.Models;
 
 namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
 {

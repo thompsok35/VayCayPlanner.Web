@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using VayCayPlanner.Web.Data.Models;
+using VayCayPlanner.Data.Models;
 
-namespace VayCayPlanner.Web.Data
+namespace VayCayPlanner.Data
 {
 
     public class ApplicationDbContext : IdentityDbContext<Subscriber>

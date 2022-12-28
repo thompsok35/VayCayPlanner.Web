@@ -1,4 +1,4 @@
-﻿namespace VayCayPlanner.Web.Data.Models
+﻿namespace VayCayPlanner.Data.Models
 {
     public class Trip : BaseEntity
     {

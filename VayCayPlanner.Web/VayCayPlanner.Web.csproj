@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Extensions\" />
+    <ProjectReference Include="..\VayCayPlanner.Data\VayCayPlanner.Data.csproj" />
   </ItemGroup>
 
 </Project>

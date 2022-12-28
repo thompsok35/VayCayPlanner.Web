@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using VayCayPlanner.Web.Data;
-using VayCayPlanner.Web.Data.Models;
+using VayCayPlanner.Data;
+using VayCayPlanner.Data.Models;
 using VayCayPlanner.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);

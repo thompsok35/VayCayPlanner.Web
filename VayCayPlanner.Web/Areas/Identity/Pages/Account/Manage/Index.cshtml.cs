@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using VayCayPlanner.Web.Data.Models;
+using VayCayPlanner.Data.Models;
 
 namespace VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage
 {

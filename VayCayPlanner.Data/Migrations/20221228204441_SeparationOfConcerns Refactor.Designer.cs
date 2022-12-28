@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using VayCayPlanner.Web.Data;
+using VayCayPlanner.Data;
 
 #nullable disable
 
-namespace VayCayPlanner.Web.Data.Migrations
+namespace VayCayPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221228204441_SeparationOfConcerns Refactor")]
+    partial class SeparationOfConcernsRefactor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,7 @@ namespace VayCayPlanner.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Subscriber", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Subscriber", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -251,7 +253,7 @@ namespace VayCayPlanner.Web.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Traveler", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Traveler", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -282,7 +284,7 @@ namespace VayCayPlanner.Web.Data.Migrations
                     b.ToTable("Travelers");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.TravelGroup", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -307,7 +309,7 @@ namespace VayCayPlanner.Web.Data.Migrations
                     b.ToTable("TravelGroups");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Trip", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Trip", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -349,7 +351,7 @@ namespace VayCayPlanner.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Subscriber", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -358,7 +360,7 @@ namespace VayCayPlanner.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Subscriber", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -373,7 +375,7 @@ namespace VayCayPlanner.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Subscriber", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -382,42 +384,42 @@ namespace VayCayPlanner.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Subscriber", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Traveler", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Traveler", b =>
                 {
-                    b.HasOne("VayCayPlanner.Web.Data.Models.TravelGroup", null)
+                    b.HasOne("VayCayPlanner.Data.Models.TravelGroup", null)
                         .WithMany("TravelerIds")
                         .HasForeignKey("TravelGroupId");
 
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Trip", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Trip", null)
                         .WithMany("Travelers")
                         .HasForeignKey("TripId");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.TravelGroup", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
                 {
-                    b.HasOne("VayCayPlanner.Web.Data.Models.Subscriber", null)
+                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
                         .WithMany("TravelGroups")
                         .HasForeignKey("SubscriberId");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Subscriber", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Subscriber", b =>
                 {
                     b.Navigation("TravelGroups");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.TravelGroup", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
                 {
                     b.Navigation("TravelerIds");
                 });
 
-            modelBuilder.Entity("VayCayPlanner.Web.Data.Models.Trip", b =>
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Trip", b =>
                 {
                     b.Navigation("Travelers");
                 });
