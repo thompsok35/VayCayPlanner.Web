@@ -15,8 +15,8 @@ namespace VayCayPlanner.Data.Models
         public string? TravelerEmail { get; set; }
 
         [MaxLength(128)]
-        public string?Mobile_Number { get; set; }
-        public DateTime DateJoined { get; set; }
+        public string? Mobile_Number { get; set; }
+        public DateTime? DateJoined { get; set; }
         public List<TravelGroup>? TravelGroups { get; set; }
 
         [MaxLength(450)]

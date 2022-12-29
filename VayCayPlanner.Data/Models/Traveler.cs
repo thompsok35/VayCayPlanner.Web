@@ -2,9 +2,8 @@
 
 namespace VayCayPlanner.Data.Models
 {
-    public class Traveler
-    {
-        public int Id { get; set; }
+    public class Traveler : BaseEntity
+    {        
         [MaxLength(256)]
         public string? FullName { get; set; }
         [MaxLength(256)]

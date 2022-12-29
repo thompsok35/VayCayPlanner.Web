@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VayCayPlanner.Data.Migrations
 {
-    public partial class SeparationOfConcernsRefactor : Migration
+    public partial class deletedallmigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace VayCayPlanner.Data.Migrations
                     FullName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     TravelerEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Mobile_Number = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    DateJoined = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateJoined = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DefaultTravelGroupKey = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -53,6 +53,23 @@ namespace VayCayPlanner.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Destinations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    City = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    TravelGroupId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Destinations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,7 +202,7 @@ namespace VayCayPlanner.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GroupName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     InvitationKey = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
                     SubscriberId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -296,6 +313,9 @@ namespace VayCayPlanner.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Destinations");
 
             migrationBuilder.DropTable(
                 name: "Travelers");

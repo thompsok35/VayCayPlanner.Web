@@ -3374,3 +3374,806 @@ WHERE [a].[Id] = @__p_0
 2022-12-28 15:01:45.907 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 78.6581ms
 2022-12-28 15:01:45.949 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 164.0110ms
 2022-12-28 15:44:40.662 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 16:31:03.850 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 16:31:04.566 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:31:04.614 -05:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:31:04.618 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:31:04.618 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:31:04.640 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 16:31:04.661 -05:00 [INF] Applying migration '20221228204441_SeparationOfConcerns Refactor'.
+2022-12-28 16:31:04.795 -05:00 [ERR] Failed executing DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2022-12-28 16:49:25.139 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 16:50:28.641 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 16:50:29.109 -05:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:50:29.167 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:50:29.174 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:50:29.176 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:50:29.198 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 16:50:29.226 -05:00 [INF] Applying migration '20221228204441_SeparationOfConcerns Refactor'.
+2022-12-28 16:50:29.418 -05:00 [ERR] Failed executing DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2022-12-28 16:56:23.917 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 16:56:24.436 -05:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:56:24.495 -05:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:56:24.504 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 16:56:24.505 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 16:56:24.541 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 16:56:24.574 -05:00 [INF] Applying migration '20221228214925_TravelGroup Name to not null'.
+2022-12-28 16:56:24.745 -05:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TravelGroups]') AND [c].[name] = N'GroupName');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [TravelGroups] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [TravelGroups] ALTER COLUMN [GroupName] nvarchar(max) NOT NULL;
+ALTER TABLE [TravelGroups] ADD DEFAULT N'' FOR [GroupName];
+2022-12-28 16:56:24.766 -05:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[AspNetUsers]') AND [c].[name] = N'DateJoined');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [AspNetUsers] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [AspNetUsers] ALTER COLUMN [DateJoined] datetime2 NULL;
+2022-12-28 16:56:24.768 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20221228214925_TravelGroup Name to not null', N'6.0.12');
+2022-12-28 17:30:27.723 -05:00 [INF] User profile is available. Using 'C:\Users\thomp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-12-28 17:30:28.400 -05:00 [INF] Now listening on: https://localhost:7060
+2022-12-28 17:30:28.413 -05:00 [INF] Now listening on: http://localhost:5194
+2022-12-28 17:30:28.420 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-28 17:30:28.422 -05:00 [INF] Hosting environment: Development
+2022-12-28 17:30:28.423 -05:00 [INF] Content root path: C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\
+2022-12-28 17:30:32.300 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 17:30:32.530 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 17:30:32.584 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 17:30:32.606 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 17:30:34.031 -05:00 [INF] Executed ViewResult - view Index executed in 1429.7748ms.
+2022-12-28 17:30:34.048 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 1460.6388ms
+2022-12-28 17:30:34.050 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 17:30:34.057 -05:00 [INF] HTTP GET / responded 200 in 1629.4451 ms
+2022-12-28 17:30:34.159 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 1866.3961ms
+2022-12-28 17:30:35.099 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 17:30:35.099 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-12-28 17:30:35.099 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-12-28 17:30:35.099 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - -
+2022-12-28 17:30:35.099 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/lib/jquery/dist/jquery.min.js - -
+2022-12-28 17:30:35.110 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 11.7333ms
+2022-12-28 17:30:35.119 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-12-28 17:30:35.138 -05:00 [INF] The file /css/site.css was not modified
+2022-12-28 17:30:35.138 -05:00 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-12-28 17:30:35.138 -05:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-12-28 17:30:35.142 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 304 in 22.7067 ms
+2022-12-28 17:30:35.140 -05:00 [INF] HTTP GET /css/site.css responded 304 in 24.5383 ms
+2022-12-28 17:30:35.141 -05:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 304 in 24.0012 ms
+2022-12-28 17:30:35.138 -05:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-12-28 17:30:35.146 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - application/javascript 26.8535ms
+2022-12-28 17:30:35.148 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 48.9550ms
+2022-12-28 17:30:35.150 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/lib/jquery/dist/jquery.min.js - - - 304 - application/javascript 51.2887ms
+2022-12-28 17:30:35.151 -05:00 [INF] Sending file. Request path: '/VayCayPlanner.Web.styles.css'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\obj\Debug\net6.0\scopedcss\bundle\VayCayPlanner.Web.styles.css'
+2022-12-28 17:30:35.151 -05:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 304 in 45.1377 ms
+2022-12-28 17:30:35.160 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 61.0711ms
+2022-12-28 17:30:35.154 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 17:30:35.157 -05:00 [INF] HTTP GET /VayCayPlanner.Web.styles.css responded 200 in 40.9654 ms
+2022-12-28 17:30:35.153 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-12-28 17:30:35.168 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - - - 200 1134 text/css 69.0616ms
+2022-12-28 17:30:35.603 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 448.8710ms
+2022-12-28 17:30:35.614 -05:00 [INF] The file /js/site.js was not modified
+2022-12-28 17:30:35.620 -05:00 [INF] HTTP GET /js/site.js responded 304 in 6.9101 ms
+2022-12-28 17:30:35.623 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - application/javascript 470.1374ms
+2022-12-28 17:30:35.632 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 17:30:35.881 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 17:30:36.052 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 369.1421 ms
+2022-12-28 17:30:36.230 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 598.0339ms
+2022-12-28 17:30:38.033 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Login - -
+2022-12-28 17:30:38.042 -05:00 [INF] Executing endpoint '/Account/Login'
+2022-12-28 17:30:38.072 -05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2022-12-28 17:30:38.114 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 17:30:38.129 -05:00 [INF] AuthenticationScheme: Identity.External signed out.
+2022-12-28 17:30:38.133 -05:00 [INF] Executed handler method OnGetAsync, returned result .
+2022-12-28 17:30:38.140 -05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-12-28 17:30:38.141 -05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 17:30:38.248 -05:00 [INF] Executed page /Account/Login in 174.4463ms
+2022-12-28 17:30:38.250 -05:00 [INF] Executed endpoint '/Account/Login'
+2022-12-28 17:30:38.251 -05:00 [INF] HTTP GET /Identity/Account/Login responded 200 in 215.6284 ms
+2022-12-28 17:30:38.262 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 229.1138ms
+2022-12-28 17:30:38.319 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 17:30:38.323 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 17:30:38.347 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 27.8659ms
+2022-12-28 17:30:38.508 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 17:30:38.527 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 17:30:38.549 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 225.5003ms
+2022-12-28 17:30:38.656 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 133.7764 ms
+2022-12-28 17:30:38.658 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 150.4845ms
+2022-12-28 17:30:40.106 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Login application/x-www-form-urlencoded 267
+2022-12-28 17:30:40.121 -05:00 [INF] Executing endpoint '/Account/Login'
+2022-12-28 17:30:40.123 -05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2022-12-28 17:30:40.190 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2022-12-28 17:30:42.066 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 17:30:44.974 -05:00 [INF] Executed DbCommand (153ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 17:30:45.723 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2022-12-28 17:30:45.750 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-12-28 17:30:45.754 -05:00 [INF] User logged in.
+2022-12-28 17:30:45.760 -05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2022-12-28 17:30:45.769 -05:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2022-12-28 17:30:45.770 -05:00 [INF] Executed page /Account/Login in 5645.8849ms
+2022-12-28 17:30:45.774 -05:00 [INF] Executed endpoint '/Account/Login'
+2022-12-28 17:30:45.775 -05:00 [INF] HTTP POST /Identity/Account/Login responded 302 in 5662.3170 ms
+2022-12-28 17:30:45.797 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 17:30:45.801 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Login application/x-www-form-urlencoded 267 - 302 0 - 5694.7106ms
+2022-12-28 17:30:45.819 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 17:30:45.820 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 17:30:45.823 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 17:30:45.857 -05:00 [INF] Executed ViewResult - view Index executed in 34.129ms.
+2022-12-28 17:30:45.860 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 37.3025ms
+2022-12-28 17:30:45.861 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 17:30:45.863 -05:00 [INF] HTTP GET / responded 200 in 50.4476 ms
+2022-12-28 17:30:45.868 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 71.5419ms
+2022-12-28 17:30:45.941 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 17:30:45.941 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 17:30:45.961 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 17:30:45.985 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 44.0708ms
+2022-12-28 17:30:46.083 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 17:30:46.177 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 171.1865 ms
+2022-12-28 17:30:46.084 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 143.0711ms
+2022-12-28 17:30:46.180 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 218.8936ms
+2022-12-28 17:30:48.813 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Manage - -
+2022-12-28 17:30:48.831 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 17:30:48.837 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 17:30:48.842 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 17:30:48.902 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 17:30:48.933 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 17:30:48.958 -05:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 17:30:49.027 -05:00 [INF] Executed page /Account/Manage/Index in 188.8242ms
+2022-12-28 17:30:49.029 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 17:30:49.032 -05:00 [INF] HTTP GET /Identity/Account/Manage responded 200 in 212.4454 ms
+2022-12-28 17:30:49.037 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Manage - - - 200 - text/html;+charset=utf-8 223.5688ms
+2022-12-28 17:30:49.114 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 17:30:49.114 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 17:30:49.124 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 17:30:49.177 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 63.3868ms
+2022-12-28 17:30:49.225 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 17:30:49.239 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 34.8468 ms
+2022-12-28 17:30:49.238 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 124.1025ms
+2022-12-28 17:30:49.241 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 117.0250ms
+2022-12-28 17:31:00.387 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Manage application/x-www-form-urlencoded 354
+2022-12-28 17:31:00.397 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 17:31:00.400 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 17:31:00.403 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnPostAsync - ModelState is "Valid"
+2022-12-28 17:31:00.421 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 17:31:00.434 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 17:31:00.494 -05:00 [INF] Executed DbCommand (24ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 17:31:00.875 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 450), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 128), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 4000), @p18='?' (Size = 256), @p19='?' (DbType = Boolean), @p20='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [DateJoined] = @p2, [DefaultTravelGroupKey] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [FullName] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [Mobile_Number] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TravelerEmail] = @p18, [TwoFactorEnabled] = @p19, [UserName] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;
+2022-12-28 17:31:00.997 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 17:31:01.004 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 450), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 128), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 4000), @p18='?' (Size = 256), @p19='?' (DbType = Boolean), @p20='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [DateJoined] = @p2, [DefaultTravelGroupKey] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [FullName] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [Mobile_Number] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TravelerEmail] = @p18, [TwoFactorEnabled] = @p19, [UserName] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;
+2022-12-28 17:31:01.021 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2022-12-28 17:31:01.030 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-12-28 17:31:01.033 -05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2022-12-28 17:31:01.036 -05:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2022-12-28 17:31:01.041 -05:00 [INF] Executed page /Account/Manage/Index in 639.408ms
+2022-12-28 17:31:01.044 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 17:31:01.045 -05:00 [INF] HTTP POST /Identity/Account/Manage responded 302 in 651.3558 ms
+2022-12-28 17:31:01.048 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Manage application/x-www-form-urlencoded 354 - 302 0 - 661.0060ms
+2022-12-28 17:31:01.050 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Manage - -
+2022-12-28 17:31:01.055 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 17:31:01.056 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 17:31:01.060 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 17:31:01.062 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 17:31:01.066 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 17:31:01.072 -05:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 17:31:01.081 -05:00 [INF] Executed page /Account/Manage/Index in 22.7608ms
+2022-12-28 17:31:01.082 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 17:31:01.085 -05:00 [INF] HTTP GET /Identity/Account/Manage responded 200 in 32.6430 ms
+2022-12-28 17:31:01.090 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Manage - - - 200 - text/html;+charset=utf-8 39.8259ms
+2022-12-28 17:31:01.206 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 17:31:01.231 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 17:31:01.338 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 17:31:01.341 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 134.3320ms
+2022-12-28 17:31:01.357 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 17:31:01.360 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 6.7965 ms
+2022-12-28 17:31:01.419 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 187.9396ms
+2022-12-28 17:31:01.613 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 274.7646ms
+2022-12-28 20:42:37.220 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:42:57.905 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:42:58.436 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:42:58.499 -05:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:42:58.506 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:42:58.507 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:42:58.529 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 20:42:58.559 -05:00 [INF] Applying migration '20221229014237_Added destination'.
+2022-12-28 20:42:58.691 -05:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TravelGroups]') AND [c].[name] = N'GroupName');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [TravelGroups] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [TravelGroups] ALTER COLUMN [GroupName] nvarchar(450) NOT NULL;
+2022-12-28 20:42:58.693 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20221229014237_Added destination', N'6.0.12');
+2022-12-28 20:44:24.751 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:44:25.541 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:44:25.586 -05:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:44:25.597 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 20:45:20.053 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:45:27.342 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:45:27.892 -05:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:45:27.934 -05:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:45:27.938 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:45:27.939 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:45:27.952 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 20:45:27.972 -05:00 [INF] No migrations were applied. The database is already up to date.
+2022-12-28 20:49:03.952 -05:00 [INF] User profile is available. Using 'C:\Users\thomp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-12-28 20:49:06.240 -05:00 [INF] Now listening on: https://localhost:7060
+2022-12-28 20:49:06.264 -05:00 [INF] Now listening on: http://localhost:5194
+2022-12-28 20:49:06.289 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-28 20:49:06.291 -05:00 [INF] Hosting environment: Development
+2022-12-28 20:49:06.292 -05:00 [INF] Content root path: C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\
+2022-12-28 20:49:12.030 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 20:49:12.275 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:12.356 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 20:49:12.388 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 20:49:14.748 -05:00 [INF] Executed ViewResult - view Index executed in 2362.9729ms.
+2022-12-28 20:49:14.773 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 2412.1833ms
+2022-12-28 20:49:14.776 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:14.790 -05:00 [INF] HTTP GET / responded 200 in 2619.3939 ms
+2022-12-28 20:49:15.697 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 3678.1045ms
+2022-12-28 20:49:17.962 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - -
+2022-12-28 20:49:17.962 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:17.962 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:18.011 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 48.6965ms
+2022-12-28 20:49:18.047 -05:00 [INF] Sending file. Request path: '/VayCayPlanner.Web.styles.css'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\obj\Debug\net6.0\scopedcss\bundle\VayCayPlanner.Web.styles.css'
+2022-12-28 20:49:18.065 -05:00 [INF] HTTP GET /VayCayPlanner.Web.styles.css responded 200 in 100.2900 ms
+2022-12-28 20:49:18.084 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - - - 200 1134 text/css 121.5308ms
+2022-12-28 20:49:18.194 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 231.4346ms
+2022-12-28 20:49:19.284 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:19.463 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:20.076 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 783.3509 ms
+2022-12-28 20:49:20.079 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 795.2765ms
+2022-12-28 20:49:21.826 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Login - -
+2022-12-28 20:49:21.842 -05:00 [INF] Executing endpoint '/Account/Login'
+2022-12-28 20:49:21.909 -05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2022-12-28 20:49:21.998 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 20:49:22.026 -05:00 [INF] AuthenticationScheme: Identity.External signed out.
+2022-12-28 20:49:22.031 -05:00 [INF] Executed handler method OnGetAsync, returned result .
+2022-12-28 20:49:22.047 -05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-12-28 20:49:22.052 -05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 20:49:22.229 -05:00 [INF] Executed page /Account/Login in 318.0652ms
+2022-12-28 20:49:22.231 -05:00 [INF] Executed endpoint '/Account/Login'
+2022-12-28 20:49:22.234 -05:00 [INF] HTTP GET /Identity/Account/Login responded 200 in 403.1372 ms
+2022-12-28 20:49:22.245 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 419.3880ms
+2022-12-28 20:49:22.396 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:22.444 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:22.795 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:22.838 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 441.6071ms
+2022-12-28 20:49:22.946 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:23.261 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 816.6105ms
+2022-12-28 20:49:23.755 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 868.5986 ms
+2022-12-28 20:49:23.760 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 964.9516ms
+2022-12-28 20:49:24.662 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Login application/x-www-form-urlencoded 267
+2022-12-28 20:49:24.724 -05:00 [INF] Executing endpoint '/Account/Login'
+2022-12-28 20:49:24.726 -05:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2022-12-28 20:49:24.822 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2022-12-28 20:49:28.360 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:49:33.220 -05:00 [INF] Executed DbCommand (300ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 20:49:34.209 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2022-12-28 20:49:34.249 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-12-28 20:49:34.259 -05:00 [INF] User logged in.
+2022-12-28 20:49:34.274 -05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2022-12-28 20:49:34.289 -05:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2022-12-28 20:49:34.292 -05:00 [INF] Executed page /Account/Login in 9564.1904ms
+2022-12-28 20:49:34.293 -05:00 [INF] Executed endpoint '/Account/Login'
+2022-12-28 20:49:34.295 -05:00 [INF] HTTP POST /Identity/Account/Login responded 302 in 9599.3558 ms
+2022-12-28 20:49:34.312 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 20:49:34.315 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Login application/x-www-form-urlencoded 267 - 302 0 - 9652.8344ms
+2022-12-28 20:49:34.322 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:34.324 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 20:49:34.327 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 20:49:34.347 -05:00 [INF] Executed ViewResult - view Index executed in 19.845ms.
+2022-12-28 20:49:34.349 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 21.9343ms
+2022-12-28 20:49:34.351 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:34.352 -05:00 [INF] HTTP GET / responded 200 in 37.7912 ms
+2022-12-28 20:49:34.357 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 45.2050ms
+2022-12-28 20:49:34.574 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:34.591 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:34.709 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 134.8000ms
+2022-12-28 20:49:34.727 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:34.812 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:34.880 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 149.2829 ms
+2022-12-28 20:49:34.943 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 215.6792ms
+2022-12-28 20:49:34.872 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 281.1853ms
+2022-12-28 20:49:37.595 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Manage - -
+2022-12-28 20:49:37.629 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 20:49:37.645 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 20:49:37.655 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 20:49:37.779 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:49:37.844 -05:00 [INF] Executed DbCommand (24ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 20:49:37.870 -05:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 20:49:37.979 -05:00 [INF] Executed page /Account/Manage/Index in 331.3881ms
+2022-12-28 20:49:37.981 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 20:49:37.986 -05:00 [INF] HTTP GET /Identity/Account/Manage responded 200 in 374.7742 ms
+2022-12-28 20:49:37.992 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Manage - - - 200 - text/html;+charset=utf-8 397.4230ms
+2022-12-28 20:49:38.179 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:38.179 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:38.248 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 68.9878ms
+2022-12-28 20:49:38.293 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:38.947 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 767.7345ms
+2022-12-28 20:49:39.056 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:39.328 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 1014.3817 ms
+2022-12-28 20:49:39.346 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 1053.4634ms
+2022-12-28 20:49:46.653 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Manage application/x-www-form-urlencoded 354
+2022-12-28 20:49:46.696 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 20:49:46.698 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 20:49:46.710 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnPostAsync - ModelState is "Valid"
+2022-12-28 20:49:46.739 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:49:46.780 -05:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 20:49:46.948 -05:00 [INF] Executed DbCommand (89ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 20:49:47.560 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 450), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 128), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 4000), @p18='?' (Size = 256), @p19='?' (DbType = Boolean), @p20='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [DateJoined] = @p2, [DefaultTravelGroupKey] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [FullName] = @p7, [LastName] = @p8, [LockoutEnabled] = @p9, [LockoutEnd] = @p10, [Mobile_Number] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TravelerEmail] = @p18, [TwoFactorEnabled] = @p19, [UserName] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;
+2022-12-28 20:49:47.695 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2022-12-28 20:49:47.705 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-12-28 20:49:47.712 -05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2022-12-28 20:49:47.715 -05:00 [INF] Executing RedirectToPageResult, redirecting to null.
+2022-12-28 20:49:47.720 -05:00 [INF] Executed page /Account/Manage/Index in 1012.0255ms
+2022-12-28 20:49:47.722 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 20:49:47.725 -05:00 [INF] HTTP POST /Identity/Account/Manage responded 302 in 1031.4087 ms
+2022-12-28 20:49:47.729 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Manage application/x-www-form-urlencoded 354 - 302 0 - 1079.5770ms
+2022-12-28 20:49:47.731 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Manage - -
+2022-12-28 20:49:47.738 -05:00 [INF] Executing endpoint '/Account/Manage/Index'
+2022-12-28 20:49:47.742 -05:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2022-12-28 20:49:47.744 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 20:49:47.747 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:49:47.758 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2022-12-28 20:49:47.778 -05:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 20:49:47.796 -05:00 [INF] Executed page /Account/Manage/Index in 52.8057ms
+2022-12-28 20:49:47.806 -05:00 [INF] Executed endpoint '/Account/Manage/Index'
+2022-12-28 20:49:47.807 -05:00 [INF] HTTP GET /Identity/Account/Manage responded 200 in 70.4635 ms
+2022-12-28 20:49:47.814 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Manage - - - 200 - text/html;+charset=utf-8 82.2340ms
+2022-12-28 20:49:48.021 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:48.041 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:48.058 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:48.062 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 41.3532ms
+2022-12-28 20:49:48.262 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:48.821 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 601.7863 ms
+2022-12-28 20:49:48.824 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 766.3557ms
+2022-12-28 20:49:48.844 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 803.0445ms
+2022-12-28 20:49:56.919 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 20:49:56.922 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:56.925 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 20:49:56.928 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 20:49:56.941 -05:00 [INF] Executed ViewResult - view Index executed in 13.0736ms.
+2022-12-28 20:49:56.944 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 15.935ms
+2022-12-28 20:49:56.946 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:56.947 -05:00 [INF] HTTP GET / responded 200 in 25.9724 ms
+2022-12-28 20:49:56.953 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 34.2214ms
+2022-12-28 20:49:57.064 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:57.064 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:57.109 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:57.182 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 118.4864ms
+2022-12-28 20:49:57.208 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:57.222 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 27.5114 ms
+2022-12-28 20:49:57.225 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 115.7106ms
+2022-12-28 20:49:57.281 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 217.2703ms
+2022-12-28 20:49:59.088 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Logout?returnUrl=%2F application/x-www-form-urlencoded 225
+2022-12-28 20:49:59.093 -05:00 [INF] Executing endpoint '/Account/Logout'
+2022-12-28 20:49:59.104 -05:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2022-12-28 20:49:59.120 -05:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal.LogoutModel.OnPost - ModelState is "Valid"
+2022-12-28 20:49:59.132 -05:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2022-12-28 20:49:59.147 -05:00 [INF] AuthenticationScheme: Identity.External signed out.
+2022-12-28 20:49:59.149 -05:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2022-12-28 20:49:59.155 -05:00 [INF] User logged out.
+2022-12-28 20:49:59.157 -05:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2022-12-28 20:49:59.160 -05:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2022-12-28 20:49:59.162 -05:00 [INF] Executed page /Account/Logout in 56.6473ms
+2022-12-28 20:49:59.164 -05:00 [INF] Executed endpoint '/Account/Logout'
+2022-12-28 20:49:59.170 -05:00 [INF] HTTP POST /Identity/Account/Logout responded 302 in 78.0871 ms
+2022-12-28 20:49:59.180 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Logout?returnUrl=%2F application/x-www-form-urlencoded 225 - 302 0 - 92.1078ms
+2022-12-28 20:49:59.184 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 20:49:59.187 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:59.190 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 20:49:59.193 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 20:49:59.211 -05:00 [INF] Executed ViewResult - view Index executed in 17.7978ms.
+2022-12-28 20:49:59.213 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 20.0242ms
+2022-12-28 20:49:59.215 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:49:59.218 -05:00 [INF] HTTP GET / responded 200 in 30.9005 ms
+2022-12-28 20:49:59.226 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 41.3765ms
+2022-12-28 20:49:59.398 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:49:59.412 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:49:59.553 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:49:59.619 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 220.7626ms
+2022-12-28 20:49:59.699 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:49:59.702 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 290.1782ms
+2022-12-28 20:49:59.991 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 343.2946 ms
+2022-12-28 20:50:00.015 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 461.5101ms
+2022-12-28 20:50:02.431 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/Register - -
+2022-12-28 20:50:02.530 -05:00 [INF] Executing endpoint '/Account/Register'
+2022-12-28 20:50:02.561 -05:00 [INF] Route matched with {page = "/Account/Register", area = "Identity", action = "", controller = ""}. Executing page /Account/Register
+2022-12-28 20:50:02.588 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.RegisterModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 20:50:02.623 -05:00 [INF] Executed handler method OnGetAsync, returned result .
+2022-12-28 20:50:02.626 -05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-12-28 20:50:02.630 -05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 20:50:02.726 -05:00 [INF] Executed page /Account/Register in 139.5833ms
+2022-12-28 20:50:02.728 -05:00 [INF] Executed endpoint '/Account/Register'
+2022-12-28 20:50:02.729 -05:00 [INF] HTTP GET /Identity/Account/Register responded 200 in 199.4493 ms
+2022-12-28 20:50:02.741 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/Register - - - 200 - text/html;+charset=utf-8 309.8081ms
+2022-12-28 20:50:02.914 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:50:02.927 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:50:02.942 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:50:02.963 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 49.1634ms
+2022-12-28 20:50:03.034 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:50:03.112 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 87.5958 ms
+2022-12-28 20:50:03.127 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 200.0388ms
+2022-12-28 20:50:03.787 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 844.9177ms
+2022-12-28 20:50:49.486 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7060/Identity/Account/Register application/x-www-form-urlencoded 383
+2022-12-28 20:50:49.491 -05:00 [INF] Executing endpoint '/Account/Register'
+2022-12-28 20:50:49.493 -05:00 [INF] Route matched with {page = "/Account/Register", area = "Identity", action = "", controller = ""}. Executing page /Account/Register
+2022-12-28 20:50:49.505 -05:00 [INF] Executing handler method VayCayPlanner.Web.Areas.Identity.Pages.Account.RegisterModel.OnPostAsync - ModelState is "Valid"
+2022-12-28 20:50:49.597 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:50:49.640 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2022-12-28 20:50:49.746 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (DbType = Boolean), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 128), @p13='?' (Size = 256), @p14='?' (Size = 256), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 256), @p20='?' (DbType = Boolean), @p21='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [DateJoined], [DefaultTravelGroupKey], [Email], [EmailConfirmed], [FirstName], [FullName], [LastName], [LockoutEnabled], [LockoutEnd], [Mobile_Number], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TravelerEmail], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21);
+2022-12-28 20:50:49.759 -05:00 [INF] User created a new account with password.
+2022-12-28 20:50:49.817 -05:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2022-12-28 20:50:49.820 -05:00 [INF] Executing RedirectToPageResult, redirecting to RegisterConfirmation.
+2022-12-28 20:50:49.821 -05:00 [INF] Executed page /Account/Register in 324.7861ms
+2022-12-28 20:50:49.824 -05:00 [INF] Executed endpoint '/Account/Register'
+2022-12-28 20:50:49.825 -05:00 [INF] HTTP POST /Identity/Account/Register responded 302 in 334.2323 ms
+2022-12-28 20:50:49.828 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7060/Identity/Account/Register application/x-www-form-urlencoded 383 - 302 0 - 342.0701ms
+2022-12-28 20:50:49.830 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/Identity/Account/RegisterConfirmation?email=rml.thompson23@gmail.com&returnUrl=%2F - -
+2022-12-28 20:50:49.832 -05:00 [INF] Executing endpoint '/Account/RegisterConfirmation'
+2022-12-28 20:50:49.844 -05:00 [INF] Route matched with {page = "/Account/RegisterConfirmation", area = "Identity", action = "", controller = ""}. Executing page /Account/RegisterConfirmation
+2022-12-28 20:50:49.846 -05:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal.RegisterConfirmationModel.OnGetAsync - ModelState is "Valid"
+2022-12-28 20:50:49.863 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:50:49.908 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateJoined], [a].[DefaultTravelGroupKey], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[FullName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Mobile_Number], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TravelerEmail], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2022-12-28 20:50:49.922 -05:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-12-28 20:50:49.943 -05:00 [INF] Executed page /Account/RegisterConfirmation in 97.7ms
+2022-12-28 20:50:49.945 -05:00 [INF] Executed endpoint '/Account/RegisterConfirmation'
+2022-12-28 20:50:49.948 -05:00 [INF] HTTP GET /Identity/Account/RegisterConfirmation responded 200 in 115.4737 ms
+2022-12-28 20:50:49.953 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/Identity/Account/RegisterConfirmation?email=rml.thompson23@gmail.com&returnUrl=%2F - - - 200 - text/html;+charset=utf-8 122.6818ms
+2022-12-28 20:50:50.214 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:50:50.356 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:50:50.228 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:50:50.404 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 189.3114ms
+2022-12-28 20:50:50.693 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:50:51.361 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 956.5231 ms
+2022-12-28 20:50:51.392 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1164.1388ms
+2022-12-28 20:50:52.181 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 1825.2502ms
+2022-12-28 20:51:00.357 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/ - -
+2022-12-28 20:51:00.360 -05:00 [INF] Executing endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:51:00.364 -05:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller VayCayPlanner.Web.Controllers.HomeController (VayCayPlanner.Web).
+2022-12-28 20:51:00.380 -05:00 [INF] Executing ViewResult, running view Index.
+2022-12-28 20:51:00.398 -05:00 [INF] Executed ViewResult - view Index executed in 18.1829ms.
+2022-12-28 20:51:00.403 -05:00 [INF] Executed action VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web) in 22.7172ms
+2022-12-28 20:51:00.404 -05:00 [INF] Executed endpoint 'VayCayPlanner.Web.Controllers.HomeController.Index (VayCayPlanner.Web)'
+2022-12-28 20:51:00.406 -05:00 [INF] HTTP GET / responded 200 in 45.7637 ms
+2022-12-28 20:51:00.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/ - - - 200 - text/html;+charset=utf-8 106.0798ms
+2022-12-28 20:51:00.779 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - -
+2022-12-28 20:51:00.779 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - -
+2022-12-28 20:51:00.779 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7060/_vs/browserLink - -
+2022-12-28 20:51:00.793 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 13.5817ms
+2022-12-28 20:51:00.795 -05:00 [INF] The file /VayCayPlanner.Web.styles.css was not modified
+2022-12-28 20:51:00.824 -05:00 [INF] HTTP GET /VayCayPlanner.Web.styles.css responded 304 in 29.4731 ms
+2022-12-28 20:51:00.860 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/VayCayPlanner.Web.styles.css?v=NKWDs9V90RVZnOmiHmWjN6DbCBC4mOYbASnyuj6fjuc - - - 304 - text/css 80.5376ms
+2022-12-28 20:51:00.928 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - -
+2022-12-28 20:51:00.946 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7060/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 167.1905ms
+2022-12-28 20:51:00.997 -05:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'C:\Users\thomp\source\repos\VayCayPlanner.Web\VayCayPlanner.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2022-12-28 20:51:01.021 -05:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js.map responded 200 in 60.9013 ms
+2022-12-28 20:51:01.024 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7060/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - - - 200 327261 text/plain 95.3242ms
+2022-12-28 20:58:41.699 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 20:58:42.806 -05:00 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 20:58:42.888 -05:00 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 20:58:42.917 -05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 21:02:55.574 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 21:03:34.096 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 21:03:34.762 -05:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 21:03:34.845 -05:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 21:03:34.862 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 21:03:34.863 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 21:03:34.892 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 21:03:34.933 -05:00 [INF] Applying migration '20221229020256_deletedallmigrations'.
+2022-12-28 21:03:35.216 -05:00 [ERR] Failed executing DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2022-12-28 21:05:34.414 -05:00 [INF] Entity Framework Core 6.0.12 initialized 'VayCayDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+2022-12-28 21:05:35.626 -05:00 [INF] Executed DbCommand (353ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [aspnet-VayCayPlanner.Web];
+2022-12-28 21:05:35.730 -05:00 [INF] Executed DbCommand (98ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [aspnet-VayCayPlanner.Web] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2022-12-28 21:05:35.823 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 21:05:36.073 -05:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2022-12-28 21:05:36.077 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-12-28 21:05:36.127 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-12-28 21:05:36.137 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-12-28 21:05:36.174 -05:00 [INF] Applying migration '20221229020256_deletedallmigrations'.
+2022-12-28 21:05:36.329 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);
+2022-12-28 21:05:36.334 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUsers] (
+    [Id] nvarchar(450) NOT NULL,
+    [FirstName] nvarchar(256) NULL,
+    [LastName] nvarchar(256) NULL,
+    [FullName] nvarchar(256) NULL,
+    [TravelerEmail] nvarchar(256) NULL,
+    [Mobile_Number] nvarchar(128) NULL,
+    [DateJoined] datetime2 NULL,
+    [DefaultTravelGroupKey] nvarchar(450) NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);
+2022-12-28 21:05:36.338 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Destinations] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(450) NOT NULL,
+    [Country] nvarchar(450) NOT NULL,
+    [TravelGroupId] nvarchar(max) NULL,
+    [CreatedDate] datetime2 NULL,
+    [ModifiedDate] datetime2 NULL,
+    CONSTRAINT [PK_Destinations] PRIMARY KEY ([Id])
+);
+2022-12-28 21:05:36.341 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Trips] (
+    [Id] int NOT NULL IDENTITY,
+    [TripName] nvarchar(max) NULL,
+    [StartDate] datetime2 NOT NULL,
+    [EndDate] datetime2 NOT NULL,
+    [TravelGroupId] nvarchar(max) NULL,
+    [CreatedDate] datetime2 NULL,
+    [ModifiedDate] datetime2 NULL,
+    CONSTRAINT [PK_Trips] PRIMARY KEY ([Id])
+);
+2022-12-28 21:05:36.347 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);
+2022-12-28 21:05:36.350 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2022-12-28 21:05:36.359 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(128) NOT NULL,
+    [ProviderKey] nvarchar(128) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2022-12-28 21:05:36.364 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserRoles] (
+    [UserId] nvarchar(450) NOT NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2022-12-28 21:05:36.599 -05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AspNetUserTokens] (
+    [UserId] nvarchar(450) NOT NULL,
+    [LoginProvider] nvarchar(128) NOT NULL,
+    [Name] nvarchar(128) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2022-12-28 21:05:36.602 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TravelGroups] (
+    [Id] int NOT NULL IDENTITY,
+    [GroupName] nvarchar(450) NOT NULL,
+    [InvitationKey] nvarchar(450) NULL,
+    [SubscriberId] nvarchar(450) NULL,
+    CONSTRAINT [PK_TravelGroups] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_TravelGroups_AspNetUsers_SubscriberId] FOREIGN KEY ([SubscriberId]) REFERENCES [AspNetUsers] ([Id])
+);
+2022-12-28 21:05:36.606 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Travelers] (
+    [Id] int NOT NULL IDENTITY,
+    [FullName] nvarchar(256) NULL,
+    [EmailAddress] nvarchar(256) NULL,
+    [TravelGroupId] int NULL,
+    [TripId] int NULL,
+    CONSTRAINT [PK_Travelers] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Travelers_TravelGroups_TravelGroupId] FOREIGN KEY ([TravelGroupId]) REFERENCES [TravelGroups] ([Id]),
+    CONSTRAINT [FK_Travelers_Trips_TripId] FOREIGN KEY ([TripId]) REFERENCES [Trips] ([Id])
+);
+2022-12-28 21:05:36.609 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
+2022-12-28 21:05:36.612 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;
+2022-12-28 21:05:36.613 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);
+2022-12-28 21:05:36.613 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);
+2022-12-28 21:05:36.614 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);
+2022-12-28 21:05:36.615 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
+2022-12-28 21:05:36.615 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;
+2022-12-28 21:05:36.616 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Travelers_TravelGroupId] ON [Travelers] ([TravelGroupId]);
+2022-12-28 21:05:36.617 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Travelers_TripId] ON [Travelers] ([TripId]);
+2022-12-28 21:05:36.618 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_TravelGroups_SubscriberId] ON [TravelGroups] ([SubscriberId]);
+2022-12-28 21:05:36.625 -05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20221229020256_deletedallmigrations', N'6.0.12');

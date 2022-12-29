@@ -4,16 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using VayCayPlanner.Data;
 using VayCayPlanner.Data.Models;
+using VayCayPlanner.Data.Repositories;
+using VayCayPlanner.Data.Repositories.Contracts;
 using VayCayPlanner.Web.Services;
+using VayCayPlanner.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddControllersWithViews();
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 //Identity Service
 builder.Services.AddDefaultIdentity<Subscriber>(options => options.SignIn.RequireConfirmedAccount = true)
     //.AddRoles<IdentityRole>()
@@ -27,12 +31,10 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddTransient<IEmailSender>(s => new EmailSender("localhost", 25, "no-reply@vaycayplanner.com"));
 
-//builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
-//builder.Services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
-//builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
+//TODO: Register the repositories
+builder.Services.AddScoped<ITravelGroupRepository, TravelGroupRepository>();
 
-//builder.Services.AddAutoMapper(typeof(MapperConfig));
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 builder.Services.AddControllersWithViews();
 

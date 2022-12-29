@@ -1,0 +1,35 @@
+﻿@model VayCayPlanner.Data.Models.TravelGroup
+
+@{
+    ViewData["Title"] = "Create your group then add travelers";
+}
+
+<h1>Create</h1>
+
+<h4>TravelGroup</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GroupName" class="control-label"></label>
+                <input asp-for="GroupName" class="form-control" />
+                <span asp-validation-for="GroupName" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="InvitationKey" class="control-label"></label>
+                <input asp-for="InvitationKey" class="form-control" />
+                <span asp-validation-for="InvitationKey" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

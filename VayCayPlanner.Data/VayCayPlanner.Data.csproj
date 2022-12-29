@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -24,8 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Configurations\Entities\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>

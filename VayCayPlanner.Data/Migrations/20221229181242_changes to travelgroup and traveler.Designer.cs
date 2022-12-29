@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VayCayPlanner.Data;
 
@@ -11,9 +12,10 @@ using VayCayPlanner.Data;
 namespace VayCayPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221229181242_changes to travelgroup and traveler")]
+    partial class changestotravelgroupandtraveler
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -308,7 +310,12 @@ namespace VayCayPlanner.Data.Migrations
                     b.Property<string>("TravelGroupId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TravelGroupId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TravelGroupId1");
 
                     b.ToTable("Travelers");
                 });
@@ -433,6 +440,13 @@ namespace VayCayPlanner.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Traveler", b =>
+                {
+                    b.HasOne("VayCayPlanner.Data.Models.TravelGroup", null)
+                        .WithMany("Travelers")
+                        .HasForeignKey("TravelGroupId1");
+                });
+
             modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
                 {
                     b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
@@ -454,6 +468,11 @@ namespace VayCayPlanner.Data.Migrations
             modelBuilder.Entity("VayCayPlanner.Data.Models.Subscriber", b =>
                 {
                     b.Navigation("TravelGroups");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
+                {
+                    b.Navigation("Travelers");
                 });
 #pragma warning restore 612, 618
         }
