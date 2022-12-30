@@ -1,4 +1,4 @@
-﻿namespace VayCayPlanner.Web.Constants
+﻿namespace VayCayPlanner.Common.Constants
 {
     public static class Roles
     {

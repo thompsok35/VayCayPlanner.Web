@@ -33,6 +33,7 @@ builder.Services.AddTransient<IEmailSender>(s => new EmailSender("localhost", 25
 
 //TODO: Register the repositories
 builder.Services.AddScoped<ITravelGroupRepository, TravelGroupRepository>();
+builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

@@ -1,94 +1,104 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data;
-using VayCayPlanner.Data.Repositories;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Data.Repositories.Contracts;
+
+
 
 namespace VayCayPlanner.Web.Controllers
 {
-    public class TravelGroupsController : Controller
+    public class TravelersController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly ITravelGroupRepository _travelGroupRepository;
 
-        public TravelGroupsController(ApplicationDbContext context, 
+        public TravelersController(ApplicationDbContext context, 
             ITravelGroupRepository travelGroupRepository)
         {
             _context = context;
             _travelGroupRepository = travelGroupRepository;
         }
 
-        // GET: TravelGroups
+        // GET: Travelers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TravelGroups.ToListAsync());
+            return View(await _context.Travelers.ToListAsync());
         }
 
-        // GET: TravelGroups/Details/5
+        // GET: Travelers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.TravelGroups == null)
+            if (id == null || _context.Travelers == null)
             {
                 return NotFound();
             }
 
-            var travelGroup = await _context.TravelGroups
+            var traveler = await _context.Travelers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (travelGroup == null)
+            if (traveler == null)
             {
                 return NotFound();
             }
 
-            return View(travelGroup);
+            return View(traveler);
         }
 
-        // GET: TravelGroups/Create
+        // GET: Travelers/Create
         public IActionResult Create()
         {
+            //var model = new CreateTravelerVM
+            //{
+            //    //You can pre-populate data into the fields of the view model here...
+            //    //The SelectList provides the source data for drop doen
+            //    TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroups().Result, "Id", "Name")
+            //};
+            //return View(model);
             return View();
         }
 
-        // POST: TravelGroups/Create
+        // POST: Travelers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TravelGroup travelGroup)
+        public async Task<IActionResult> Create([Bind("Id,FullName,EmailAddress")] Traveler traveler)
         {
-            //if (ModelState.IsValid)
-            //{                
-                await _travelGroupRepository.CreateTravelGroup(travelGroup);
+            if (ModelState.IsValid)
+            {
+                _context.Add(traveler);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            //}
-            return View(travelGroup);
+            }
+            return View(traveler);
         }
 
-        // GET: TravelGroups/Edit/5
+        // GET: Travelers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.TravelGroups == null)
+            if (id == null || _context.Travelers == null)
             {
                 return NotFound();
             }
 
-            var travelGroup = await _context.TravelGroups.FindAsync(id);
-            if (travelGroup == null)
+            var traveler = await _context.Travelers.FindAsync(id);
+            if (traveler == null)
             {
                 return NotFound();
             }
-            return View(travelGroup);
+            return View(traveler);
         }
 
-        // POST: TravelGroups/Edit/5
+        // POST: Travelers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName,InvitationKey")] TravelGroup travelGroup)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,EmailAddress")] Traveler traveler)
         {
-            if (id != travelGroup.Id)
+            if (id != traveler.Id)
             {
                 return NotFound();
             }
@@ -97,12 +107,12 @@ namespace VayCayPlanner.Web.Controllers
             {
                 try
                 {
-                    _context.Update(travelGroup);
+                    _context.Update(traveler);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TravelGroupExists(travelGroup.Id))
+                    if (!TravelerExists(traveler.Id))
                     {
                         return NotFound();
                     }
@@ -113,49 +123,49 @@ namespace VayCayPlanner.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(travelGroup);
+            return View(traveler);
         }
 
-        // GET: TravelGroups/Delete/5
+        // GET: Travelers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.TravelGroups == null)
+            if (id == null || _context.Travelers == null)
             {
                 return NotFound();
             }
 
-            var travelGroup = await _context.TravelGroups
+            var traveler = await _context.Travelers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (travelGroup == null)
+            if (traveler == null)
             {
                 return NotFound();
             }
 
-            return View(travelGroup);
+            return View(traveler);
         }
 
-        // POST: TravelGroups/Delete/5
+        // POST: Travelers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.TravelGroups == null)
+            if (_context.Travelers == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.TravelGroups'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Travelers'  is null.");
             }
-            var travelGroup = await _context.TravelGroups.FindAsync(id);
-            if (travelGroup != null)
+            var traveler = await _context.Travelers.FindAsync(id);
+            if (traveler != null)
             {
-                _context.TravelGroups.Remove(travelGroup);
+                _context.Travelers.Remove(traveler);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TravelGroupExists(int id)
+        private bool TravelerExists(int id)
         {
-            return _context.TravelGroups.Any(e => e.Id == id);
+            return _context.Travelers.Any(e => e.Id == id);
         }
     }
 }

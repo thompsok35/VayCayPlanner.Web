@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using VayCayPlanner.Web.Models;
+using VayCayPlanner.Common.Constants;
+using VayCayPlanner.Common.ViewModels;
+    
 
 namespace VayCayPlanner.Web.Controllers
 {

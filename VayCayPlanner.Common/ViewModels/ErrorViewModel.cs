@@ -1,4 +1,4 @@
-namespace VayCayPlanner.Web.Models
+namespace VayCayPlanner.Common.ViewModels
 {
     public class ErrorViewModel
     {
