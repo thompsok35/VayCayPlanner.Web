@@ -23,7 +23,12 @@ namespace VayCayPlanner.Web.Controllers
         // GET: TravelGroups
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TravelGroups.ToListAsync());
+            return View(await _travelGroupRepository.MyTravelGroupMemberships());
+        }
+
+        public async Task<IActionResult> MyTravelGroups()
+        {
+            return View(await _travelGroupRepository.MyTravelGroups());
         }
 
         // GET: TravelGroups/Details/5

@@ -10,6 +10,7 @@ namespace VayCayPlanner.Data.Repositories.Contracts
     public interface ITravelGroupRepository
     {
         Task<List<TravelGroup>> MyTravelGroups();
+        Task<List<TravelGroup>> MyTravelGroupMemberships();
         Task<bool> CreateTravelGroup(TravelGroup travelGroup);
     }
 }

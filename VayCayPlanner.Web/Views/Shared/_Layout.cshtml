@@ -39,8 +39,10 @@
                                     Profile
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" asp-controller="TravelGroups" asp-action="Index">Travel Groups</a></li>
-                                        <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Traveler Profile</a></li>
+                                    <li><a class="dropdown-item" asp-controller="TravelGroups" asp-action="MyTravelGroups">My Travel Groups</a></li>
+                                    <li><a class="dropdown-item" asp-controller="TravelGroups" asp-action="Index">My Group Memberships</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Travelers" asp-action="Create">Add Travelers</a></li>
+                                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">My Profile</a></li>
                                 </ul>
                             </li>
                         }

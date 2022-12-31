@@ -32,16 +32,41 @@ namespace VayCayPlanner.Data.Repositories
         public async Task<List<TravelGroup>> MyTravelGroups()
         {
             var user = await CurrentUser();
-            var myTravelGroups = await _dbContext.Travelers.Where(x => x.EmailAddress == user.TravelerEmail).ToListAsync();
+            
             try
             {
-                var myGroups = await _dbContext.TravelGroups.Where(x => x.OwnerId == user.Id).ToListAsync();
-                return myGroups;
+                var myTravelGroups = await _dbContext.TravelGroups.Where(x => x.OwnerId == user.Id).ToListAsync();
+                return myTravelGroups;
             }
             catch (Exception)
             {
                 //log this error
-                return null;
+                List<TravelGroup> myTravelGroups = new();
+                return myTravelGroups;
+            }
+        }
+
+        public async Task<List<TravelGroup>> MyTravelGroupMemberships()
+        {
+            var user = await CurrentUser();            
+            List<TravelGroup> myTravelGroups = new();
+            try
+            {
+                var myTravelGroupIds = await _dbContext.Travelers.Where(x => x.EmailAddress == user.TravelerEmail).ToListAsync();
+                foreach (var group in myTravelGroupIds)
+                {
+                    var thisGroup = _dbContext.TravelGroups.Where(x => x.Id == group.TravelGroupId).FirstOrDefault();
+                    if (thisGroup != null)
+                    {
+                        myTravelGroups.Add(thisGroup);
+                    }                    
+                }
+                return myTravelGroups;
+            }
+            catch (Exception)
+            {
+                //log this error
+                return myTravelGroups;
             }
         }
 

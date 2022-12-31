@@ -13,9 +13,8 @@ namespace VayCayPlanner.Common.ViewModels
     {
         [Display(Name = "Select Travel Group")]
         public int TravelGroupId { get; set; }
-
         //Source: TripRepository.GetUpcomingTrips()
-        //public SelectList? TravelGroups { get; set; }
+        public SelectList? TravelGroups { get; set; }
 
         [Display(Name = "Travelers Name")]
         public string? FullName { get; set; }

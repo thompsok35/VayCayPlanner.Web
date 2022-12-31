@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VayCayPlanner.Web", "VayCayPlanner.Web\VayCayPlanner.Web.csproj", "{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VayCayPlanner.Web", "VayCayPlanner.Web\VayCayPlanner.Web.csproj", "{A33B2E2E-BE1D-4AAE-B25D-CA768DBF7F13}"
 	ProjectSection(ProjectDependencies) = postProject
 		{77C33BAC-338D-4B2F-9B50-89D8608785E3} = {77C33BAC-338D-4B2F-9B50-89D8608785E3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VayCayPlanner.Data", "VayCayPlanner.Data\VayCayPlanner.Data.csproj", "{C1092B81-CEC2-449B-83D4-D36744797998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VayCayPlanner.Data", "VayCayPlanner.Data\VayCayPlanner.Data.csproj", "{C1092B81-CEC2-449B-83D4-D36744797998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VayCayPlanner.Common", "VayCayPlanner.Common\VayCayPlanner.Common.csproj", "{77C33BAC-338D-4B2F-9B50-89D8608785E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VayCayPlanner.Common", "VayCayPlanner.Common\VayCayPlanner.Common.csproj", "{77C33BAC-338D-4B2F-9B50-89D8608785E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeveloperNotes", "DeveloperNotes", "{463BE8EA-6086-4D01-B286-4388E2CD88B4}"
 EndProject

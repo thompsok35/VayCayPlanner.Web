@@ -30,37 +30,41 @@ namespace VayCayPlanner.Data.Repositories
             _userManager = userManager;
         }
 
-        //public async Task<List<TravelGroup>> MyTravelGroups()
-        //{
-        //    var user = await CurrentUser();
-        //    var myTravelGroups = await _dbContext.Travelers.Where(x => x.EmailAddress == user.TravelerEmail).ToListAsync();
-        //    try
-        //    {
-        //        var myGroups = await _dbContext.TravelGroups.Where(x => x.OwnerId == user.Id).ToListAsync();
-        //        return myGroups;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        //log this error
-        //        return null;
-        //    }
-        //}
+        public async Task<List<Traveler>> MyTravelGroupIds()
+        {
+            var user = await CurrentUser();
+            List<Traveler> myTravelGroupIds = new();
+            try
+            {
+                var myGroups = await _dbContext.Travelers.Where(x => x.EmailAddress.ToLower() == user.TravelerEmail.ToLower()).ToListAsync();
+                return myGroups;
+            }
+            catch (Exception)
+            {
+                //log this error
+                return myTravelGroupIds;
+            }
+        }
 
-        public async Task<bool> AddTravelerToGroup(CreateTravelerVM model)
+        public async Task<bool> AddTravelerToGroup(CreateTravelerVM viewModel)
         {
             try
             {
                 var user = await CurrentUser();
-                var newModel = new CreateTravelerVM
+                var dataModel = new Traveler
                 {
-                    //GroupName = travelGroup.GroupName,
-                    //InvitationKey = GenerateKey(),
-                    //OwnerId = user.Id,
-                    //TypeId = 0
+                    FullName = viewModel.FullName,
+                    EmailAddress = viewModel.EmailAddress,
+                    TravelGroupId = viewModel.TravelGroupId,
+                    ModifiedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now
                 };
+                if (!isEmailInGroup(viewModel.TravelGroupId, viewModel.EmailAddress).Result)
+                {
+                    _dbContext.Add(dataModel);
+                    _dbContext.SaveChanges();
+                }
 
-                _dbContext.Add(newModel);
-                _dbContext.SaveChanges();
             }
             catch (Exception)
             {
@@ -80,6 +84,14 @@ namespace VayCayPlanner.Data.Repositories
             return null;
         }
 
-
+        private async Task<bool> isEmailInGroup(int groupId, string emailAddress)
+        {
+            var _list = await _dbContext.Travelers.Where(x => x.TravelGroupId == groupId && x.EmailAddress == emailAddress).FirstOrDefaultAsync();
+            if (_list == null)
+            {
+                return false;
+            }            
+            return true;
+        }
     }
 }

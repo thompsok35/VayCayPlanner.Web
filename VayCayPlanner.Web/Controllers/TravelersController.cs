@@ -14,12 +14,15 @@ namespace VayCayPlanner.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ITravelGroupRepository _travelGroupRepository;
+        private readonly ITravelerRepository _travelerRepository;
 
         public TravelersController(ApplicationDbContext context, 
-            ITravelGroupRepository travelGroupRepository)
+            ITravelGroupRepository travelGroupRepository,
+            ITravelerRepository travelerRepository)
         {
             _context = context;
             _travelGroupRepository = travelGroupRepository;
+            _travelerRepository = travelerRepository;
         }
 
         // GET: Travelers
@@ -49,14 +52,13 @@ namespace VayCayPlanner.Web.Controllers
         // GET: Travelers/Create
         public IActionResult Create()
         {
-            //var model = new CreateTravelerVM
-            //{
-            //    //You can pre-populate data into the fields of the view model here...
-            //    //The SelectList provides the source data for drop doen
-            //    TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroups().Result, "Id", "Name")
-            //};
-            //return View(model);
-            return View();
+            var model = new CreateTravelerVM
+            {
+                //You can pre-populate data into the fields of the view model here...
+                //The SelectList provides the source data for drop doen
+                TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroups().Result, "Id", "GroupName")
+            };
+            return View(model);
         }
 
         // POST: Travelers/Create
@@ -64,15 +66,16 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FullName,EmailAddress")] Traveler traveler)
+        public async Task<IActionResult> Create(CreateTravelerVM traveler)
         {
-            if (ModelState.IsValid)
+            if (traveler != null)
             {
-                _context.Add(traveler);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _travelerRepository.AddTravelerToGroup(traveler);
             }
-            return View(traveler);
+            
+            return RedirectToAction(nameof(Create));
+
+            //return View(traveler);
         }
 
         // GET: Travelers/Edit/5
