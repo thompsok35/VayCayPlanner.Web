@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data.Repositories.Contracts;
 
@@ -19,6 +20,7 @@ namespace VayCayPlanner.Data.Repositories
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<Subscriber> _userManager;
+        private readonly IMapper _mapper;
 
         public TravelGroupRepository(ApplicationDbContext dbContext,
                     IHttpContextAccessor httpContextAccessor,
@@ -27,6 +29,7 @@ namespace VayCayPlanner.Data.Repositories
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         public async Task<List<TravelGroup>> MyTravelGroups()
@@ -70,6 +73,22 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
+        public async Task<TravelGroupDetailVm> GetTravelGroupDetails(int groupId)
+        {
+            var thisGroup = await _dbContext.TravelGroups.Where(x => x.Id == groupId).FirstOrDefaultAsync();
+            var groupMembers = _mapper.Map<List<TravelersVM>>(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisGroup.Id).ToListAsync());
+            var user = await _userManager.FindByIdAsync(thisGroup.OwnerId);
+            var model = new TravelGroupDetailVm(groupMembers)
+            {
+                Id = thisGroup.Id,
+                GroupName = thisGroup.GroupName,
+                GroupType = GetGroupType(thisGroup.TypeId),
+                OwnerName = user.Email,
+                InvitationKey = thisGroup.InvitationKey
+            };
+            return model;            
+        }
+
         public async Task<bool> CreateTravelGroup(TravelGroup travelGroup)
         {
             try
@@ -108,6 +127,18 @@ namespace VayCayPlanner.Data.Repositories
         {
             var thiskey = System.Guid.NewGuid().ToString("D");
             return thiskey;
+        }
+
+        private string GetGroupType(int Id)
+        {
+            if (Id == 0)
+            {
+                return "Private";
+            }
+            else
+            {
+                return "Public";
+            }
         }
     }
 }

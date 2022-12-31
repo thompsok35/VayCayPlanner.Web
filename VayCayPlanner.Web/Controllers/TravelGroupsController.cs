@@ -32,15 +32,10 @@ namespace VayCayPlanner.Web.Controllers
         }
 
         // GET: TravelGroups/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.TravelGroups == null)
-            {
-                return NotFound();
-            }
-
-            var travelGroup = await _context.TravelGroups
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var travelGroup = await _travelGroupRepository.GetTravelGroupDetails(id);
+           
             if (travelGroup == null)
             {
                 return NotFound();
