@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace VayCayPlanner.Common.ViewModels
 {
-    public class TravelGroupDetailVm
+    public class TravelGroupDetailVM
     {
-        public TravelGroupDetailVm(List<TravelersVM> travelers)
+        public TravelGroupDetailVM(List<TravelersVM> travelers)
         {
             Travelers = travelers;
         }
@@ -21,8 +21,11 @@ namespace VayCayPlanner.Common.ViewModels
 
         [Display(Name = "Traveler Group Type")]
         public string GroupType { get; set; }
-        
+
+        [Display(Name = "Traveler Name")]
         public string FullName { get; set; }
+
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
         public List<TravelersVM>? Travelers { get; set; }

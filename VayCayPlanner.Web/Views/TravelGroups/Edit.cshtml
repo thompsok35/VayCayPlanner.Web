@@ -1,4 +1,4 @@
-﻿@model VayCayPlanner.Data.Models.TravelGroup
+﻿@model VayCayPlanner.Common.ViewModels.TravelGroupEditVM
 
 @{
     ViewData["Title"] = "Edit";
@@ -18,6 +18,13 @@
                 <input asp-for="GroupName" class="form-control" />
                 <span asp-validation-for="GroupName" class="text-danger"></span>
             </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label"></label>
+                <input asp-for="TypeId" class="form-control" />
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div>
+            <br/>
             <div class="form-group">
                 <label asp-for="InvitationKey" class="control-label"></label>
                 <input asp-for="InvitationKey" class="form-control" />

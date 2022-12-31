@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,17 +9,16 @@ using System.Xml.Linq;
 
 namespace VayCayPlanner.Common.ViewModels
 {
-    public class TravelersVM
+    public class TravelerEditVM
     {
         public int Id { get; set; }
 
+        public int TravelGroupId { get; set; }
+        
         [Display(Name = "Traveler Name")]
         public string? FullName { get; set; }
 
         [Display(Name = "Email Address")]
         public string? EmailAddress { get; set; }
-
-        [Display(Name = "Date Added")]
-        public DateTime? CreatedDate { get; set; }
     }
 }

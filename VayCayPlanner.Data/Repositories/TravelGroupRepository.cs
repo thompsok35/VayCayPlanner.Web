@@ -73,12 +73,12 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
-        public async Task<TravelGroupDetailVm> GetTravelGroupDetails(int groupId)
+        public async Task<TravelGroupDetailVM> GetTravelGroupDetails(int groupId)
         {
             var thisGroup = await _dbContext.TravelGroups.Where(x => x.Id == groupId).FirstOrDefaultAsync();
             var groupMembers = _mapper.Map<List<TravelersVM>>(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisGroup.Id).ToListAsync());
             var user = await _userManager.FindByIdAsync(thisGroup.OwnerId);
-            var model = new TravelGroupDetailVm(groupMembers)
+            var model = new TravelGroupDetailVM(groupMembers)
             {
                 Id = thisGroup.Id,
                 GroupName = thisGroup.GroupName,
@@ -111,6 +111,26 @@ namespace VayCayPlanner.Data.Repositories
                 return false;                
             }
             return true;
+        }
+
+        public async Task<bool> EditTravelGroup(int id, TravelGroupEditVM travelGroupVM)
+        {
+            var travelGroup = await _dbContext.TravelGroups.Where(x => x.Id == id).FirstOrDefaultAsync();
+            try
+            {
+                var record = _mapper.Map(travelGroupVM, travelGroup);
+                if (record != null)
+                {
+                    _dbContext.Update(record);
+                    await _dbContext.SaveChangesAsync();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                // log error
+                return false;
+            }
         }
 
         private async Task<Subscriber> CurrentUser()

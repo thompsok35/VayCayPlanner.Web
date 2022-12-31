@@ -5,6 +5,8 @@ using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data;
 using VayCayPlanner.Data.Repositories;
 using VayCayPlanner.Data.Repositories.Contracts;
+using VayCayPlanner.Common.ViewModels;
+using AutoMapper;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -12,12 +14,15 @@ namespace VayCayPlanner.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ITravelGroupRepository _travelGroupRepository;
+        private readonly IMapper _mapper;
 
-        public TravelGroupsController(ApplicationDbContext context, 
+        public TravelGroupsController(ApplicationDbContext context,
+            IMapper mapper,
             ITravelGroupRepository travelGroupRepository)
         {
             _context = context;
             _travelGroupRepository = travelGroupRepository;
+            _mapper = mapper;
         }
 
         // GET: TravelGroups
@@ -74,11 +79,12 @@ namespace VayCayPlanner.Web.Controllers
             }
 
             var travelGroup = await _context.TravelGroups.FindAsync(id);
+            var travelGroupVM = _mapper.Map<TravelGroupEditVM>(travelGroup);
             if (travelGroup == null)
             {
                 return NotFound();
             }
-            return View(travelGroup);
+            return View(travelGroupVM);
         }
 
         // POST: TravelGroups/Edit/5
@@ -86,34 +92,25 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName,InvitationKey")] TravelGroup travelGroup)
+        public async Task<IActionResult> Edit(int id, TravelGroupEditVM travelGroupVM)
         {
-            if (id != travelGroup.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(travelGroup);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TravelGroupExists(travelGroup.Id))
+                    var result = await _travelGroupRepository.EditTravelGroup(id, travelGroupVM);
+                    if (!result)
                     {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    }                    
+                }
+                catch (Exception)
+                {
+                    //log the error
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(travelGroup);
+            return View(travelGroupVM);
         }
 
         // GET: TravelGroups/Delete/5

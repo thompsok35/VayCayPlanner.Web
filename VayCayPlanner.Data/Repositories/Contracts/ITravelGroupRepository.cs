@@ -12,7 +12,8 @@ namespace VayCayPlanner.Data.Repositories.Contracts
     {
         Task<List<TravelGroup>> MyTravelGroups();
         Task<List<TravelGroup>> MyTravelGroupMemberships();
-        Task<TravelGroupDetailVm> GetTravelGroupDetails(int groupId);
+        Task<TravelGroupDetailVM> GetTravelGroupDetails(int groupId);
+        Task<bool> EditTravelGroup(int id, TravelGroupEditVM travelGroupVM);
         Task<bool> CreateTravelGroup(TravelGroup travelGroup);
     }
 }

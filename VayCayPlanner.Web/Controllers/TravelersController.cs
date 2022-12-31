@@ -5,8 +5,7 @@ using VayCayPlanner.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Data.Repositories.Contracts;
-
-
+using AutoMapper;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -15,14 +14,17 @@ namespace VayCayPlanner.Web.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ITravelGroupRepository _travelGroupRepository;
         private readonly ITravelerRepository _travelerRepository;
+        private readonly IMapper _mapper;
 
         public TravelersController(ApplicationDbContext context, 
             ITravelGroupRepository travelGroupRepository,
+            IMapper mapper,
             ITravelerRepository travelerRepository)
         {
             _context = context;
             _travelGroupRepository = travelGroupRepository;
             _travelerRepository = travelerRepository;
+            _mapper = mapper;
         }
 
         // GET: Travelers
@@ -87,11 +89,13 @@ namespace VayCayPlanner.Web.Controllers
             }
 
             var traveler = await _context.Travelers.FindAsync(id);
+            var travelerEditVM = _mapper.Map<TravelerEditVM>(traveler);
+
             if (traveler == null)
             {
                 return NotFound();
             }
-            return View(traveler);
+            return View(travelerEditVM);
         }
 
         // POST: Travelers/Edit/5
@@ -99,34 +103,25 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,EmailAddress")] Traveler traveler)
+        public async Task<IActionResult> Edit(int id, TravelerEditVM travelerVM)
         {
-            if (id != traveler.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(traveler);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TravelerExists(traveler.Id))
+                    var result = await _travelerRepository.EditTraveler(id, travelerVM);
+                    if (!result)
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+                }
+                catch (Exception)
+                {
+                    //log the error
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(traveler);
+            return View(travelerVM);
         }
 
         // GET: Travelers/Delete/5

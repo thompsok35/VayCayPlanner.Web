@@ -46,6 +46,29 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
+        public async Task<bool> EditTraveler(int id, TravelerEditVM viewModel)
+        {
+            var thisRecord = await _dbContext.Travelers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            try
+            {
+                if (thisRecord != null)
+                {
+                    thisRecord.FullName = viewModel.FullName;
+                    thisRecord.EmailAddress = viewModel.EmailAddress;
+                    thisRecord.ModifiedDate = DateTime.Now;
+                    //var record = _mapper.Map(travelGroupVM, travelGroup);
+                    _dbContext.Update(thisRecord);
+                    await _dbContext.SaveChangesAsync(); 
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                // log error
+                return false;
+            }
+        }
+
         public async Task<bool> AddTravelerToGroup(CreateTravelerVM viewModel)
         {
             try
