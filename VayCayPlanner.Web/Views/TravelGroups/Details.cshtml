@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+@*<h1>Details</h1>*@
 
 <div>
-    <h4>TravelGroup</h4>
+    <h4>@Model.GroupName</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -68,9 +68,14 @@
     </tbody>
 </table>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit Group</a>  |
-    <a asp-action="Index">My Group Memberships</a>  |
-    <a asp-action="MyTravelGroups">My Travel Groups</a>  |
-    <a asp-controller="Travelers" asp-action="Create">Add Travelers</a>
+
+<div class="row"> 
+    <div class="col align-self-start">       
+        <a asp-controller="Travelers" asp-action="Add" asp-route-id="@Model?.Id">Add Travelers</a>
+    </div>
+    <div class="col align-content-end">
+        <a asp-action="Index">My Group Memberships</a>  |
+        <a asp-action="MyTravelGroups">My Travel Groups</a>  |
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit @Model.GroupName</a>
+    </div>
 </div>

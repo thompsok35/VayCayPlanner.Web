@@ -97,6 +97,34 @@ namespace VayCayPlanner.Data.Repositories
             return true;
         }
 
+        public async Task<bool> AddTraveler(TravelerAddVM viewModel)
+        {
+            try
+            {
+                var user = await CurrentUser();
+                var dataModel = new Traveler
+                {
+                    FullName = viewModel.FullName,
+                    EmailAddress = viewModel.EmailAddress,
+                    TravelGroupId = viewModel.TravelGroupId,
+                    ModifiedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now
+                };
+                if (!isEmailInGroup(viewModel.TravelGroupId, viewModel.EmailAddress).Result)
+                {
+                    _dbContext.Add(dataModel);
+                    _dbContext.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+                //log error
+                return false;
+            }
+            return true;
+        }
+
         private async Task<Subscriber> CurrentUser()
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Data.Repositories.Contracts;
 using AutoMapper;
+using VayCayPlanner.Common.Traveler.ViewModels;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -58,7 +59,7 @@ namespace VayCayPlanner.Web.Controllers
             {
                 //You can pre-populate data into the fields of the view model here...
                 //The SelectList provides the source data for drop doen
-                TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroups().Result, "Id", "GroupName")
+                TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroupMemberships().Result, "Id", "GroupName")
             };
             return View(model);
         }
@@ -74,10 +75,42 @@ namespace VayCayPlanner.Web.Controllers
             {
                 await _travelerRepository.AddTravelerToGroup(traveler);
             }
-            
-            return RedirectToAction(nameof(Create));
+            return RedirectToAction("Details", "TravelGroups", new { Id = traveler.TravelGroupId });            
+        }
 
-            //return View(traveler);
+        // GET: Travelers/Add/5
+        //public async Task<IActionResult> Add(int id)
+        //{
+        public async Task<IActionResult> Add(int? id)
+        { 
+            if (id != null)
+            {
+                var thisGroup = await _travelGroupRepository.GetTravelGroupDetails(id.Value);
+                var model = new TravelerAddVM
+                {
+                    TravelGroupId = id.Value,
+                    GroupName = thisGroup.GroupName
+                };
+                return View(model);
+            }
+
+            return View();
+        }
+
+        // POST: Travelers/Add
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(TravelerAddVM travelerVM)
+        {
+   
+            if (travelerVM != null)
+            {
+                await _travelerRepository.AddTraveler(travelerVM);
+            }
+            //TravelGroups / Details / 1 
+            return RedirectToAction("Details", "TravelGroups", new { Id = travelerVM.TravelGroupId });
         }
 
         // GET: Travelers/Edit/5
@@ -119,7 +152,7 @@ namespace VayCayPlanner.Web.Controllers
                 {
                     //log the error
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "TravelGroups", new { Id = travelerVM.TravelGroupId });
             }
             return View(travelerVM);
         }
@@ -127,19 +160,25 @@ namespace VayCayPlanner.Web.Controllers
         // GET: Travelers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Travelers == null)
+            if (id != null)
             {
-                return NotFound();
+                var traveler = await _context.Travelers.FirstOrDefaultAsync(m => m.Id == id);
+                if (traveler == null)
+                {
+                    return NotFound();
+                }
+                var thisGroup = await _travelGroupRepository.GetTravelGroupDetails(traveler.TravelGroupId.Value);
+                var model = new TravelerDeleteVM
+                {
+                    FullName = traveler.FullName,
+                    EmailAddress = traveler.EmailAddress,
+                    TravelGroupId = id.Value,
+                    GroupName = thisGroup.GroupName
+                };
+                return View(model);
             }
 
-            var traveler = await _context.Travelers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (traveler == null)
-            {
-                return NotFound();
-            }
-
-            return View(traveler);
+            return View();
         }
 
         // POST: Travelers/Delete/5
@@ -158,7 +197,7 @@ namespace VayCayPlanner.Web.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "TravelGroups", new { Id = traveler.TravelGroupId });
         }
 
         private bool TravelerExists(int id)
