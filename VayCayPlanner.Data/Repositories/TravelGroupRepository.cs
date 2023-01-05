@@ -21,14 +21,17 @@ namespace VayCayPlanner.Data.Repositories
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<Subscriber> _userManager;
         private readonly IMapper _mapper;
+        private readonly ITravelerRepository _travelerRepository;
 
         public TravelGroupRepository(ApplicationDbContext dbContext,
                     IHttpContextAccessor httpContextAccessor,
-                    UserManager<Subscriber> userManager, IMapper mapper)
+                    UserManager<Subscriber> userManager,
+                    ITravelerRepository travelerRepository, IMapper mapper)
         {
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
+            _travelerRepository = travelerRepository;
             _mapper = mapper;
         }
 
@@ -103,7 +106,8 @@ namespace VayCayPlanner.Data.Repositories
                 };
 
                 _dbContext.Add(thisTravelGroup);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
+                await AddTravelerToNewGroup(thisTravelGroup);
             }
             catch (Exception)
             {
@@ -111,6 +115,16 @@ namespace VayCayPlanner.Data.Repositories
                 return false;                
             }
             return true;
+        }
+
+        private async Task<bool> AddTravelerToNewGroup(TravelGroup travelGroup)
+        {
+            var newGroup = await _dbContext.TravelGroups.Where(x => x.GroupName.ToLower() == travelGroup.GroupName.ToLower()).FirstOrDefaultAsync();
+            if (newGroup != null)
+            {
+                return await _travelerRepository.AddTravelerToGroup(newGroup.Id); 
+            }
+            return false;
         }
 
         public async Task<bool> EditTravelGroup(int id, TravelGroupEditVM travelGroupVM)

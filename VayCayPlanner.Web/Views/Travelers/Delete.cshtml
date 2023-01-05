@@ -24,10 +24,11 @@
             @Html.DisplayFor(model => model.EmailAddress)
         </dd>
     </dl>
-    
+    <br/>
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.TravelGroupId">Back to List</a>
+        @*<a asp-action="Index">Back to List</a>*@
     </form>
 </div>

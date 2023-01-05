@@ -1,4 +1,4 @@
-﻿@model VayCayPlanner.Data.Models.Traveler
+﻿@model VayCayPlanner.Common.Traveler.ViewModels.TravelerDetailVM
 
 @{
     ViewData["Title"] = "Details";
@@ -11,11 +11,18 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GroupName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FullName)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FullName)
         </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EmailAddress)
         </dt>
@@ -26,5 +33,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br/>
+    <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.TravelGroupId">Back to List</a>
 </div>

@@ -42,8 +42,8 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var traveler = await _context.Travelers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var traveler = await _travelerRepository.GetTravelerDetail(id.Value);
+
             if (traveler == null)
             {
                 return NotFound();
@@ -142,11 +142,17 @@ namespace VayCayPlanner.Web.Controllers
             {
                 try
                 {
-                    var result = await _travelerRepository.EditTraveler(id, travelerVM);
-                    if (!result)
+                    var traveler = await _context.Travelers.FindAsync(id);
+
+                    if (traveler != null)
                     {
-                        return NotFound();
-                    }
+                        travelerVM.TravelGroupId = traveler.TravelGroupId.Value;
+                        var result = await _travelerRepository.EditTraveler(id, travelerVM);
+                        if (!result)
+                        {
+                            return NotFound();
+                        }
+                    }    
                 }
                 catch (Exception)
                 {
@@ -172,7 +178,7 @@ namespace VayCayPlanner.Web.Controllers
                 {
                     FullName = traveler.FullName,
                     EmailAddress = traveler.EmailAddress,
-                    TravelGroupId = id.Value,
+                    TravelGroupId = thisGroup.Id,
                     GroupName = thisGroup.GroupName
                 };
                 return View(model);
