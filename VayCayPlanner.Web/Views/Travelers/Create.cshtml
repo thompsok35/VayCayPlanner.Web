@@ -41,5 +41,9 @@
 
 <div>
     @*<a asp-action="Index">Back to List</a>*@
-    <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.TravelGroupId">Back to List</a>
+    @if (@Model?.TravelGroupId != null)
+    {
+        <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.TravelGroupId">Back to List</a>
+    }
+    <a asp-controller="TravelGroups" asp-action="Index">Back to List</a>
 </div>
