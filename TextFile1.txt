@@ -4,3 +4,5 @@ vaycayadmin - SIGmail@1
 
 In package Manager
 Script-Migration -Idempotent
+
+smtp service: https://account-app.sendinblue.com/account/login

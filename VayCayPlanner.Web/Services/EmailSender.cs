@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Net;
 using System.Net.Mail;
 
 namespace VayCayPlanner.Web.Services
@@ -8,12 +9,15 @@ namespace VayCayPlanner.Web.Services
         private string smtpServer;
         private int smtpPort;
         private string fromEmailAddress;
+        private readonly IConfiguration _configuration;
 
-        public EmailSender(string smtpServer, int smtpPort, string fromEmailAddress)
+        public EmailSender(string smtpServer, int smtpPort, 
+            string fromEmailAddress, IConfiguration configuration)
         {
             this.smtpServer = smtpServer;
             this.smtpPort = smtpPort;
             this.fromEmailAddress = fromEmailAddress;
+            _configuration = configuration;
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
@@ -25,13 +29,31 @@ namespace VayCayPlanner.Web.Services
                 Body = htmlMessage,
                 IsBodyHtml = true
             };
-
+            
             message.To.Add(new MailAddress(email));
+            NetworkCredential networkCredential = new NetworkCredential(
+                _configuration.GetValue<string>("SmtpConfig:Login"),
+                _configuration.GetValue<string>("SmtpConfig:Password")
+                );
+            SmtpClient smtpClient = new SmtpClient
+            {
+                Host = _configuration.GetValue<string>("SmtpConfig:SMTP_Server"),
+                Port = _configuration.GetValue<int>("SmtpConfig:Port"),
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = networkCredential,
+            };
 
-            using var client = new SmtpClient(smtpServer, smtpPort);
-            //client.Send(message);
-
-            return Task.CompletedTask;
+            try
+            {
+                smtpClient.Send(message);
+                return Task.CompletedTask;
+            }
+            catch (Exception)
+            {
+                //log this error
+                return Task.CompletedTask;
+            }
         }
     }
 }

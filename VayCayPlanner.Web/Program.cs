@@ -29,11 +29,14 @@ builder.Host.UseSerilog((ctx, lc) =>
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddTransient<IEmailSender>(s => new EmailSender("localhost", 25, "no-reply@vaycayplanner.com"));
+var SMTPconfig = builder.Configuration;
+builder.Services.AddTransient<IEmailSender>(s => new EmailSender("smtp-relay.sendinblue.com", 587, "no-reply@vaycayplanner.com", SMTPconfig));
 
 //TODO: Register the repositories
 builder.Services.AddScoped<ITravelGroupRepository, TravelGroupRepository>();
 builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
+
+
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
