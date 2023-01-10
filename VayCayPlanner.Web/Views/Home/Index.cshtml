@@ -1,8 +1,74 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div>
+    <div class="container text-center">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to VayCayPlanner on Azure</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <div class="row align-items-center">
+            <div class="col">
+                <br />
+                <h1>Welcome to VayCay Planner</h1>
+                <br />
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row align-items-center">
+            <div class="col">
+                <button type="button" class="btn btn-primary"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </button>
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Login </a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card-group">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Plan your next adventure</h5>
+                <p class="card-text">Add destinations and activities to create lasting memories.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Get started</small>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Invite family and friends</h5>
+                <p class="card-text">Invite family and friends to join you on your adventure .</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Send your invitations</small>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Create a saving plans</h5>
+                <p class="card-text">A travel saving plan is an important step towards achieving your dream adventures.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Create a savings plan</small>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
+
+
