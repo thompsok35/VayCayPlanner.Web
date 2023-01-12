@@ -1,4 +1,12 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using VayCayPlanner.Data.Models
+@using VayCayPlanner.Common.Constants
+@using VayCayPlanner.Common.ViewModels
+@inject SignInManager<Subscriber> SignInManager
+@inject UserManager<Subscriber> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -24,17 +32,35 @@
         <br />
         <div class="row align-items-center">
             <div class="col">
-                <button type="button" class="btn btn-primary"
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <button type="button" class="btn btn-primary"
                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                    <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                </button>
+                        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Trips</a>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </button>
+                }
             </div>
             <div class="col">
-                Let's get started!'
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <b>Let's GO !</b>
+                }
+                else
+                {
+                    <b>Let's get started !</b>
+                }
+                
             </div>
             <div class="col">
                 <button type="button" class="btn btn-primary"
-                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                     <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Login </a>
                 </button>
             </div>
@@ -51,7 +77,21 @@
                 <p class="card-text">Add destinations and activities to create lasting memories.</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">Create a trip</small>
+                <div class="row align-items-center">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <button type="button" class="btn btn-primary align-content-sm-center"
+                            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
+                            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Start a Trip</a>
+                        </button>
+                    }
+                    else
+                    {
+                        <div class ="row align-items-center">
+                            <small class="text-muted">Create a trip</small>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
         <div class="card me-2 bg-opacity-50">
@@ -61,7 +101,19 @@
                 <p class="card-text">Invite family and friends to join you on your adventure .</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">Send your invitations</small>
+                <div class="row align-items-center">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <button type="button" class="btn btn-primary"
+                            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
+                            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Invite Friends and Family </a>
+                        </button>
+                    }
+                    else
+                    {
+                        <small class="text-muted">Send your invitations</small>
+                    }
+                </div>
             </div>
         </div>
         <div class="card">
@@ -71,7 +123,19 @@
                 <p class="card-text">A travel saving plan is an important step towards achieving your dream adventures.</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">Create a savings plan</small>
+                <div class="row align-items-center">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <button type="button" class="btn btn-primary"
+                            style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
+                            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Create a Budget</a>
+                        </button>
+                    }
+                    else
+                    {
+                        <small class="text-muted">Create a savings plan</small>
+                    }
+                </div>
             </div>
         </div>
     </div>
