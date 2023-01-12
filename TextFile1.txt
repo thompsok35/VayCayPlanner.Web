@@ -3,6 +3,9 @@ https://vaycayplannerweb20230105083922.azurewebsites.net
 vaycayadmin - SIGmail@1
 
 In package Manager
-Script-Migration -Idempotent
+Script-Migration -Indempotent
 
 smtp service: https://account-app.sendinblue.com/account/login
+
+
+Bootstrap class name cheat sheet: https://bootstrap-cheatsheet.themeselection.com/
