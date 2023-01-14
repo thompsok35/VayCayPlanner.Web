@@ -10,6 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using VayCayPlanner.Common.ViewModels;
+using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data.Repositories.Contracts;
 
@@ -115,6 +116,36 @@ namespace VayCayPlanner.Data.Repositories
                 return false;                
             }
             return true;
+        }
+
+        public async Task<int> CreateTripTravelGroup(string newTripName)
+        {
+            int result = 0;
+            try
+            {
+                var user = await CurrentUser();
+                var thisTravelGroup = new TravelGroup
+                {
+                    GroupName = newTripName,
+                    InvitationKey = GenerateKey(),
+                    OwnerId = user.Id,
+                    TypeId = 0
+                };
+
+                _dbContext.Add(thisTravelGroup);
+                await _dbContext.SaveChangesAsync();
+                var newGroup = await _dbContext.TravelGroups.Where(x => x.GroupName.ToLower() == newTripName.ToLower()).FirstOrDefaultAsync();
+                if (newGroup != null)
+                {
+                    result = newGroup.Id; 
+                }
+            }
+            catch (Exception)
+            {
+                //log error
+                return result;
+            }
+            return result;
         }
 
         private async Task<bool> AddTravelerToNewGroup(TravelGroup travelGroup)

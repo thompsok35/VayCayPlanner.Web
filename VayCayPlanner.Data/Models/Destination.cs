@@ -14,5 +14,9 @@ namespace VayCayPlanner.Data.Models
 
         [MaxLength(450)]
         public string Country { get;  set; }
+        
+        public DateTime? ArrivalDate { get; set; }
+        public DateTime? DepartureDate { get; set; }
     }
 }
+//https://code-maze.com/csharp-dateonly-timeonly/

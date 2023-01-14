@@ -120,6 +120,11 @@ namespace VayCayPlanner.Data.Repositories
             return true;
         }
 
+        /// <summary>
+        /// Add the authenticated user to a group by groupId
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
         public async Task<bool> AddTravelerToGroup(int groupId)
         {
             try

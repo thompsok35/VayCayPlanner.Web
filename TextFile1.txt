@@ -1,6 +1,6 @@
 https://vaycayplannerweb20230105083922.azurewebsites.net
 
-vaycayadmin - SIGmail@1
+Azure DB admin: vaycayadmin - [password] 
 
 In package Manager
 Script-Migration -Indempotent
