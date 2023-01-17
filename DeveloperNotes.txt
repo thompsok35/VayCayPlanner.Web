@@ -1,0 +1,23 @@
+Site URL:
+	https://vaycayplannerweb20230105083922.azurewebsites.net
+
+Azure DB admin: 
+	vaycayadmin - [password] 
+
+Azure Database Deployment:
+	In Package Manager Console, follow these steps:
+		1. Generate a deployment script by executing the following command:
+			Package Manager Console> Script-Migration -idempotent
+		2. Open Azure Data Studio
+		3. Add a new query window
+		4. Copy and Paste the deployment script
+		5. Execute the script
+		6. Refresh the database
+		7. Marvel in the magic
+
+Email SMTP Service:
+	https://account-app.sendinblue.com/account/login
+	Added Renee as administrator
+
+Bootstrap 5.0
+	class name cheat sheet: https://bootstrap-cheatsheet.themeselection.com/

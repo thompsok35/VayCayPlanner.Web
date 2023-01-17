@@ -9,8 +9,8 @@ namespace VayCayPlanner.Data.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        [ForeignKey("TravelGroupId")]
-        public TravelGroup? Travelers { get; set; }
+        //[ForeignKey("TravelGroupId")]
+        //public TravelGroup? Travelers { get; set; }
 
         [MaxLength(450)]
         public string OwnerId { get; set; }

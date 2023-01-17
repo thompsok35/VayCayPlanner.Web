@@ -1,0 +1,53 @@
+﻿@model VayCayPlanner.Common.ViewModels.Trip.CreateNewTripVM
+
+@{
+    ViewData["Title"] = "VayCay-Add Travelers";
+}
+
+
+<div class="banner">
+    <a> < </a><a asp-action="AddNewTrip">Back</a>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip > 2 - Add Destination > 3 - Add Travelers</strong> </span>
+    </div>
+</div>
+
+<hr />
+<br />
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>@Model.TripName</h4>
+        <br />
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddTripTravelers">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GroupId" />
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <br />
+            <div class="form-group">
+                <a asp-action="Index" asp-controller="Trips">Done</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+

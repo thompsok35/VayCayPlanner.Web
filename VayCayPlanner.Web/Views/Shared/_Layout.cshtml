@@ -31,7 +31,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>                        
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item dropdown">
@@ -43,10 +43,21 @@
                                     <li><a class="dropdown-item" asp-controller="TravelGroups" asp-action="Index">My Group Memberships</a></li>
                                     <li><a class="dropdown-item" asp-controller="Travelers" asp-action="Create">Add Travelers</a></li>
                                     <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">My Profile</a></li>
+                                    
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My Trips
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Trips" asp-action="Index">Upcoming Trips</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Trips" asp-action="Index">Past Trips</a></li>
+                                </ul>
+                            </li>
+
                         }
-                        <li class="nav-item dropdown">
+@*                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Administration
                             </a>
@@ -54,7 +65,7 @@
                                 <li><a class="dropdown-item" href="http://localhost:5341" target="_blank">Application Logs</a></li>                            
 
                             </ul>
-                        </li>
+                        </li>*@
 
                     </ul>
                     <partial name="_LoginPartial" />

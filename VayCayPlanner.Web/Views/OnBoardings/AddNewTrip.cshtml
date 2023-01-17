@@ -1,0 +1,68 @@
+﻿@*@model VayCayPlanner.Common.ViewModels.Trip.CreateNewTripVM*@
+@model VayCayPlanner.Data.Models.NewTripTemplate
+
+@{
+    ViewData["Title"] = "VayCay-Add Trip";
+}
+
+
+<div class="banner">
+    <a></a><a asp-action="Index" asp-controller="Home">Back</a>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip > </strong> 2 - Add a Destination > 3 - Add Travelers</span><a></a>
+    </div>
+</div>
+
+<hr />
+<br />
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>Your Trip</h4>
+        <br />
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <p><strong>What's the name of your trip?</strong></p>
+    <div class="col-md-4">
+        <form asp-action="FirstDestination" asp-controller="OnBoardings">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TripName" class="control-label"></label>
+                <input asp-for="TripName" class="form-control" />
+                <span asp-validation-for="TripName" class="text-danger"></span>
+            </div>
+            <br />
+@*            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Next" class="btn btn-primary" width="15"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back</a>
+</div>*@
+

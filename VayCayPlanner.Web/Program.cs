@@ -35,8 +35,8 @@ builder.Services.AddTransient<IEmailSender>(s => new EmailSender("smtp-relay.sen
 //TODO: Register the repositories
 builder.Services.AddScoped<ITravelGroupRepository, TravelGroupRepository>();
 builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
-
-
+builder.Services.AddScoped<ITripRepository, TripRepository>();
+builder.Services.AddScoped<IDestinationRepository, DestinationRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

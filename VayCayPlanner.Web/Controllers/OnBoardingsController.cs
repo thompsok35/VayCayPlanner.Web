@@ -13,23 +13,23 @@ using Microsoft.AspNetCore.Identity;
 
 namespace VayCayPlanner.Web.Controllers
 {
-    public class TripsController : Controller
+    public class OnBoardingsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly ITripRepository _tripRepository;
-        private readonly ITravelerRepository _travelerRepository;
+        private readonly IDestinationRepository _destinationRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<Subscriber> _userManager;
 
-        public TripsController(ApplicationDbContext context,
+        public OnBoardingsController(ApplicationDbContext context,
             ITripRepository tripRepository,
-            ITravelerRepository travelerRepository,
+            IDestinationRepository destinationRepository,
             IHttpContextAccessor httpContextAccessor,
             UserManager<Subscriber> userManager)
         {
             _context = context;
             _tripRepository = tripRepository;
-            _travelerRepository = travelerRepository;
+            _destinationRepository = destinationRepository;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
         }
@@ -73,6 +73,7 @@ namespace VayCayPlanner.Web.Controllers
             var newModel = new NewTripTemplate { 
                 UserId = user.Id,
                 TripName = model.TripName,
+
                 isTripComplete = false,
                 isTravelersComplete = false,
                 isComplete = false,
@@ -84,44 +85,6 @@ namespace VayCayPlanner.Web.Controllers
             return View(newModel);
         }
 
-        // GET: Trips/AddTravelers
-        /// <summary>
-        /// Updates the NewTripTemplate 
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        public IActionResult AddTravelers(int Id)
-        {
-            //var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
-            var tripTemplate = _context.NewTripTemplates.Where(x => x.Id == Id ).FirstOrDefaultAsync();
-
-            //if (!tripTemplate.isTripComplete)
-            //{
-            //    CreateNewTripVM newTrip = await _tripRepository.CreateNewTripWizard(model.TripName);
-            //    tripTemplate.DestinationName = model.DestinationName;
-            //    tripTemplate.TripId = newTrip.TripId;
-            //    tripTemplate.TravelGroupId = newTrip.GroupId;
-            //    tripTemplate.isTripComplete = true;
-            //    tripTemplate.isComplete = false;
-            //    _context.Update(tripTemplate);
-            //    await _context.SaveChangesAsync();
-            //}
-            //else
-            //{
-            //    if (tripTemplate.TravelGroupId != null)
-            //    {
-            //        var newTraveler = new TravelerAddVM
-            //        {
-            //            FullName = model.FullName,
-            //            EmailAddress = model.EmailAddress,
-            //            TravelGroupId = tripTemplate.TravelGroupId.Value
-            //        };
-            //        await _travelerRepository.AddTraveler(newTraveler); 
-            //    }
-            //}
-
-            return View();
-        }
 
         // POST: Trips/AddTravelers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -131,35 +94,25 @@ namespace VayCayPlanner.Web.Controllers
         public async Task<IActionResult> AddTravelers(int Id, NewTripTemplate model)
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
-            var tripTemplate = await _context.NewTripTemplates.Where(x => x.Id == Id & x.UserId == user.Id).FirstOrDefaultAsync();
+            TravelersVM defaultTraveler = new TravelersVM
+            {
+                FullName = user.FullName,
+                EmailAddress = user.Email
+            };
+            List<TravelersVM> travelers = new List<TravelersVM>();
+            travelers.Add(defaultTraveler);
+            var newTripVM = new CreateNewTripVM(travelers)
+            {
+                TripName = model.TripName,
+                DestinationName = model.DestinationName,
+                OwnerName = user.Email,
+                DestinationArrivalDate = model.ArrivalDate,
+                DestinationDepartureDate = model.DepartureDate
+            };
 
-            if (!tripTemplate.isTripComplete)
-            {
-                CreateNewTripVM newTrip = await _tripRepository.CreateNewTrip(model.TripName);
-                tripTemplate.DestinationName = model.DestinationName;
-                tripTemplate.TripId = newTrip.TripId;
-                tripTemplate.TravelGroupId = newTrip.GroupId;
-                tripTemplate.isTripComplete = true;
-                tripTemplate.isComplete = false;
-                _context.Update(tripTemplate);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                if (tripTemplate.TravelGroupId != null)
-                {
-                    var newTraveler = new TravelerAddVM
-                    {
-                        FullName = model.FullName,
-                        EmailAddress = model.EmailAddress,
-                        TravelGroupId = tripTemplate.TravelGroupId.Value
-                    };
-                    await _travelerRepository.AddTraveler(newTraveler);
-                }
-            }
-            var NewTripTemplate = new NewTripTemplate { };
-            return View(tripTemplate);
+            return View(newTripVM);
         }
+
 
         // GET: Trips/Create
         public IActionResult Create()
@@ -172,18 +125,19 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripName,TripDescription,StartDate,EndDate,Id,CreatedDate,ModifiedDate")] Trip trip)
+        public async Task<IActionResult> Create(CreateNewTripVM trip)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(trip);
-                await _context.SaveChangesAsync();
+                var newTrip = await _tripRepository.CreateNewTrip(trip.TripName);
+                await _destinationRepository.AddDestination(newTrip);
                 return RedirectToAction(nameof(Index));
             }
             return View(trip);
         }
 
-        // GET: Trips/Edit/5
+
+        // GET: OnBoardings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Trips == null)

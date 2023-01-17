@@ -9,6 +9,8 @@ namespace VayCayPlanner.Data.Models
 {
     public class Destination : BaseEntity
     {
+        public int TripId { get; set; }
+
         [MaxLength(450)]
         public string City { get; set; }
 

@@ -18,6 +18,7 @@ namespace VayCayPlanner.Data
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<OnBoarding> OnBoardings { get; set; }
         public DbSet<OnBoardingStep> OnBoardingSteps { get; set; }
+        public DbSet<NewTripTemplate> NewTripTemplates { get; set; }
     }
 
 }

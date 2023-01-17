@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VayCayPlanner.Common", "Vay
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeveloperNotes", "DeveloperNotes", "{463BE8EA-6086-4D01-B286-4388E2CD88B4}"
 	ProjectSection(SolutionItems) = preProject
-		TextFile1.txt = TextFile1.txt
+		DeveloperNotes.txt = DeveloperNotes.txt
 	EndProjectSection
 EndProject
 Global

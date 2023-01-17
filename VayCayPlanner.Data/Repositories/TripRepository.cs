@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VayCayPlanner.Common.ViewModels;
+using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data.Repositories.Contracts;
 
@@ -39,8 +41,10 @@ namespace VayCayPlanner.Data.Repositories
             _logger = logger;
         }
 
-        public async Task<bool> CreateNewTripWizard(string tripName)
+        public async Task<CreateNewTripVM> CreateNewTrip(string tripName)
         {
+            var _travelers = new List<TravelersVM>();
+            var result = new CreateNewTripVM(_travelers);
             try
             {
                 var user = await CurrentUser();
@@ -67,13 +71,16 @@ namespace VayCayPlanner.Data.Repositories
                 //the trip id is needed to add a destination
                 var thisTrip = await _dbContext.Trips.Where(x => x.TripName.ToLower() == newTripName.ToLower()).FirstOrDefaultAsync();
                 var isTravelerAdded = await _travelerRepository.AddTravelerToGroup(groupId);
+                result.TripName = newTripName;
+                result.GroupId = groupId;
+                result.TripId = thisTrip.Id;
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error creating new trip with the wizard [{ex.StackTrace}]");
-                return false;
+                return result;
             }
-            return true;
+            return result;
         }
 
         private async Task<bool> isDuplicateTripName(int groupId, string tripName)

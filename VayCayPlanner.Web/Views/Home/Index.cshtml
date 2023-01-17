@@ -7,7 +7,7 @@
 @inject UserManager<Subscriber> UserManager
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "VayCay Planner";
 }
 
 <head>
@@ -19,30 +19,24 @@
 
 </head>
 <div>
-    <div class="container bg-primary text-center h-15">
+   @*<div class="container bg-primary text-center h-15">*@
 
-        <div class="row align-items-center">
-            <div class="col">
-                <br />
-                <h1>Plan and Save for your next Family Adventure!</h1>
-                <br />
-            </div>
-        </div>
-        <br />
-        <br />
+    <div class="jumbotron text-center">
+        <div class="col">
+            <br />
+            <h1>Welcome to VayCay!</h1>
+            <br />
         <div class="row align-items-center">
             <div class="col">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <button type="button" class="btn btn-primary"
-                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+@*                  <button type="button" class="btn btn-primary btn-sm">
                         <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Trips</a>
-                    </button>
+                    </button>*@
                 }
                 else
                 {
-                    <button type="button" class="btn btn-primary"
-                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <button type="button" class="btn btn-primary btn-sm" width="15">
                         <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
                     </button>
                 }
@@ -50,28 +44,36 @@
             <div class="col">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <b>Let's GO !</b>
+                    <button type="button" class="btn btn-primary btn-sm" width="25">
+                        <a class="nav-link text-light" asp-controller="OnBoardings" asp-action="AddNewTrip"> Start a Trip</a>
+                    </button>
                 }
                 else
                 {
-                    <b>Let's get started !</b>
+                    <br />
+                    <h4>Trip budgeting, planner and collaboration</h4>
+                    <br />
                 }
-                
+
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary"
-                        style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                    <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Login </a>
-                </button>
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <button type="button" class="btn btn-primary btn-sm" width="25">
+                        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Login </a>
+                    </button>    
+                }
+                    
             </div>
         </div>
+        </div>
     </div>
-
     <br />
-
+    <br />
+    <br />
     <div class="card-group">
         <div class="card me-2">
-            <img style="width: 150px;" class="card-img-top img-fluid rounded img-thumbnail mx-auto d-block" src="~/images/mexico1.jpg" alt="...">
+            <img class="img-thumbnail card-img-top rounded mx-auto" src="~/images/pic6.jpg">
             <div class="card-body">
                 <h5 class="card-title">Start your Plan</h5>
                 <p class="card-text">Add destinations and activities to create lasting memories.</p>
@@ -80,10 +82,10 @@
                 <div class="row align-items-center">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <button type="button" class="btn btn-primary align-content-sm-center"
+@*                        <button type="button" class="btn btn-primary align-content-sm-center"
                             style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
-                            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Start a Trip</a>
-                        </button>
+                            <a class="nav-link text-light" asp-controller="Trips" asp-action="AddNewTrip"> Start a Trip</a>
+                        </button>*@
                     }
                     else
                     {
@@ -94,8 +96,8 @@
                 </div>
             </div>
         </div>
-        <div class="card me-2 bg-opacity-50">
-            <img style="width: 265px;" class="card-img-top img-fluid rounded img-thumbnail mx-auto d-block" src="~/images/invite1.jpg" alt="...">
+        <div class="card me-2">
+            <img class="img-thumbnail card-img-top rounded" alt="Cinque Terre" src="~/images/pic4.jpg">
             <div class="card-body">
                 <h5 class="card-title">Invite your traveling companions</h5>
                 <p class="card-text">Invite family and friends to join you on your adventure .</p>
@@ -104,10 +106,10 @@
                 <div class="row align-items-center">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <button type="button" class="btn btn-primary"
+@*                        <button type="button" class="btn btn-primary"
                             style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
                             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"> Invite Friends and Family </a>
-                        </button>
+                        </button>*@
                     }
                     else
                     {
@@ -116,8 +118,8 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <img style="width: 120px;" class="card-img-top img-fluid rounded img-thumbnail mx-auto d-block" src="~/images/coffee.jpg" alt="...">
+        <div class="card me-2">
+            <img class="img-thumbnail card-img-top rounded" alt="Cinque Terre" src="~/images/pic7.jpg">
             <div class="card-body">
                 <h5 class="card-title">Create a saving plans</h5>
                 <p class="card-text">A travel saving plan is an important step towards achieving your dream adventures.</p>
@@ -126,10 +128,10 @@
                 <div class="row align-items-center">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <button type="button" class="btn btn-primary"
+                       @* <button type="button" class="btn btn-primary"
                             style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .5rem;">
                             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Create a Budget</a>
-                        </button>
+                        </button>*@
                     }
                     else
                     {
@@ -137,15 +139,15 @@
                     }
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
-
     <br />
+    <div class="jumbotron">
+        @if (SignInManager.IsSignedIn(User))
+        {
 
-@*    <div class="container bg-primary text-center h-15">
-
-
-    </div>*@
+        }
+    </div>
 
 </div>
 

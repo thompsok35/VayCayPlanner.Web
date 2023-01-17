@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VayCayPlanner.Data;
 
@@ -11,9 +12,10 @@ using VayCayPlanner.Data;
 namespace VayCayPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230115195058_added email and fullname to newtriptemplate")]
+    partial class addedemailandfullnametonewtriptemplate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,12 +210,6 @@ namespace VayCayPlanner.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("ArrivalDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DepartureDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("DestinationId")
                         .HasColumnType("int");
 
@@ -242,15 +238,6 @@ namespace VayCayPlanner.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("isComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isDestinationComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isTravelersComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isTripComplete")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -493,6 +480,8 @@ namespace VayCayPlanner.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TravelGroupId");
+
                     b.ToTable("Trips");
                 });
 
@@ -545,6 +534,15 @@ namespace VayCayPlanner.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Trip", b =>
+                {
+                    b.HasOne("VayCayPlanner.Data.Models.TravelGroup", "Travelers")
+                        .WithMany()
+                        .HasForeignKey("TravelGroupId");
+
+                    b.Navigation("Travelers");
                 });
 #pragma warning restore 612, 618
         }
