@@ -16,6 +16,8 @@ Azure Database Deployment:
 		7. Marvel in the magic
 
 Email SMTP Service:
+0e356c306241ed141f3ffb08ddd905ac
+
 	https://account-app.sendinblue.com/account/login
 	Added Renee as administrator
 

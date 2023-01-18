@@ -121,20 +121,21 @@ namespace VayCayPlanner.Data.Repositories
         public async Task<int> CreateTripTravelGroup(string newTripName)
         {
             int result = 0;
+            var _key = GenerateKey();
             try
             {
                 var user = await CurrentUser();
                 var thisTravelGroup = new TravelGroup
                 {
                     GroupName = newTripName,
-                    InvitationKey = GenerateKey(),
+                    InvitationKey = _key,
                     OwnerId = user.Id,
                     TypeId = 0
                 };
 
                 _dbContext.Add(thisTravelGroup);
                 await _dbContext.SaveChangesAsync();
-                var newGroup = await _dbContext.TravelGroups.Where(x => x.GroupName.ToLower() == newTripName.ToLower()).FirstOrDefaultAsync();
+                var newGroup = await _dbContext.TravelGroups.Where(x => x.InvitationKey == _key).FirstOrDefaultAsync();
                 if (newGroup != null)
                 {
                     result = newGroup.Id; 

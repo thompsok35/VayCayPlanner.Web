@@ -50,6 +50,7 @@ namespace VayCayPlanner.Data.Repositories
                 var user = await CurrentUser();
                 string newTripName = tripName;
                 string newTripTravelGroup = $"{tripName}_TravelGroup";
+                //Add the TravelGroup to generate an Id
                 int groupId = await _travelGroupRepository.CreateTripTravelGroup(newTripTravelGroup);
                 if (isDuplicateTripName(groupId, newTripName).Result)
                 {
@@ -65,9 +66,10 @@ namespace VayCayPlanner.Data.Repositories
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now
                 };
-
+                //Adding to the Trips table to generate an Id
                 _dbContext.Add(newTrip);
                 await _dbContext.SaveChangesAsync();
+
                 //the trip id is needed to add a destination
                 var thisTrip = await _dbContext.Trips.Where(x => x.TripName.ToLower() == newTripName.ToLower()).FirstOrDefaultAsync();
                 var isTravelerAdded = await _travelerRepository.AddTravelerToGroup(groupId);
