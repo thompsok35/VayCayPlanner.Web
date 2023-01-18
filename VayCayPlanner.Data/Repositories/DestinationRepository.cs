@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -39,11 +40,15 @@ namespace VayCayPlanner.Data.Repositories
             _logger = logger;
         }
 
-        public async Task<bool> AddDestination(CreateNewTripVM createNewTripVM)
+        public async Task<bool> AddFirstDestination(CreateNewTripVM createNewTripVM)
         {
-
             try
             {
+                var newTrip = await _dbContext.Trips.Where(x => x.Id == createNewTripVM.TripId).FirstOrDefaultAsync();
+                newTrip.StartDate = createNewTripVM.DestinationArrivalDate;
+                newTrip.EndDate = createNewTripVM.DestinationDepartureDate;
+                _dbContext.Update(newTrip);
+                await _dbContext.SaveChangesAsync();
                 var newDestination = new Destination
                 {
                     City = createNewTripVM.DestinationName.Split(',')[0],

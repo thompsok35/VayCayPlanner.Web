@@ -34,10 +34,18 @@ namespace VayCayPlanner.Web.Controllers
             _userManager = userManager;
         }
 
-        // GET: Trips
+        // GET: Trips/Upcoming
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Trips.ToListAsync());
+            
+            return View(await _tripRepository.GetUpcomingTripsAsync());
+        }
+
+        // GET: Trips/Past
+        public async Task<IActionResult> PastTrips()
+        {
+
+            return View(await _tripRepository.GetPastTripsAsync());
         }
 
         // GET: Trips/Details/5
@@ -48,8 +56,7 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var trip = await _context.Trips
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var trip = await _tripRepository.GetTripDetail(id.Value);
             if (trip == null)
             {
                 return NotFound();
@@ -172,7 +179,7 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripName,TripDescription,StartDate,EndDate,Id,CreatedDate,ModifiedDate")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripName,TripDescription,StartDate,EndDate,Id,CreatedDate,ModifiedDate,OwnerId")] Trip trip)
         {
             if (ModelState.IsValid)
             {
@@ -204,15 +211,15 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripName,TripDescription,StartDate,EndDate,Id,CreatedDate,ModifiedDate")] Trip trip)
+        public async Task<IActionResult> Edit(int id, [Bind("TripName,TripDescription,StartDate,EndDate,Id,CreatedDate,ModifiedDate,OwnerId")] Trip trip)
         {
             if (id != trip.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     _context.Update(trip);
@@ -230,7 +237,7 @@ namespace VayCayPlanner.Web.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             return View(trip);
         }
 

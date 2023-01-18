@@ -83,6 +83,37 @@ namespace VayCayPlanner.Data.Repositories
             return result;
         }
 
+        public async Task<TripDetailVM> GetTripDetail(int Id)
+        {
+            var thisTrip = await _dbContext.Trips.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            var _Destinations = await _dbContext.Destinations.Where(x => x.TripId == Id).ToListAsync();
+            var _Travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == thisTrip.TravelGroupId).ToListAsync();
+            var thisTripDetail = new TripDetailVM
+            {
+                Id = thisTrip.Id,
+                TripName = thisTrip.TripName,
+                StartDate = thisTrip.StartDate,
+                EndDate = thisTrip.EndDate,
+                DaysUntilDeparture = (thisTrip.StartDate.Value - DateTime.Today).Days,
+                Duration = (thisTrip.EndDate.Value - thisTrip.StartDate.Value).Days,
+                Destinations = _Destinations.Count,
+                Travelers = _Travelers.Count
+            };
+            return thisTripDetail;
+        }
+
+        public async Task<List<Trip>> GetUpcomingTripsAsync()
+        {
+            var result = await _dbContext.Trips.Where(x => x.EndDate >= DateTime.Today).ToListAsync();
+            return result;
+        }
+
+        public async Task<List<Trip>> GetPastTripsAsync()
+        {
+            var result = await _dbContext.Trips.Where(x => x.EndDate <= DateTime.Today).ToListAsync();
+            return result;
+        }
+
         private async Task<bool> isDuplicateTripName(int groupId, string tripName)
         {
             bool result = false;

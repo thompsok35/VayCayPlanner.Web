@@ -30,7 +30,7 @@ namespace VayCayPlanner.Common.ViewModels.Trip
         [Display(Name = "Destination arrival date")]
         public DateTime? DestinationArrivalDate { get; set; }
 
-        [Display(Name = "Departure date for your first destination")]
+        [Display(Name = "Destination departure date")]
         public DateTime? DestinationDepartureDate { get; set; }
 
         [Display(Name = "Trip start date")]

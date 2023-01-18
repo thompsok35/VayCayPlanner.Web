@@ -9,6 +9,6 @@ namespace VayCayPlanner.Data.Repositories.Contracts
 {
     public interface IDestinationRepository
     {
-        Task<bool> AddDestination(CreateNewTripVM createNewTripVM);
+        Task<bool> AddFirstDestination(CreateNewTripVM createNewTripVM);
     }
 }

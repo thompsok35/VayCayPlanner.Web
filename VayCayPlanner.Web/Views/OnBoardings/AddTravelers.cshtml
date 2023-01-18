@@ -60,7 +60,7 @@
     </dl>
     <div class="row">
         <div class="col align-self-end">
-            <a asp-controller="OnBoardings" asp-action="Create" asp-route-id="@Model?.Id">Save</a>
+            <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.GroupId">Add Travelers</a>
         </div>
     
     </div>
@@ -99,7 +99,7 @@
 </table>
 <div class="row">
     <div class="col align-self-start">
-        <a asp-controller="Travelers" asp-action="Add" asp-route-id="@Model?.Id">Add Travelers</a>
+        <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model.GroupId">Add Travelers</a>
     </div>
 
 </div>

@@ -67,22 +67,36 @@ namespace VayCayPlanner.Web.Controllers
         // POST: Trips/FirstDestination
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FirstDestination(NewTripTemplate model)
+        public async Task<IActionResult> FirstDestination(int id, NewTripTemplate model)
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
-            var newModel = new NewTripTemplate { 
-                UserId = user.Id,
-                TripName = model.TripName,
+            try
+            {
+                await _context.SaveChangesAsync();
+               var newTrip =  await _tripRepository.CreateNewTrip(model.TripName);
 
-                isTripComplete = false,
-                isTravelersComplete = false,
-                isComplete = false,
-                isDestinationComplete = false
-            };
-            _context.Add(newModel);
-            await _context.SaveChangesAsync();
+                var newModel = new NewTripTemplate
+                {
+                    UserId = user.Id,
+                    TripName = model.TripName,
+                    TripId = newTrip.TripId,
+                    TravelGroupId = newTrip.GroupId,
+                    isTripComplete = true,
+                    isTravelersComplete = false,
+                    isComplete = false,
+                    isDestinationComplete = false
+                };
+                _context.Add(newModel);
+                await _context.SaveChangesAsync();
 
-            return View(newModel);
+                return View(newModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
 
@@ -94,6 +108,7 @@ namespace VayCayPlanner.Web.Controllers
         public async Task<IActionResult> AddTravelers(int Id, NewTripTemplate model)
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
+            var thisTrip = await _context.NewTripTemplates.Where(x => x.Id == Id).FirstOrDefaultAsync();
             TravelersVM defaultTraveler = new TravelersVM
             {
                 FullName = user.FullName,
@@ -103,13 +118,15 @@ namespace VayCayPlanner.Web.Controllers
             travelers.Add(defaultTraveler);
             var newTripVM = new CreateNewTripVM(travelers)
             {
+                TripId = thisTrip.TripId.Value,
                 TripName = model.TripName,
+                GroupId = thisTrip.TravelGroupId.Value,
                 DestinationName = model.DestinationName,
                 OwnerName = user.Email,
                 DestinationArrivalDate = model.ArrivalDate,
                 DestinationDepartureDate = model.DepartureDate
             };
-
+            await _destinationRepository.AddFirstDestination(newTripVM);
             return View(newTripVM);
         }
 
@@ -130,7 +147,7 @@ namespace VayCayPlanner.Web.Controllers
             if (ModelState.IsValid)
             {
                 var newTrip = await _tripRepository.CreateNewTrip(trip.TripName);
-                await _destinationRepository.AddDestination(newTrip);
+                await _destinationRepository.AddFirstDestination(newTrip);
                 return RedirectToAction(nameof(Index));
             }
             return View(trip);
