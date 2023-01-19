@@ -59,9 +59,9 @@
         </dd>
     </dl>
     <div class="row">
-        <div class="col align-self-end">
+@*        <div class="col align-self-end">
             <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.GroupId">Add Travelers</a>
-        </div>
+        </div>*@
     
     </div>
 </div>
@@ -99,7 +99,7 @@
 </table>
 <div class="row">
     <div class="col align-self-start">
-        <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model.GroupId">Add Travelers</a>
+        <a asp-controller="Travelers" asp-action="AddToTrip" asp-route-id="@Model.GroupId">Add Travelers</a>
     </div>
 
 </div>

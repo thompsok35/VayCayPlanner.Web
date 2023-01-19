@@ -104,6 +104,12 @@ namespace VayCayPlanner.Data.Repositories
             return thisTripDetail;
         }
 
+        public async Task<Trip> GetTripByGroupId(int groupId)
+        {
+            var thisTrip = await _dbContext.Trips.Where(x => x.TravelGroupId == groupId).FirstOrDefaultAsync();
+            return thisTrip;
+        }
+
         public async Task<List<Trip>> GetUpcomingTripsAsync()
         {
             var result = await _dbContext.Trips.Where(x => x.EndDate >= DateTime.Today).ToListAsync();

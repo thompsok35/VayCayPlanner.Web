@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VayCayPlanner.Common.Traveler.ViewModels;
 using VayCayPlanner.Common.ViewModels;
+using VayCayPlanner.Common.ViewModels.Traveler;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data.Repositories.Contracts;
 
@@ -179,6 +180,41 @@ namespace VayCayPlanner.Data.Repositories
                 return false;
             }
             return true;
+        }
+
+        public async Task<bool> AddTravelerToTrip(AddTravelerToTripVM viewModel)
+        {
+            try
+            {
+
+                var user = await CurrentUser();
+                var dataModel = new Traveler
+                {
+                    FullName = viewModel.FullName,
+                    EmailAddress = viewModel.EmailAddress,
+                    TravelGroupId = viewModel.TravelGroupId,
+                    ModifiedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now
+                };
+                if (!isEmailInGroup(viewModel.TravelGroupId, viewModel.EmailAddress).Result)
+                {
+                    _dbContext.Add(dataModel);
+                    _dbContext.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+                //log error
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<List<Traveler>> GetTravelersByGroupId(int id)
+        {
+            var travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == id).ToListAsync();
+            return travelers;
         }
 
         private async Task<Subscriber> CurrentUser()

@@ -70,5 +70,11 @@ namespace VayCayPlanner.Data.Repositories
                 return false;                
             }
         }
+
+        public async Task<Destination> GetFirstDestinationByTripId(int tripId)
+        {
+            var result = await _dbContext.Destinations.Where(x => x.TripId == tripId).FirstOrDefaultAsync();
+            return result;
+        }
     }
 }

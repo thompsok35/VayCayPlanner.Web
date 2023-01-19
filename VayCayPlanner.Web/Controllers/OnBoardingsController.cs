@@ -18,20 +18,26 @@ namespace VayCayPlanner.Web.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ITripRepository _tripRepository;
         private readonly IDestinationRepository _destinationRepository;
+        private readonly ITravelerRepository _travelerRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<Subscriber> _userManager;
+        private readonly IMapper _mapper;
 
         public OnBoardingsController(ApplicationDbContext context,
             ITripRepository tripRepository,
             IDestinationRepository destinationRepository,
             IHttpContextAccessor httpContextAccessor,
-            UserManager<Subscriber> userManager)
+            ITravelerRepository travelerRepository,
+            UserManager<Subscriber> userManager,
+            IMapper mapper)
         {
             _context = context;
             _tripRepository = tripRepository;
             _destinationRepository = destinationRepository;
             _httpContextAccessor = httpContextAccessor;
+            _travelerRepository = travelerRepository;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         // GET: Trips
@@ -57,6 +63,8 @@ namespace VayCayPlanner.Web.Controllers
 
             return View(trip);
         }
+
+
 
         // GET: Trips/AddNewTrip
         public IActionResult AddNewTrip()
@@ -100,6 +108,35 @@ namespace VayCayPlanner.Web.Controllers
         }
 
 
+        // GET: Trips/Details/5
+        public async Task<IActionResult> AddTravelers(int? id)
+        {
+            //if (id == null || _context.Trips == null)
+            //{
+            //    return NotFound();
+            //}
+            var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
+            var trip = await _tripRepository.GetTripByGroupId(id.Value);
+            var destination = await _destinationRepository.GetFirstDestinationByTripId(trip.Id);
+            var travelers = await _travelerRepository.GetTravelersByGroupId(trip.TravelGroupId.Value) ;
+            var newTripVM = new CreateNewTripVM(_mapper.Map<List<TravelersVM>>(travelers))
+            {
+                TripId = trip.Id,
+                TripName = trip.TripName,
+                GroupId = trip.TravelGroupId.Value,
+                DestinationName = $"{destination.City},{destination.Country}",
+                OwnerName = user.Email,
+                DestinationArrivalDate = destination.ArrivalDate,
+                DestinationDepartureDate = destination.DepartureDate
+            };
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            return View(newTripVM);
+        }
+
         // POST: Trips/AddTravelers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -109,6 +146,7 @@ namespace VayCayPlanner.Web.Controllers
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
             var thisTrip = await _context.NewTripTemplates.Where(x => x.Id == Id).FirstOrDefaultAsync();
+         
             TravelersVM defaultTraveler = new TravelersVM
             {
                 FullName = user.FullName,

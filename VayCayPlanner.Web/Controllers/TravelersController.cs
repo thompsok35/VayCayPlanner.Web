@@ -7,6 +7,7 @@ using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Data.Repositories.Contracts;
 using AutoMapper;
 using VayCayPlanner.Common.Traveler.ViewModels;
+using VayCayPlanner.Common.ViewModels.Traveler;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -15,16 +16,19 @@ namespace VayCayPlanner.Web.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ITravelGroupRepository _travelGroupRepository;
         private readonly ITravelerRepository _travelerRepository;
+        private readonly ITripRepository _tripRepository;
         private readonly IMapper _mapper;
 
         public TravelersController(ApplicationDbContext context, 
             ITravelGroupRepository travelGroupRepository,
+            ITripRepository tripRepository,
             IMapper mapper,
             ITravelerRepository travelerRepository)
         {
             _context = context;
             _travelGroupRepository = travelGroupRepository;
             _travelerRepository = travelerRepository;
+            _tripRepository = tripRepository;
             _mapper = mapper;
         }
 
@@ -111,6 +115,43 @@ namespace VayCayPlanner.Web.Controllers
             }
             //TravelGroups / Details / 1 
             return RedirectToAction("Details", "TravelGroups", new { Id = travelerVM.TravelGroupId });
+        }
+
+
+        // GET: Travelers/Add/5
+        //public async Task<IActionResult> Add(int id)
+        //{
+        public async Task<IActionResult> AddToTrip(int? id)
+        {
+            if (id != null)
+            {
+                var thisGroup = await _travelGroupRepository.GetTravelGroupDetails(id.Value);
+                var thisTrip = await _tripRepository.GetTripByGroupId(id.Value);
+                var model = new AddTravelerToTripVM
+                {
+                    TravelGroupId = id.Value,
+                    TripName = thisTrip.TripName,
+                };
+                return View(model);
+            }
+
+            return View();
+        }
+
+        // POST: Travelers/Add
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToTrip(AddTravelerToTripVM travelerVM)
+        {
+
+            if (travelerVM != null)
+            {
+                await _travelerRepository.AddTravelerToTrip(travelerVM);
+            }
+            //TravelGroups / Details / 1 
+            return RedirectToAction("AddTravelers", "OnBoardings", new { Id = travelerVM.TravelGroupId });
         }
 
         // GET: Travelers/Edit/5

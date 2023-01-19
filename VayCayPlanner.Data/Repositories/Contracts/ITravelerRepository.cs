@@ -7,6 +7,7 @@ using VayCayPlanner.Data.Models;
 using VayCayPlanner.Common.Constants;
 using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Common.Traveler.ViewModels;
+using VayCayPlanner.Common.ViewModels.Traveler;
 
 namespace VayCayPlanner.Data.Repositories.Contracts
 {
@@ -14,7 +15,8 @@ namespace VayCayPlanner.Data.Repositories.Contracts
     {
         Task<bool> AddTravelerToGroup(CreateTravelerVM model);
         Task<bool> AddTravelerToGroup(int groupId);
-
+        Task<bool> AddTravelerToTrip(AddTravelerToTripVM viewModel);
+        Task<List<Traveler>> GetTravelersByGroupId(int id);
         Task<bool> EditTraveler(int id, TravelerEditVM viewModel);
         Task<TravelerDetailVM> GetTravelerDetail(int id);
 
