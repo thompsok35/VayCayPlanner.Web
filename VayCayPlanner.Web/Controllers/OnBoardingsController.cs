@@ -64,8 +64,6 @@ namespace VayCayPlanner.Web.Controllers
             return View(trip);
         }
 
-
-
         // GET: Trips/AddNewTrip
         public IActionResult AddNewTrip()
         {
@@ -107,14 +105,9 @@ namespace VayCayPlanner.Web.Controllers
 
         }
 
-
         // GET: Trips/Details/5
         public async Task<IActionResult> AddTravelers(int? id)
         {
-            //if (id == null || _context.Trips == null)
-            //{
-            //    return NotFound();
-            //}
             var user = await _userManager.GetUserAsync(_httpContextAccessor?.HttpContext?.User);
             var trip = await _tripRepository.GetTripByGroupId(id.Value);
             var destination = await _destinationRepository.GetFirstDestinationByTripId(trip.Id);
@@ -167,7 +160,6 @@ namespace VayCayPlanner.Web.Controllers
             await _destinationRepository.AddFirstDestination(newTripVM);
             return View(newTripVM);
         }
-
 
         // GET: Trips/Create
         public IActionResult Create()
