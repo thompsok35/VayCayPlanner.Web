@@ -42,7 +42,8 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var destination = await _destinationRepository.GetDestinationsByTripId(id.Value);
+            var destination = await _context.Destinations.Where(x => x.Id == id.Value).FirstOrDefaultAsync();
+            //var destination = await _destinationRepository.GetDestinationsByTripId(id.Value);
             if (destination == null)
             {
                 return NotFound();
