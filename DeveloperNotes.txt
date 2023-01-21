@@ -23,3 +23,6 @@ Email SMTP Service:
 
 Bootstrap 5.0
 	class name cheat sheet: https://bootstrap-cheatsheet.themeselection.com/
+
+Auto Mapper syntax
+_mapper.Map<List<TravelersVM>>(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisGroup.Id).ToListAsync());

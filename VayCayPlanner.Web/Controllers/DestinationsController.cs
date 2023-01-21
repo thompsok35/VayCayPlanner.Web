@@ -4,25 +4,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data;
+using VayCayPlanner.Data.Repositories.Contracts;
+using VayCayPlanner.Common.ViewModels.Destination;
+using VayCayPlanner.Common.ViewModels;
 
 namespace VayCayPlanner.Web.Controllers
 {
     public class DestinationsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IDestinationRepository _destinationRepository;
         private readonly IMapper _mapper;
 
-        public DestinationsController(ApplicationDbContext context, IMapper mapper)
+        public DestinationsController(ApplicationDbContext context,
+                IDestinationRepository destinationRepository,
+                IMapper mapper)
         {
             _context = context;
+            _destinationRepository = destinationRepository;
             _mapper = mapper;
         }
 
         // GET: Destinations
         public async Task<IActionResult> Index(int Id)
         {
-            var applicationDbContext = _context.Destinations.Where(d => d.TripId == Id);
-            var destinations = _mapper.Map<List<Destination>>(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Destinations.Where(d => d.TripId == Id);
+            //var destinations = _mapper.Map<List<Destination>>(await applicationDbContext.ToListAsync());
+            var destinations = await _destinationRepository.GetDestinationsByTripId(Id);
             return View(destinations);
         }
 
@@ -34,9 +42,7 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var destination = await _context.Destinations.Where(d => d.Id == id)
-
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var destination = await _destinationRepository.GetDestinationsByTripId(id.Value);
             if (destination == null)
             {
                 return NotFound();
@@ -48,9 +54,14 @@ namespace VayCayPlanner.Web.Controllers
         // GET: Destinations/Create
         public IActionResult Create(int? id)
         {
-
-            ViewData["TripId"] = new SelectList(_context.Trips, "TripId", "TrapName");
-            return View();
+            var thisTrip = _context.Trips.Where(x => x.Id == id.Value).FirstOrDefault();
+            var model = new AddDestinationVM
+            {
+                TripId = thisTrip.Id,
+                TripName = thisTrip.TripName
+            };
+            //ViewData["TripId"] = new SelectList(_context.Trips, "TripId", "TrapName");
+            return View(model);
         }
 
         // POST: Destinations/Create
@@ -58,15 +69,26 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CityName,CountryName,TripId,Id,CreatedDate,ModifiedDate")] Destination destination)
+        public async Task<IActionResult> Create(AddDestinationVM destination)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(destination);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _destinationRepository.AddDestinationToTrip(destination);
+                return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });                
             }
-            ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(destination);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
             return View(destination);
         }
 

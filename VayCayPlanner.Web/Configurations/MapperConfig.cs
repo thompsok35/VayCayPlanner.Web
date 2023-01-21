@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using VayCayPlanner.Common.Traveler.ViewModels;
 using VayCayPlanner.Common.ViewModels;
+using VayCayPlanner.Common.ViewModels.Destination;
+using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
 
 namespace VayCayPlanner.Web.Configurations
@@ -14,8 +16,10 @@ namespace VayCayPlanner.Web.Configurations
             CreateMap<TravelGroup, TravelGroupEditVM>().ReverseMap();
             CreateMap<Traveler, TravelerEditVM>().ReverseMap();
             CreateMap<Traveler, TravelerDetailVM>().ReverseMap();
-            //CreateMap<LeaveRequest, LeaveRequestCreateVM>().ReverseMap();
+            CreateMap<Trip, TripVM>().ReverseMap();
+            CreateMap<Destination, DestinationVM>().ReverseMap();
             //CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
+
         }
     }
 }

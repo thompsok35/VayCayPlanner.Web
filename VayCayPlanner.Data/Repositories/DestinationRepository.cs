@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VayCayPlanner.Common.ViewModels;
+using VayCayPlanner.Common.ViewModels.Destination;
 using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
 using VayCayPlanner.Data.Repositories.Contracts;
@@ -71,10 +73,61 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
+        public async Task<bool> AddDestinationToTrip(AddDestinationVM model)
+        {
+            try
+            {
+                var Destination = new Destination
+                {
+                    TripId = model.TripId,
+                    City = model.City,
+                    Country = model.Country,
+                    ArrivalDate = model.ArrivalDate,
+                    DepartureDate = model.DepartureDate,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+                };
+                _dbContext.Add(Destination);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.StackTrace);
+                return false;
+            }
+        }
+
         public async Task<Destination> GetFirstDestinationByTripId(int tripId)
         {
             var result = await _dbContext.Destinations.Where(x => x.TripId == tripId).FirstOrDefaultAsync();
             return result;
+        }
+
+        public async Task<TripWithDestinationsVM> GetDestinationsByTripId(int tripId)
+        {
+            var trip = _mapper.Map<TripVM>(await _dbContext.Trips.Where(x => x.Id == tripId).FirstOrDefaultAsync());
+            //var tripVM = _mapper.Map<TripVM>,trip;
+            var destinations = await _dbContext.Destinations.Where(x => x.TripId == tripId).ToListAsync();
+            var destinationVMs = _mapper.Map<List<DestinationVM>>(destinations);
+            if (destinationVMs != null)
+            {
+                var destinationsWithTrip = new TripWithDestinationsVM(destinationVMs)
+                {
+                    tripId = trip.Id,
+                    TripName = trip.TripName
+                };
+                return destinationsWithTrip;
+            }
+            else
+            {
+                List<DestinationVM> des = new List<DestinationVM>();
+                var destinationsWithTrip = new TripWithDestinationsVM(des)
+                {
+                    TripName = trip.TripName
+                };
+                return destinationsWithTrip;
+            }   
         }
     }
 }
