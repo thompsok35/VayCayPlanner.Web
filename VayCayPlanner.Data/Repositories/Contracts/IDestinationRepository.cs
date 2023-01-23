@@ -15,5 +15,6 @@ namespace VayCayPlanner.Data.Repositories.Contracts
         Task<Destination> GetFirstDestinationByTripId(int tripId);        
         Task<TripWithDestinationsVM> GetDestinationsByTripId(int tripId);
         Task<bool> AddDestinationToTrip(AddDestinationVM model);
+        Task<DestinationDetailVM> GetDestinationDetailById(int id);
     }
 }

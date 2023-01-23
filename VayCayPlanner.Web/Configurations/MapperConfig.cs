@@ -18,6 +18,7 @@ namespace VayCayPlanner.Web.Configurations
             CreateMap<Traveler, TravelerDetailVM>().ReverseMap();
             CreateMap<Trip, TripVM>().ReverseMap();
             CreateMap<Destination, DestinationVM>().ReverseMap();
+            CreateMap<TravelerDestination, TravelerDestinationVM>().ReverseMap();
             //CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
 
         }

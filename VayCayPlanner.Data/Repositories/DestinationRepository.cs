@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -128,6 +129,31 @@ namespace VayCayPlanner.Data.Repositories
                 };
                 return destinationsWithTrip;
             }   
+        }
+
+        public async Task<DestinationDetailVM> GetDestinationDetailById (int id)
+        {
+            var model = new DestinationDetailVM();
+
+            var destination = await _dbContext.Destinations.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var trip = await _dbContext.Trips.Where(x => x.Id == destination.TripId).FirstOrDefaultAsync();
+            var travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync();
+            var travelersVM = _mapper.Map<List<TravelersVM>>(travelers);
+            var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync(), "Id", "FullName");
+            var travelerDestinations = await _dbContext.TravelerDestinations.Where(x => x.DestinationId == id).ToListAsync();
+            var travelerDestinationVm = _mapper.Map<List<TravelerDestinationVM>>(travelerDestinations);
+
+            model.Id = destination.Id;
+            model.ArrivalDate = destination.ArrivalDate;
+            model.City = destination.City;
+            model.Country = destination.Country;
+            model.DepartureDate = destination.DepartureDate;
+            model.TripId = destination.TripId;
+            model.TripName = trip.TripName;
+            model.Travelers = travelerList;
+            model.TravelGroupId = destination.TravelGroupId.Value;
+            model.DestinationTravelers = travelerDestinationVm;
+            return model;
         }
     }
 }

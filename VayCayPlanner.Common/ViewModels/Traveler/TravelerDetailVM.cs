@@ -14,7 +14,7 @@ namespace VayCayPlanner.Common.Traveler.ViewModels
         public int Id { get; set; }
 
         [Display(Name = "Group Name")]
-        public string GroupName { get; set; }
+        public string? GroupName { get; set; }
 
         public int TravelGroupId { get; set; }
         

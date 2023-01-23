@@ -42,8 +42,8 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var destination = await _context.Destinations.Where(x => x.Id == id.Value).FirstOrDefaultAsync();
-            //var destination = await _destinationRepository.GetDestinationsByTripId(id.Value);
+            var destination = await _destinationRepository.GetDestinationDetailById(id.Value);
+
             if (destination == null)
             {
                 return NotFound();
@@ -93,6 +93,29 @@ namespace VayCayPlanner.Web.Controllers
             return View(destination);
         }
 
+        // POST: Destinations/AddTraveler
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddTraveler(TravelerDestinationVM viewModel)
+        {
+            try
+            {
+                var travelers = _mapper.Map<TravelerDestination>(viewModel);
+                _context.Add(travelers);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Destinations", new { Id = viewModel.TripId });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return View(viewModel);
+        }
+
         // GET: Destinations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -102,10 +125,7 @@ namespace VayCayPlanner.Web.Controllers
             }
 
             var destination = await _context.Destinations.FindAsync(id);
-            if (destination == null)
-            {
-                return NotFound();
-            }
+
             ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
             return View(destination);
         }
@@ -140,7 +160,7 @@ namespace VayCayPlanner.Web.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });
             }
             ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
             return View(destination);
@@ -180,7 +200,7 @@ namespace VayCayPlanner.Web.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });
         }
 
         private bool DestinationExists(int id)
