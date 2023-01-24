@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Net;
 using System.Net.Mail;
+using VayCayPlanner.Data.Repositories;
 
 namespace VayCayPlanner.Web.Services
 {
@@ -10,6 +11,7 @@ namespace VayCayPlanner.Web.Services
         private int smtpPort;
         private string fromEmailAddress;
         private readonly IConfiguration _configuration;
+        //private readonly ILogger<EmailSender> _logger;
 
         public EmailSender(string smtpServer, int smtpPort, 
             string fromEmailAddress, IConfiguration configuration)
@@ -18,6 +20,7 @@ namespace VayCayPlanner.Web.Services
             this.smtpPort = smtpPort;
             this.fromEmailAddress = fromEmailAddress;
             _configuration = configuration;
+            //_logger = logger;
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
@@ -49,9 +52,9 @@ namespace VayCayPlanner.Web.Services
                 smtpClient.Send(message);
                 return Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log this error
+                //_logger.LogError($"New user registration error from [{this.smtpServer}] Trace [{ex.StackTrace}]");
                 return Task.CompletedTask;
             }
         }

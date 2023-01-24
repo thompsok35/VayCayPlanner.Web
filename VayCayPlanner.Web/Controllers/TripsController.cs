@@ -10,6 +10,7 @@ using VayCayPlanner.Data.Models;
 using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
+using VayCayPlanner.Web.Services;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -20,11 +21,13 @@ namespace VayCayPlanner.Web.Controllers
         private readonly ITravelerRepository _travelerRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<Subscriber> _userManager;
+        private readonly ILogger<TripsController> _logger;
 
         public TripsController(ApplicationDbContext context,
             ITripRepository tripRepository,
             ITravelerRepository travelerRepository,
             IHttpContextAccessor httpContextAccessor,
+            ILogger<TripsController> logger,
             UserManager<Subscriber> userManager)
         {
             _context = context;
@@ -32,6 +35,7 @@ namespace VayCayPlanner.Web.Controllers
             _travelerRepository = travelerRepository;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
+            _logger = logger;
         }
 
         // GET: Trips/Upcoming
