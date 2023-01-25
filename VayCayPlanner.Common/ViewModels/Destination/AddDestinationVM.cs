@@ -11,6 +11,7 @@ namespace VayCayPlanner.Common.ViewModels.Destination
     public class AddDestinationVM
     {
         public int TripId { get; set; }
+        public int TravelGroupId { get; set; }
 
         [Display(Name = "Trip Name")]
         public string TripName { get; set; }

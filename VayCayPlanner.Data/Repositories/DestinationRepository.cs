@@ -22,6 +22,7 @@ namespace VayCayPlanner.Data.Repositories
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ITravelGroupRepository _travelGroupRepository;
+        private readonly ITripRepository _tripRepository;
         private readonly ITravelerRepository _travelerRepository;
         private readonly UserManager<Subscriber> _userManager;
         private readonly IMapper _mapper;
@@ -31,6 +32,7 @@ namespace VayCayPlanner.Data.Repositories
                     IHttpContextAccessor httpContextAccessor,
                     UserManager<Subscriber> userManager,
                     ITravelGroupRepository travelGroupRepository,
+                    ITripRepository tripRepository,
                     ITravelerRepository travelerRepository,
                     ILogger<DestinationRepository> logger, IMapper mapper)
         {
@@ -38,6 +40,7 @@ namespace VayCayPlanner.Data.Repositories
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
             _travelGroupRepository = travelGroupRepository;
+            _tripRepository = tripRepository;
             _travelerRepository = travelerRepository;
             _mapper = mapper;
             _logger = logger;
@@ -78,9 +81,11 @@ namespace VayCayPlanner.Data.Repositories
         {
             try
             {
+                var thisTrip = await _dbContext.Trips.Where(x => x.Id == model.TripId).FirstOrDefaultAsync();
                 var Destination = new Destination
                 {
                     TripId = model.TripId,
+                    TravelGroupId = thisTrip.TravelGroupId,
                     City = model.City,
                     Country = model.Country,
                     ArrivalDate = model.ArrivalDate,
@@ -89,7 +94,9 @@ namespace VayCayPlanner.Data.Repositories
                     ModifiedDate = DateTime.Now
                 };
                 _dbContext.Add(Destination);
+
                 await _dbContext.SaveChangesAsync();
+                await _tripRepository.UpdateTripEndDate(model.TripId, model.DepartureDate.Value);
                 return true;
             }
             catch (Exception ex)
@@ -97,6 +104,46 @@ namespace VayCayPlanner.Data.Repositories
                 _logger.LogError(ex.StackTrace);
                 return false;
             }
+        }
+
+        public async Task<bool> AddTravelerToDestination(int travelerId, int destinationId, int tripId)
+        {
+            try
+            {
+                var _travelerDestination = new TravelerDestination
+                {
+                    DestinationId = destinationId,
+                    TravelerId = travelerId,
+                    TripId = tripId
+                };
+                _dbContext.Add(_travelerDestination);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
+        }
+
+        public async Task<Destination> EditDestination (Destination model)
+        {
+            var thisDestination = new Destination
+            { 
+                Id = model.Id,
+                City = model.City,
+                Country = model.Country,
+                TravelGroupId = model.TravelGroupId,
+                CreatedDate = model.CreatedDate,
+                ModifiedDate = DateTime.Now,
+                ArrivalDate = model.ArrivalDate,
+                DepartureDate = model.DepartureDate,
+                TripId = model.TripId
+            };
+            _dbContext.Update(thisDestination);
+            await _dbContext.SaveChangesAsync();
+            return thisDestination;
         }
 
         public async Task<Destination> GetFirstDestinationByTripId(int tripId)
@@ -116,6 +163,7 @@ namespace VayCayPlanner.Data.Repositories
                 var destinationsWithTrip = new TripWithDestinationsVM(destinationVMs)
                 {
                     tripId = trip.Id,
+                    TravelGroupId = trip.TravelGroupId,
                     TripName = trip.TripName
                 };
                 return destinationsWithTrip;
@@ -137,13 +185,14 @@ namespace VayCayPlanner.Data.Repositories
 
             var destination = await _dbContext.Destinations.Where(x => x.Id == id).FirstOrDefaultAsync();
             var trip = await _dbContext.Trips.Where(x => x.Id == destination.TripId).FirstOrDefaultAsync();
-            var travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync();
-            var travelersVM = _mapper.Map<List<TravelersVM>>(travelers);
+            //var travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync();
+            //var travelersVM = _mapper.Map<List<TravelersVM>>(travelers);
             var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync(), "Id", "FullName");
             var travelerDestinations = await _dbContext.TravelerDestinations.Where(x => x.DestinationId == id).ToListAsync();
-            var travelerDestinationVm = _mapper.Map<List<TravelerDestinationVM>>(travelerDestinations);
+            var travelerDestinationVm = await GetDestinationTravelers(travelerDestinations);
 
             model.Id = destination.Id;
+            model.DestinationId = destination.Id;
             model.ArrivalDate = destination.ArrivalDate;
             model.City = destination.City;
             model.Country = destination.Country;
@@ -154,6 +203,26 @@ namespace VayCayPlanner.Data.Repositories
             model.TravelGroupId = destination.TravelGroupId.Value;
             model.DestinationTravelers = travelerDestinationVm;
             return model;
+        }
+
+        private async Task<List<TravelersVM>> GetDestinationTravelers(List<TravelerDestination> travelers)
+        {
+            List<TravelersVM> result = new List<TravelersVM>();
+            foreach (var traveler in travelers)
+            {
+                var t = await _dbContext.Travelers.Where(x => x.Id == traveler.TravelerId).FirstOrDefaultAsync();
+                if (t != null)
+                {
+                    var thisTraveler = new TravelersVM
+                    {
+                        Id = t.Id,
+                        FullName = t.FullName,
+                        EmailAddress = t.EmailAddress
+                    };
+                    result.Add(thisTraveler); 
+                }
+            }
+            return result;
         }
     }
 }

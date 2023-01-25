@@ -54,7 +54,7 @@ namespace VayCayPlanner.Web.Services
             }
             catch (Exception ex)
             {
-                //_logger.LogError($"New user registration error from [{this.smtpServer}] Trace [{ex.StackTrace}]");
+                var errMessage = ($"New user registration Email error from [{this.smtpServer}], [{this.smtpPort}] Trace [{ex.StackTrace}]");
                 return Task.CompletedTask;
             }
         }

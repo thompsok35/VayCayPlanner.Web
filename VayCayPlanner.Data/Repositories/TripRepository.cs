@@ -85,6 +85,29 @@ namespace VayCayPlanner.Data.Repositories
             return result;
         }
 
+        public async Task<bool> UpdateTripEndDate(int id, DateTime departureDate)
+        {
+            var thisTrip = await _dbContext.Trips.Where(x => x.Id == id).FirstOrDefaultAsync();
+            try
+            {
+                if (thisTrip != null)
+                {
+                    if (departureDate > thisTrip.EndDate)
+                    {
+                        thisTrip.EndDate = departureDate;
+                        _dbContext.Update(thisTrip);
+                        await _dbContext.SaveChangesAsync();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<TripDetailVM> GetTripDetail(int Id)
         {
             var thisTrip = await _dbContext.Trips.Where(x => x.Id == Id).FirstOrDefaultAsync();
@@ -133,6 +156,8 @@ namespace VayCayPlanner.Data.Repositories
             }
             return result;
         }
+
+
 
         private async Task<Subscriber> CurrentUser()
         {

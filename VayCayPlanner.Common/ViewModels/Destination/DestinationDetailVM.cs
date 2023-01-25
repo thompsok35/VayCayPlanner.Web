@@ -12,6 +12,7 @@ namespace VayCayPlanner.Common.ViewModels.Destination
     public class DestinationDetailVM
     {
         public int Id { get; set; }
+        public int DestinationId { get; set; }
         public int TripId { get; set; }
         public int TravelGroupId { get; set; }
 
@@ -33,7 +34,9 @@ namespace VayCayPlanner.Common.ViewModels.Destination
         //
         public SelectList? Travelers { get; set; }
 
-        public List<TravelerDestinationVM>? DestinationTravelers { get; set; }
+        public List<TravelersVM>? DestinationTravelers { get; set; }
+
+        public int TravelerId { get; set; }
 
         [Display(Name = "Traveler Name")]
         public string? FullName { get; set; }

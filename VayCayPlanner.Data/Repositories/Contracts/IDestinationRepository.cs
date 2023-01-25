@@ -12,9 +12,11 @@ namespace VayCayPlanner.Data.Repositories.Contracts
     public interface IDestinationRepository
     {
         Task<bool> AddFirstDestination(CreateNewTripVM createNewTripVM);
+        Task<Destination> EditDestination(Destination model);
         Task<Destination> GetFirstDestinationByTripId(int tripId);        
         Task<TripWithDestinationsVM> GetDestinationsByTripId(int tripId);
         Task<bool> AddDestinationToTrip(AddDestinationVM model);
+        Task<bool> AddTravelerToDestination(int travelerId, int destinationId, int tripId);
         Task<DestinationDetailVM> GetDestinationDetailById(int id);
     }
 }

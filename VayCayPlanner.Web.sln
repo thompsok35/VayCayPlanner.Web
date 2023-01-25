@@ -18,6 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeveloperNotes", "Developer
 		VayVayOrganizer.txt = VayVayOrganizer.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseDeployments", "DatabaseDeployments", "{F5BD4512-A45A-4BCE-AD83-A1139E418156}"
+	ProjectSection(SolutionItems) = preProject
+		DeployDate01252023.sql = DeployDate01252023.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

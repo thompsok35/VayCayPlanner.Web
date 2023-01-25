@@ -52,7 +52,18 @@
 <div class="form-group">
     <form asp-action="AddTraveler">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <label asp-for="Travelers" class="control-label"></label>
+        <div class="form-group">
+            <label asp-for="TravelerId" class="control-label"></label>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="TripId" />
+            <input type="hidden" asp-for="TravelGroupId" />
+            <select asp-for="TravelerId" asp-items="Model?.Travelers" class="form-select">
+                <option>Select Travelers</option>
+            </select>
+            <span asp-validation-for="TripId" class="text-danger"></span>
+        </div>
+
+@*        <label asp-for="Travelers" class="control-label"></label>
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="TripId" />
         <input type="hidden" asp-for="TravelGroupId" />
@@ -60,7 +71,9 @@
         <select asp-for="Travelers" asp-items="Model?.Travelers" class="form-select">
             <option>Select Travelers</option>
         </select>
-        <span asp-validation-for="Travelers" class="text-danger"></span>
+        <span asp-validation-for="Travelers" class="text-danger"></span>*@
+
+
         <br />
         <div class="form-group">
             <input type="submit" value="Add" class="btn btn-primary" />

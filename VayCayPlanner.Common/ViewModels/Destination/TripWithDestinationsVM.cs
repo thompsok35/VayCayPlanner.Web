@@ -15,6 +15,7 @@ namespace VayCayPlanner.Common.ViewModels.Destination
             TripDestinations = destinations;
         }
         public int Id { get; set; }
+        public int TravelGroupId { get; set; }
 
         public int tripId { get; set; }
 

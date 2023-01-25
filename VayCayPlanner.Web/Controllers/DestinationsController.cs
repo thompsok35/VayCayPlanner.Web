@@ -14,14 +14,17 @@ namespace VayCayPlanner.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IDestinationRepository _destinationRepository;
+        private readonly ITravelerRepository _travelerRepository;
         private readonly IMapper _mapper;
 
         public DestinationsController(ApplicationDbContext context,
                 IDestinationRepository destinationRepository,
+                ITravelerRepository travelerRepository,
                 IMapper mapper)
         {
             _context = context;
             _destinationRepository = destinationRepository;
+            _travelerRepository = travelerRepository;
             _mapper = mapper;
         }
 
@@ -48,7 +51,7 @@ namespace VayCayPlanner.Web.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Travelers"] = new SelectList(await _travelerRepository.GetTravelersByGroupId(destination.TravelGroupId), "Id", "FullName");
             return View(destination);
         }
 
@@ -98,14 +101,12 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddTraveler(TravelerDestinationVM viewModel)
+        public async Task<IActionResult> AddTraveler(int TravelerId, TravelerDestinationVM viewModel)
         {
             try
             {
-                var travelers = _mapper.Map<TravelerDestination>(viewModel);
-                _context.Add(travelers);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Destinations", new { Id = viewModel.TripId });
+                await _destinationRepository.AddTravelerToDestination(TravelerId, viewModel.Id, viewModel.TripId);
+                return RedirectToAction("Details", "Destinations", new { Id = viewModel.Id });
             }
             catch (Exception)
             {
@@ -126,7 +127,7 @@ namespace VayCayPlanner.Web.Controllers
 
             var destination = await _context.Destinations.FindAsync(id);
 
-            ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
+            //ViewData["TripId"] = new SelectList(_context.Trips, "Id", "Id", destination.TripId);
             return View(destination);
         }
 
@@ -135,7 +136,7 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CityName,CountryName,TripId,Id,CreatedDate,ModifiedDate")] Destination destination)
+        public async Task<IActionResult> Edit(int id, Destination destination)
         {
             if (id != destination.Id)
             {
@@ -146,8 +147,9 @@ namespace VayCayPlanner.Web.Controllers
             {
                 try
                 {
-                    _context.Update(destination);
-                    await _context.SaveChangesAsync();
+                    await _destinationRepository.EditDestination(destination);
+                    //_context.Update(destination);
+                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
