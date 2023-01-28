@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
+//using VayCayPlanner.Web.
 using VayCayPlanner.Data.Repositories.Contracts;
 
 namespace VayCayPlanner.Data.Repositories
@@ -157,7 +158,57 @@ namespace VayCayPlanner.Data.Repositories
             return result;
         }
 
+        public async Task<DeleteTripVM> GetAllTripObjects(int tripId)
+        {
+            var _trip = await _dbContext.Trips.Where(x => x.Id == tripId).FirstOrDefaultAsync();
+            var _destinations = await _dbContext.Destinations.Where(x => x.TripId == tripId).ToListAsync();
+            var _tDestinations = await _dbContext.TravelerDestinations.Where(x => x.TripId == tripId).ToListAsync();
+            var _travelgroup = await _dbContext.TravelGroups.Where(x => x.Id == _trip.TravelGroupId).FirstOrDefaultAsync();
+            var _travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == _trip.TravelGroupId).ToListAsync();
 
+            var deleteTripVM = new DeleteTripVM
+            { 
+                trip = _trip,
+                destinations = _destinations,
+                travelerDestinations = _tDestinations,
+                travelers = _travelers,
+                travelGroup = _travelgroup
+            };
+            return deleteTripVM;
+        }
+
+        public async Task<bool> DeleteAllTripObjects(int tripId)
+        {
+            //All objects include trip, travelgroup, travelers, destinations and travelerDestinations
+            try
+            {
+                var _trip = await _dbContext.Trips.Where(x => x.Id == tripId).FirstOrDefaultAsync();
+                var _destinations = await _dbContext.Destinations.Where(x => x.TripId == tripId).ToListAsync();
+                var _tDestinations = await _dbContext.TravelerDestinations.Where(x => x.TripId == tripId).ToListAsync();
+                var _travelgroup = await _dbContext.TravelGroups.Where(x => x.Id == _trip.TravelGroupId).FirstOrDefaultAsync();
+                
+                _dbContext.Remove(_trip);
+                _dbContext.RemoveRange(_destinations);
+                _dbContext.Remove(_travelgroup);
+                _dbContext.RemoveRange(_tDestinations);
+
+                try
+                {
+                    await _dbContext.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception ex )
+                {
+                    _logger.LogError($"Error removing trip records from the database [{ex.StackTrace}]");
+                    return false;
+                }                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error retreiving trip objects [{ex.StackTrace}]");
+                return false;
+            }
+        }
 
         private async Task<Subscriber> CurrentUser()
         {

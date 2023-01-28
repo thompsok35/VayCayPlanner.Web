@@ -253,14 +253,15 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var trip = await _context.Trips
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (trip == null)
+            var tripObjects = await _tripRepository.GetAllTripObjects(id.Value);
+            //var trip = await _context.Trips
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            if (tripObjects == null)
             {
                 return NotFound();
             }
 
-            return View(trip);
+            return View(tripObjects);
         }
 
         // POST: Trips/Delete/5
@@ -275,7 +276,8 @@ namespace VayCayPlanner.Web.Controllers
             var trip = await _context.Trips.FindAsync(id);
             if (trip != null)
             {
-                _context.Trips.Remove(trip);
+                await _tripRepository.DeleteAllTripObjects(id);
+                //_context.Trips.Remove(trip);
             }
 
             await _context.SaveChangesAsync();

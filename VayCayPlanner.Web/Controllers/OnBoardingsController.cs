@@ -102,7 +102,6 @@ namespace VayCayPlanner.Web.Controllers
 
                 throw;
             }
-
         }
 
         // GET: Trips/Details/5

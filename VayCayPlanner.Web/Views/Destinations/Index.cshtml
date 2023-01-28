@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="banner">
+    <a></a><a asp-action="Index" asp-controller="Home">Back</a>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip >  2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
+    </div>
+</div>
+<hr />
 
 <div class="row align-items-center">
     <div class="col" style="text-align: center">
@@ -16,7 +23,7 @@
 <p>
     <a asp-action="Create" asp-route-id="@Model.tripId">+ Destination</a>
 </p>
-<h3>Manage Trip Destinations</h3>
+<h3>Manage your trip Destinations</h3>
 <table class="table">
     <thead>
         <tr>
@@ -60,9 +67,11 @@
                     @Html.DisplayFor(modelItem => item.DepartureDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |                    
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> ||
+                    <a asp-action="Details" asp-route-id="@item.Id"> + Travelers</a> |                    
+                    <a asp-action="Details" asp-route-id="@item.Id"> + Lodging</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"> + Transportation</a> |
                 </td>
             </tr>
         }

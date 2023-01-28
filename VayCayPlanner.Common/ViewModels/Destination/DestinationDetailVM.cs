@@ -36,6 +36,7 @@ namespace VayCayPlanner.Common.ViewModels.Destination
 
         public List<TravelersVM>? DestinationTravelers { get; set; }
 
+        [Display(Name = "Travelers in your group")]
         public int TravelerId { get; set; }
 
         [Display(Name = "Traveler Name")]

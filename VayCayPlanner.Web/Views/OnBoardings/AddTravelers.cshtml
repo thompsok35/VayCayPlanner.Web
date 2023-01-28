@@ -9,7 +9,7 @@
 <div class="banner">
     <a> < </a><a asp-action="AddNewTrip">Back</a>
     <div class="row" style="text-align: center">
-        <span><strong>1 - Name Trip > 2 - Add a Destination >  3 - Add Travelers</strong></span>
+        <span><strong>1 - Name Trip > 2 - Add a Destination >  3 - Add Travelers ></strong> 4 - Transport to your first destination</span>
     </div>
 </div>
 
@@ -25,7 +25,7 @@
 <br />
 
 <div>
-    <hr />
+    <hr />    
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TripName)
@@ -101,6 +101,9 @@
     <div class="col align-self-start">
         <a asp-controller="Travelers" asp-action="AddToTrip" asp-route-id="@Model.GroupId">Add Travelers</a>
     </div>
-
+    <div class="col align-self-End">
+        <a asp-controller="Trips" asp-action="Index">Done</a>
+    </div>
+    <strong>Add all the potential travelers for this trip and click Next! </strong>
 </div>
 

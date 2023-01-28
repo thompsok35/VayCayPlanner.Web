@@ -5,7 +5,24 @@
     ViewData["Title"] = "My Upcoming Trips";
 }
 
-<h1>My Upcoming Trips</h1>
+<div class="banner">
+    <a></a><a asp-action="Index" asp-controller="Home">Back</a>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip >  2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>My Trips</h4>
+        <br />
+    </div>
+</div>
+<br />
+
+@*<h1>My Upcoming Trips</h1>*@
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -51,9 +68,12 @@
                     @Html.DisplayFor(modelItem => item.ModifiedDate)
                 </td>*@
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    || <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |                    
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> ||
+                    <a asp-action="Index" asp-controller="Destinations" asp-route-id="@item.Id">Destinations</a> |
+                    <a asp-action="Index" asp-controller="Destinations" asp-route-id="@item.Id">Transportation</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> ||
                 </td>
             </tr>
         }

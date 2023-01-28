@@ -55,19 +55,38 @@ namespace VayCayPlanner.Data.Repositories
                 newTrip.EndDate = createNewTripVM.DestinationDepartureDate;
                 _dbContext.Update(newTrip);
                 await _dbContext.SaveChangesAsync();
-                var newDestination = new Destination
+                if (createNewTripVM.DestinationName.Contains(','))
                 {
-                    City = createNewTripVM.DestinationName.Split(',')[0],
-                    Country = createNewTripVM.DestinationName.Split(',')[1],
-                    TravelGroupId = createNewTripVM.GroupId,
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now,
-                    ArrivalDate = createNewTripVM.DestinationArrivalDate,
-                    DepartureDate = createNewTripVM.DestinationDepartureDate,
-                    TripId = createNewTripVM.TripId
-                };
-                _dbContext.Add(newDestination);
-                await _dbContext.SaveChangesAsync();
+                    var newDestination = new Destination
+                    {
+                        City = createNewTripVM.DestinationName.Split(',')[0],
+                        Country = createNewTripVM.DestinationName.Split(',')[1],
+                        TravelGroupId = createNewTripVM.GroupId,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        ArrivalDate = createNewTripVM.DestinationArrivalDate,
+                        DepartureDate = createNewTripVM.DestinationDepartureDate,
+                        TripId = createNewTripVM.TripId
+                    };
+                    _dbContext.Add(newDestination);
+                    await _dbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    var newDestination = new Destination
+                    {
+                        City = createNewTripVM.DestinationName,
+                        Country = createNewTripVM.DestinationName,
+                        TravelGroupId = createNewTripVM.GroupId,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
+                        ArrivalDate = createNewTripVM.DestinationArrivalDate,
+                        DepartureDate = createNewTripVM.DestinationDepartureDate,
+                        TripId = createNewTripVM.TripId
+                    };
+                    _dbContext.Add(newDestination);
+                    await _dbContext.SaveChangesAsync();
+                }
                 return true;
             }
             catch (Exception ex)

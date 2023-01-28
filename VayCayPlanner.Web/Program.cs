@@ -30,7 +30,7 @@ builder.Host.UseSerilog((ctx, lc) =>
 builder.Services.AddHttpContextAccessor();
 
 var SMTPconfig = builder.Configuration;
-builder.Services.AddTransient<IEmailSender>(s => new EmailSender("smtp-relay.sendinblue.com", 587, "support@vaycayorganizer.com", SMTPconfig));
+builder.Services.AddTransient<IEmailSender>(s => new EmailSender("mail.vaycayorganizer.com", 587, "support@vaycayorganizer.com", SMTPconfig));
 
 //TODO: Register the repositories
 builder.Services.AddScoped<ITravelGroupRepository, TravelGroupRepository>();
