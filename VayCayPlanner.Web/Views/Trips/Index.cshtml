@@ -6,7 +6,14 @@
 }
 
 <div class="banner">
-    <a></a><a asp-action="Index" asp-controller="Home">Back</a>
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Trip">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-controller="Destination">Next</a>
+        </div>  
+    </div>
     <div class="row" style="text-align: center">
         <span><strong>1 - Name Trip >  2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
     </div>

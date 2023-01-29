@@ -117,6 +117,29 @@ namespace VayCayPlanner.Web.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> RemoveTraveler(int? id, int? id2, int? id3)
+        {
+            if (id == null || _context.TravelerDestinations == null)
+            {
+                return NotFound();
+            }
+
+            var travelerDestination = await _context.TravelerDestinations
+                .FirstOrDefaultAsync(m => m.TravelerId == id && m.DestinationId == id2 && m.TripId == id3);
+            if (travelerDestination != null)
+            {
+                //delete the record here
+                _context.TravelerDestinations.Remove(travelerDestination);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Destinations", new { Id = id2 });
+            }
+            else
+            {
+                return NotFound();
+            }
+            //return View(travelerDestination);
+        }
+
         // GET: Destinations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

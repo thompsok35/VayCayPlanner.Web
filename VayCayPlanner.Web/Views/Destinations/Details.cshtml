@@ -3,6 +3,21 @@
     ViewData["Title"] = "Details";
 }
 
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Home">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-route-id="@Model?.TripId">Next</a>
+        </div>  
+    </div>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip >  2 - Add a Destination >  3 - Add Travelers  > </strong> 4 - Transportation</span><a></a>
+    </div>
+</div>
+<hr />
+
 <div class="row align-items-center">
     <div class="col" style="text-align: center">
         <br />
@@ -44,9 +59,6 @@
 </div>
 
 
-
-
-
 <table class="table">
     <thead>
         <tr>
@@ -70,9 +82,9 @@
                     @Html.DisplayFor(modelItem => item.EmailAddress)
                 </td>
                 <td>
-@*                    <a asp-controller="Travelers" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+@*                  <a asp-controller="Travelers" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-controller="Travelers" asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-controller="Travelers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Destinations" asp-action="RemoveTraveler" asp-route-id="@item.Id" asp-route-id2="@Model.DestinationId" asp-route-id3="@Model.TripId">Delete</a>
                 </td>
             </tr>
         }
@@ -93,15 +105,23 @@
             <span asp-validation-for="TripId" class="text-danger"></span>
         </div>
         <br />
-        <div class="form-group">
-            <input type="submit" value="Add" class="btn btn-primary" />
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary"/>                
+            </div>
+            @*<div>
+                <button type="button" class="btn btn-primary btn-sm" width="15">
+                    <a><button asp-action="Index" asp-route-id="@Model?.TripId">Destinations</button></a>
+                </button>
+                
+            </div>*@
         </div>
     </form>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index" asp-route-id="@Model?.TripId">Destinations</a> |
     <a asp-action="Index" asp-route-id="@Model?.TripId">Transporation</a>
-</div>
+</div>*@
 

@@ -12,6 +12,8 @@ namespace VayCayPlanner.Common.ViewModels
     {
         public int Id { get; set; }
 
+        public int TripId { get; set; }
+
         [Display(Name = "Traveler Name")]
         public string? FullName { get; set; }
 
