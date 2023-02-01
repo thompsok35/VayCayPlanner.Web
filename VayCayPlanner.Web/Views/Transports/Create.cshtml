@@ -1,6 +1,111 @@
-﻿namespace VayCayPlanner.Web.Views.Transports
-{
-    public class Index
-    {
-    }
+﻿@model VayCayPlanner.Common.ViewModels.Transports.TransportToFirstDestinationVM
+
+@{
+    ViewData["Title"] = "Create";
 }
+
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Home">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-route-id="@Model?.TripId">Next</a>
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <span>1 - Name Trip >  2 - Add a Destination >  3 - Add Travelers  > <strong> 4 - Transportation </strong></span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>@Model.TripName</h4>
+        <br />
+    </div>
+</div>
+<br />
+<h4>Select the travelers that will be on this @Model.TransportType transport with you to @Model.City, @Model.Country</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@*            <div class="form-group">
+                <label asp-for="DestinationId" class="control-label"></label>
+                <input asp-for="DestinationId" class="form-control" />
+                <span asp-validation-for="DestinationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDestinationId" class="control-label"></label>
+                <input asp-for="DepartureDestinationId" class="form-control" />
+                <span asp-validation-for="DepartureDestinationId" class="text-danger"></span>
+            </div>*@
+@*            
+*@
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransportType" class="control-label"></label>
+                <input asp-for="TransportType" class="form-control" />
+                <span asp-validation-for="TransportType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FromAddress" class="control-label"></label>
+                <input asp-for="FromAddress" class="form-control" />
+                <span asp-validation-for="FromAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDatetime" class="control-label"></label>
+                <input asp-for="DepartureDatetime" class="form-control" />
+                <span asp-validation-for="DepartureDatetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreferredAirport" class="control-label"></label>
+                <input asp-for="PreferredAirport" class="form-control" />
+                <span asp-validation-for="PreferredAirport" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToAddress" class="control-label"></label>
+                <input asp-for="ToAddress" class="form-control" />
+                <span asp-validation-for="ToAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrivalDatetime" class="control-label"></label>
+                <input asp-for="ArrivalDatetime" class="form-control" />
+                <span asp-validation-for="ArrivalDatetime" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="CostPerTraveler" class="control-label"></label>
+                <input asp-for="CostPerTraveler" class="form-control" />
+                <span asp-validation-for="CostPerTraveler" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="TravelGroupId" class="control-label"></label>
+                <input asp-for="TravelGroupId" class="form-control" />
+                <span asp-validation-for="TravelGroupId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

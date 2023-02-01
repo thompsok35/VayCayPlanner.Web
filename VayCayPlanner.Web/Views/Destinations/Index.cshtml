@@ -74,11 +74,13 @@
                     @Html.DisplayFor(modelItem => item.DepartureDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |                    
+                    ||<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |                    
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> ||
-                    <a asp-action="Details" asp-route-id="@item.Id"> + Travelers</a> |                    
-                    <a asp-action="Details" asp-route-id="@item.Id"> + Lodging</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id"> + Transportation</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"> + Travelers</a> |
+                    <a asp-action="AddTravelerTransports" asp-controller="Transports" asp-route-id="@item.Id"> + Transports</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id"> + Transportation</a> |*@
+                    <a asp-action="Details" asp-route-id="@item.Id"> + Lodging</a> ||
+                    
                 </td>
             </tr>
         }

@@ -2,6 +2,7 @@
 using VayCayPlanner.Common.Traveler.ViewModels;
 using VayCayPlanner.Common.ViewModels;
 using VayCayPlanner.Common.ViewModels.Destination;
+using VayCayPlanner.Common.ViewModels.Transports;
 using VayCayPlanner.Common.ViewModels.Trip;
 using VayCayPlanner.Data.Models;
 
@@ -19,8 +20,10 @@ namespace VayCayPlanner.Web.Configurations
             CreateMap<Trip, TripVM>().ReverseMap();
             CreateMap<Destination, DestinationVM>().ReverseMap();
             CreateMap<TravelerDestination, TravelerDestinationVM>().ReverseMap();
+            CreateMap<Transport, TransportToFirstDestinationVM>().ReverseMap();
             //CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
-
+            //CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
+            //CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
         }
     }
 }

@@ -12,13 +12,14 @@ namespace VayCayPlanner.Data.Models
         [MaxLength(512)]
         public string? Name { get; set; }
         public int DestinationId { get; set; }
+        public string LodgingType { get; set; }
         public DateTime? CheckInDate { get; set; }
         public DateTime? CheckOutDate { get; set; }
         public int? MaxOccupancy { get; set; }
-        public int Nights { get; set; }
-        //public decimal CleaningFees { get; set; }
+        public int? Nights { get; set; }
+        public decimal CostPerNight { get; set; }
         //public decimal OtherFees { get; set; }
-        //public decimal TotalCost { get; set; }
+        public decimal TotalCost { get; set; }
         public string? WebLink { get; set; }
     }
 }

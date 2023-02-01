@@ -9,7 +9,7 @@
             <a asp-action="Index" asp-controller="Home">Back</a>
         </div>
         <div class="col" style="text-align: right">
-            <a asp-action="Index" asp-route-id="@Model?.TripId">Next</a>
+            <a asp-action="Create" asp-controller="Transports" asp-route-id="@Model?.DestinationId">Next</a>
         </div>  
     </div>
     <div class="row" style="text-align: center">

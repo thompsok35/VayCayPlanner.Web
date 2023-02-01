@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VayCayPlanner.Data;
 
@@ -11,9 +12,10 @@ using VayCayPlanner.Data;
 namespace VayCayPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230131125921_Changes to transport")]
+    partial class Changestotransport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,18 +216,11 @@ namespace VayCayPlanner.Data.Migrations
                     b.Property<DateTime?>("CheckOutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("CostPerNight")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
-
-                    b.Property<string>("LodgingType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MaxOccupancy")
                         .HasColumnType("int");
@@ -237,11 +232,8 @@ namespace VayCayPlanner.Data.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.Property<int?>("Nights")
+                    b.Property<int>("Nights")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("TravelGroupId")
                         .HasColumnType("int");

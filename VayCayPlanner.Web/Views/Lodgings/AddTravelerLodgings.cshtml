@@ -1,0 +1,109 @@
+﻿@model VayCayPlanner.Common.ViewModels.Trip.CreateNewTripVM
+@*@model VayCayPlanner.Data.Models.NewTripTemplate*@
+
+@{
+    ViewData["Title"] = "VayCay-Add Travelers";
+}
+
+
+<div class="banner">
+    <a> < </a><a asp-action="AddNewTrip">Back</a>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip > 2 - Add a Destination >  3 - Add Travelers ></strong> 4 - Transport to your first destination</span>
+    </div>
+</div>
+
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>@Model.TripName</h4>
+        <br />
+    </div>
+</div>
+<br />
+
+<div>
+    <hr />    
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TripName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TripName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OwnerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DestinationName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DestinationName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DestinationArrivalDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DestinationArrivalDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DestinationDepartureDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DestinationDepartureDate)
+        </dd>
+    </dl>
+    <div class="row">
+@*        <div class="col align-self-end">
+            <a asp-controller="TravelGroups" asp-action="Details" asp-route-id="@Model?.GroupId">Add Travelers</a>
+        </div>*@
+    
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Travelers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+@*                <td>
+                    <a asp-controller="Travelers" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="Travelers" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-controller="Travelers" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col align-self-start">
+        <a asp-controller="Travelers" asp-action="AddToTrip" asp-route-id="@Model.GroupId">Add Travelers</a>
+    </div>
+    <div class="col align-self-End">
+        <a asp-controller="Trips" asp-action="Index">Done</a>
+    </div>
+    <strong>Add all the potential travelers for this trip and click Next! </strong>
+</div>
+

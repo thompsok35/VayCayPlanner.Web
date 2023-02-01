@@ -1,6 +1,115 @@
-﻿namespace VayCayPlanner.Web.Views.Transports
-{
-    public class Index
-    {
-    }
+﻿@model IEnumerable<VayCayPlanner.Data.Models.Transport>
+
+@{
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureDestinationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureDatetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferredAirport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDestinationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDatetime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransportType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPerTraveler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TravelGroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureDestinationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreferredAirport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDestinationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransportType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostPerTraveler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TravelGroupId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
