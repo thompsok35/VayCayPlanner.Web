@@ -181,6 +181,7 @@ namespace VayCayPlanner.Data.Repositories
             {
                 var destinationsWithTrip = new TripWithDestinationsVM(destinationVMs)
                 {
+                    
                     tripId = trip.Id,
                     TravelGroupId = trip.TravelGroupId,
                     TripName = trip.TripName
@@ -224,13 +225,14 @@ namespace VayCayPlanner.Data.Repositories
             return model;
         }
 
-        public async Task<Destination> GetNextDestination(Destination destination)
+        public async Task<Destination> GetNextDestination(int id)
         {
             Destination result = new Destination();
-            var thisDestination = await _dbContext.Destinations.Where(x => x.DepartureDate >= destination.ArrivalDate).OrderBy(o => o.ArrivalDate).FirstOrDefaultAsync();
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var nextDestination = await _dbContext.Destinations.Where(x => x.ArrivalDate >= thisDestination.DepartureDate).OrderBy(o => o.ArrivalDate).FirstOrDefaultAsync();
             if (thisDestination != null)
             {
-                return thisDestination; 
+                return nextDestination; 
             }
             return result;
         }

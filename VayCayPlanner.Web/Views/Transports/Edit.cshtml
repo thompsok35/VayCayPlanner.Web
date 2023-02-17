@@ -1,103 +1,97 @@
 ﻿@model VayCayPlanner.Data.Models.Transport
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Details</h1>
+<h1>Edit</h1>
+
+<h4>Transport</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TripId" />
+            @*<input type="hidden" asp-for="TripName" />*@
+@*            <div class="form-group">
+                <label asp-for="DestinationId" class="control-label"></label>
+                <input asp-for="DestinationId" class="form-control" />
+                <span asp-validation-for="DestinationId" class="text-danger"></span>
+            </div>*@
+@*            <div class="form-group">
+                <label asp-for="DepartureDestinationId" class="control-label"></label>
+                <input asp-for="DepartureDestinationId" class="form-control" />
+                <span asp-validation-for="DepartureDestinationId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FromAddress" class="control-label"></label>
+                <input asp-for="FromAddress" class="form-control" />
+                <span asp-validation-for="FromAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToAddress" class="control-label"></label>
+                <input asp-for="ToAddress" class="form-control" />
+                <span asp-validation-for="ToAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDatetime" class="control-label"></label>
+                <input asp-for="DepartureDatetime" class="form-control" />
+                <span asp-validation-for="DepartureDatetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreferredAirport" class="control-label"></label>
+                <input asp-for="PreferredAirport" class="form-control" />
+                <span asp-validation-for="PreferredAirport" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="ArrivalDestinationId" class="control-label"></label>
+                <input asp-for="ArrivalDestinationId" class="form-control" />
+                <span asp-validation-for="ArrivalDestinationId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ArrivalDatetime" class="control-label"></label>
+                <input asp-for="ArrivalDatetime" class="form-control" />
+                <span asp-validation-for="ArrivalDatetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransportType" class="control-label"></label>
+                <input asp-for="TransportType" class="form-control" />
+                <span asp-validation-for="TransportType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostPerTraveler" class="control-label"></label>
+                <input asp-for="CostPerTraveler" class="form-control" />
+                <span asp-validation-for="CostPerTraveler" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+@*            <div class="form-group">
+                <label asp-for="TravelGroupId" class="control-label"></label>
+                <input asp-for="TravelGroupId" class="form-control" />
+                <span asp-validation-for="TravelGroupId" class="text-danger"></span>
+            </div>*@
+@*            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
 <div>
-    <h4>Transport</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DestinationId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DestinationId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DepartureDestinationId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DepartureDestinationId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FromAddress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FromAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ToAddress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ToAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DepartureDatetime)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DepartureDatetime)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PreferredAirport)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PreferredAirport)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ArrivalDestinationId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ArrivalDestinationId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ArrivalDatetime)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ArrivalDatetime)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TransportType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TransportType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CostPerTraveler)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CostPerTraveler)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TravelGroupId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TravelGroupId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
-

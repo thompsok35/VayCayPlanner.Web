@@ -128,6 +128,13 @@ namespace VayCayPlanner.Data.Repositories
             return thisTripDetail;
         }
 
+        public async Task<Trip> GetTripById(int Id)
+        {
+            var thisTrip = await _dbContext.Trips.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            
+            return thisTrip;
+        }
+
         public async Task<Trip> GetTripByGroupId(int groupId)
         {
             var thisTrip = await _dbContext.Trips.Where(x => x.TravelGroupId == groupId).FirstOrDefaultAsync();

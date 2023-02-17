@@ -8,10 +8,10 @@
 <div class="banner">
     <div class="row">
         <div class="col" style="text-align: left">
-            <a asp-action="Index" asp-controller="Trip">Back</a>
+            <a asp-action="Index" asp-controller="Trips">Back</a>
         </div>
         <div class="col" style="text-align: right">
-            <a asp-action="Index" asp-controller="Destination">Next</a>
+            <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.FirstOrDefault().Id">Next</a>
         </div>  
     </div>
     <div class="row" style="text-align: center">
@@ -69,7 +69,7 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> ||
                     <a asp-action="Index" asp-controller="Destinations" asp-route-id="@item.Id">Destinations</a> |
-                    <a asp-action="Create" asp-controller="Transports" asp-route-id="@item.Id">Transports</a> |
+                    <a asp-action="Index" asp-controller="Transports" asp-route-id="@item.Id">Transports</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> ||
                 </td>
             </tr>

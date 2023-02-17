@@ -1,10 +1,32 @@
-﻿@model IEnumerable<VayCayPlanner.Data.Models.Transport>
+﻿@model VayCayPlanner.Common.ViewModels.Transports.TripTransportsVM
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Destinations">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-controller="Lodgings">Next</a>
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <span>1 - Name Trip >  2 - Add a Destination >  3 - Add Travelers  >  <strong>4 - Transportation</strong></span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>Transports for @Model.TripName </h4>
+        <br />
+    </div>
+</div>
+<br />
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,12 +34,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+@*            <th>
                 @Html.DisplayNameFor(model => model.DestinationId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DepartureDestinationId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FromAddress)
             </th>
@@ -27,12 +49,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.DepartureDatetime)
             </th>
-            <th>
+@*            <th>
                 @Html.DisplayNameFor(model => model.PreferredAirport)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ArrivalDestinationId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ArrivalDatetime)
             </th>
@@ -45,28 +67,19 @@
             <th>
                 @Html.DisplayNameFor(model => model.CostPerTraveler)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TravelGroupId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.TripTransports)
         {
             <tr>
-                <td>
+@*                <td>
                     @Html.DisplayFor(modelItem => item.DestinationId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DepartureDestinationId)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FromAddress)
                 </td>
@@ -76,12 +89,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DepartureDatetime)
                 </td>
-                <td>
+@*                <td>
                     @Html.DisplayFor(modelItem => item.PreferredAirport)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ArrivalDestinationId)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ArrivalDatetime)
                 </td>
@@ -93,15 +106,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CostPerTraveler)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TravelGroupId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedDate)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

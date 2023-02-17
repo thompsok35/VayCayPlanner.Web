@@ -1,3 +1,186 @@
-﻿@model VayCayPlanner.Data.Models.Transport
+﻿@model VayCayPlanner.Common.ViewModels.Transports.TravelerTransportDetailsVM
+@{
+    ViewData["Title"] = "Details";
+}
 
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Home">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Create" asp-controller="Transports" asp-route-id="@Model?.DestinationId">Next</a>
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <span>1 - Name Trip >  2 - Add a Destination >  3 - Add Travelers  >  <strong>4 - Transportation</strong></span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>@Model.TripName  Transports</h4>
+        <br />
+    </div>
+</div>
+<br />
+
+<div>
+    <h4>Transport</h4>
+    <hr />
+    <dl class="row">
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DestinationId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DestinationId)
+        </dd>*@
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartureDestinationId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartureDestinationId)
+        </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FromAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FromAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartureDatetime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartureDatetime)
+        </dd>
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PreferredAirport)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PreferredAirport)*@
+@*        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArrivalDestinationId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArrivalDestinationId)
+        </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArrivalDatetime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArrivalDatetime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransportType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransportType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CostPerTraveler)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CostPerTraveler)
+        </dd>
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TravelGroupId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TravelGroupId)
+        </dd>*@
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>*@
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TransportTravelers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @*                  <a asp-controller="Travelers" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Travelers" asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-controller="Destinations" asp-action="RemoveTraveler" asp-route-id="@item.Id" asp-route-id2="@Model.DestinationId" asp-route-id3="@Model.TripId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="form-group">
+    <form asp-action="AddTraveler">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="TravelerId" class="control-label"></label>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="TripId" />
+            <input type="hidden" asp-for="TravelGroupId" />
+            <select asp-for="TravelerId" asp-items="Model?.Travelers" class="form-select">
+                <option>Select Travelers</option>
+            </select>
+            <span asp-validation-for="TripId" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+            @*<div>
+            <button type="button" class="btn btn-primary btn-sm" width="15">
+            <a><button asp-action="Index" asp-route-id="@Model?.TripId">Destinations</button></a>
+            </button>
+
+            </div>*@
+        </div>
+    </form>
+</div>
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
 

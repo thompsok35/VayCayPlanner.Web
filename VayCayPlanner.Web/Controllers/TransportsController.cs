@@ -6,6 +6,7 @@ using VayCayPlanner.Common.ViewModels.Destination;
 using VayCayPlanner.Data.Repositories;
 using VayCayPlanner.Data.Repositories.Contracts;
 using VayCayPlanner.Common.ViewModels.Transports;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -14,21 +15,32 @@ namespace VayCayPlanner.Web.Controllers
     {
         private readonly ApplicationDbContext _dbcontext;
         private readonly ITransportRepository _transportRepository;
+        private readonly ITravelerRepository _travelerRepository;
         private readonly IDestinationRepository _destinationRepository;
+        private readonly ITripRepository _tripRepository;
 
         public TransportsController(ApplicationDbContext context,
             IDestinationRepository destinationRepository,
-                    ITransportRepository transportRepository)
+            ITripRepository tripRepository,
+            ITravelerRepository travelerRepository,
+            ITransportRepository transportRepository)
         {
             _dbcontext = context;
             _transportRepository = transportRepository;
+            _travelerRepository = travelerRepository;
             _destinationRepository = destinationRepository;
+            _tripRepository = tripRepository;
         }
 
         // GET: Transports
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            return View(await _dbcontext.Transports.ToListAsync());
+            var trip = await _dbcontext.Transports.Where(x => x.TripId == id.Value).FirstOrDefaultAsync();
+            //var transports = _mapper.Map<TransportVM>(trip);
+
+            var model = await _transportRepository.GetTransportsByTripId(id);
+            
+            return View(model);
         }
 
         // GET: Transports/Details/5
@@ -39,13 +51,12 @@ namespace VayCayPlanner.Web.Controllers
                 return NotFound();
             }
 
-            var transport = await _dbcontext.Transports
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var transport = await _transportRepository.GetTravelerTransportDetails(id.Value);
             if (transport == null)
             {
                 return NotFound();
             }
-
+            //ViewData["Travelers"] = new SelectList(await _travelerRepository.GetTravelersByGroupId(transport.TravelGroupId), "Id", "FullName");
             return View(transport);
         }
 
@@ -57,10 +68,24 @@ namespace VayCayPlanner.Web.Controllers
             return View(transportModel);
         }
 
+        public async Task<IActionResult> AddTransport(int? id)
+        {
+            var model = await _transportRepository.GetTransportViewModel(id.Value);
+            //ViewData["TransportTypes"] = new SelectList(await _dbcontext.TransportTypes.ToListAsync(), "Id", "Name");
+            return View(model);
+        }
+
+        public async Task<IActionResult> AddTransportDates(AddTransportVM model)
+        {
+            var detailModel = await _transportRepository.GetTransportDetails(model);
+            return View(detailModel);
+        }
+
         // GET: Transports/Create
         public async Task<IActionResult> Create(int? id)
         {
-            var destination = await _destinationRepository.GetDestinationDetailById(id.Value);
+            var nextDestination = await _destinationRepository.GetNextDestination(id.Value);
+            var destination = await _destinationRepository.GetDestinationDetailById(nextDestination.Id);
             var transportModel = await _transportRepository.CreateTransportToFirstDestination(destination);
             return View(transportModel);
         }
@@ -74,9 +99,8 @@ namespace VayCayPlanner.Web.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                await _transportRepository.AddTransport(transport);
-            //return RedirectToAction("Index", "Destinations", new { Id = transport.TripId });
-            return RedirectToAction(nameof(Index));
+            await _transportRepository.AddTransport(transport);
+            return RedirectToAction("Index", "Transports", new { Id = transport.TripId });
             //}
             return View();
         }
@@ -102,34 +126,30 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DestinationId,DepartureDestinationId,FromAddress,ToAddress,DepartureDatetime,PreferredAirport,ArrivalDestinationId,ArrivalDatetime,TransportType,Description,Quantity,Id,TravelGroupId,CreatedDate,ModifiedDate")] Transport transport)
+        public async Task<IActionResult> Edit(int id, Transport transport)
         {
             if (id != transport.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _dbcontext.Update(transport);
-                    await _dbcontext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TransportExists(transport.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                await _transportRepository.EditTransport(transport);
             }
-            return View(transport);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TransportExists(transport.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Index", "Transports", new { Id = transport.TripId });
         }
 
         // GET: Transports/Delete/5

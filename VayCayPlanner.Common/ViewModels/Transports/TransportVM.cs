@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VayCayPlanner.Data.Models
+namespace VayCayPlanner.Common.ViewModels.Transports
 {
-    public class Transport : BaseEntity
+    public class TransportVM
     {
+        public int Id { get; set; }
         public int? TripId { get; set; }
         public int? DestinationId { get; set; }
         public int? DepartureDestinationId { get; set; }

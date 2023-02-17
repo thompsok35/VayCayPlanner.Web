@@ -9,19 +9,22 @@ namespace VayCayPlanner.Data
     //TODO: this inherits from Identity as type Subscriber (the extended class we created)
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        { }
-
-        public DbSet<Subscriber> Subscribers { get; set; }
-        public DbSet<Traveler> Travelers { get; set; }
-        public DbSet<Trip> Trips { get; set; }
-        public DbSet<TravelGroup> TravelGroups { get; set; }
+        { }        
         public DbSet<Destination> Destinations { get; set; }
+        public DbSet<Lodging> Lodgings { get; set; }
+        public DbSet<LodgingType> LodgingTypes { get; set; }
+        public DbSet<NewTripTemplate> NewTripTemplates { get; set; }
         public DbSet<OnBoarding> OnBoardings { get; set; }
         public DbSet<OnBoardingStep> OnBoardingSteps { get; set; }
-        public DbSet<NewTripTemplate> NewTripTemplates { get; set; }
-        public DbSet<TravelerDestination> TravelerDestinations { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Transport> Transports { get; set; }
-        public DbSet<Lodging> Lodgings { get; set; }
+        public DbSet<TransportType> TransportTypes { get; set; }
+        public DbSet<Traveler> Travelers { get; set; }
+        public DbSet<TravelerDestination> TravelerDestinations { get; set; }
+        public DbSet<TravelerLodging> TravelerLodgings { get; set; }
+        public DbSet<TravelerTransport> TravelerTransports { get; set; }
+        public DbSet<TravelGroup> TravelGroups { get; set; }
+        public DbSet<Trip> Trips { get; set; }
     }
 
 }

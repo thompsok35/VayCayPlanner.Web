@@ -9,16 +9,18 @@ using System.Xml.Linq;
 
 namespace VayCayPlanner.Common.ViewModels.Transports
 {
-    public class TransportToFirstDestinationVM
+    public class TravelerTransportDetailsVM
     {
+        public int Id { get; set; }
+
         [Display(Name = "Transport Type")]
         public string? TransportType { get; set; }
         public string? Description { get; set; }
 
-        public string DestinationName { get; set; }
+        //public string DestinationName { get; set; }
         public string TripName { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        //public string City { get; set; }
+        //public string Country { get; set; }
 
         [Display(Name = "Departure Airport")]
         public string? PreferredAirport { get; set; }
@@ -36,7 +38,14 @@ namespace VayCayPlanner.Common.ViewModels.Transports
 
         // Reference data
         public List<TravelersVM> TransportTravelers { get; set; }
+
+        [Display(Name = "Travelers in your group")]
+        public int TravelerId { get; set; }
+
+        [Display(Name = "Traveler Name")]
         public string FullName { get; set; }
+
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
         public int TripId { get; set; }
         public int TravelGroupId { get; set; }

@@ -9,13 +9,13 @@ using System.Xml.Linq;
 
 namespace VayCayPlanner.Common.ViewModels.Transports
 {
-    public class TransportToFirstDestinationVM
+    public class AddTransportDetailsVM
     {
         [Display(Name = "Transport Type")]
         public string? TransportType { get; set; }
         public string? Description { get; set; }
 
-        public string DestinationName { get; set; }
+        //public string DestinationName { get; set; }
         public string TripName { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

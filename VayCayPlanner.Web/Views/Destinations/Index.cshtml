@@ -6,14 +6,14 @@
 <div class="banner">
     <div class="row">
         <div class="col" style="text-align: left">
-            <a asp-action="Index" asp-controller="Trip">Back</a>
+            <a asp-action="Index" asp-controller="Trips">Back</a>
         </div>
         <div class="col" style="text-align: right">
-            <a asp-action="Index" asp-controller="Trip" asp-route-id="@Model?.tripId">Next</a>
+            <a asp-action="Index" asp-controller="Transports">Next</a>
         </div>  
     </div>
     <div class="row" style="text-align: center">
-        <span><strong>1 - Name Trip >  2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
+        <span>1 - Name Trip >  <strong>2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
     </div>
 </div>
 <hr />
@@ -35,7 +35,7 @@
     <thead>
         <tr>
 @*            <th>
-                @Html.DisplayNameFor(model => model.TripName)
+                @Html.DisplayNameFor(model => model.Id)
             </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.City)
@@ -59,7 +59,7 @@
             <tr>
                 @*changed item.TripId to item.TripName so the name of the trip *@
 @*                <td>
-                    @Html.DisplayFor(modelItem => item.TripName)
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.City)
@@ -77,7 +77,8 @@
                     ||<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |                    
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> ||
                     <a asp-action="Details" asp-route-id="@item.Id"> + Travelers</a> |
-                    <a asp-action="AddTravelerTransports" asp-controller="Transports" asp-route-id="@item.Id"> + Transports</a> |
+                    <a asp-action="AddTransport" asp-controller="Transports" asp-route-id="@item.Id"> + Transports</a> |
+                    @*<a asp-action="Create" asp-controller="Transports" asp-route-id="@item.Id"> + Transports</a> |*@
                     @*<a asp-action="Details" asp-route-id="@item.Id"> + Transportation</a> |*@
                     <a asp-action="Details" asp-route-id="@item.Id"> + Lodging</a> ||
                     

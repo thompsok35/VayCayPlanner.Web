@@ -12,14 +12,14 @@ using VayCayPlanner.Data;
 namespace VayCayPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221229020256_deletedallmigrations")]
+    [Migration("20230203015931_deleted all migrations")]
     partial class deletedallmigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -169,6 +169,9 @@ namespace VayCayPlanner.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(450)
@@ -182,15 +185,182 @@ namespace VayCayPlanner.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DepartureDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TravelGroupId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TravelGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Destinations");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Lodging", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("CostPerNight")
+                        .HasColumnType("money");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LodgingType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaxOccupancy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int?>("Nights")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCost")
+                        .HasColumnType("money");
+
+                    b.Property<int?>("TravelGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WebLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Lodgings");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.NewTripTemplate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DepartureDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DestinationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int?>("TravelGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TripId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TripName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("isComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDestinationComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isTravelersComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isTripComplete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewTripTemplates");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.OnBoarding", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CurrentStep")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubscriberId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isComplete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OnBoardings");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.OnBoardingStep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Step")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StepName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OnBoardingSteps");
                 });
 
             modelBuilder.Entity("VayCayPlanner.Data.Models.Subscriber", b =>
@@ -285,6 +455,61 @@ namespace VayCayPlanner.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("VayCayPlanner.Data.Models.Transport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("ArrivalDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ArrivalDestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("CostPerTraveler")
+                        .HasColumnType("money");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DepartureDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DepartureDestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FromAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PreferredAirport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransportType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TravelGroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transports");
+                });
+
             modelBuilder.Entity("VayCayPlanner.Data.Models.Traveler", b =>
                 {
                     b.Property<int>("Id")
@@ -292,6 +517,9 @@ namespace VayCayPlanner.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .HasMaxLength(256)
@@ -301,19 +529,37 @@ namespace VayCayPlanner.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int?>("TravelGroupId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("TripId")
+                    b.Property<int?>("TravelGroupId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TravelGroupId");
-
-                    b.HasIndex("TripId");
-
                     b.ToTable("Travelers");
+                });
+
+            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelerDestination", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DestinationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TravelerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TravelerDestinations");
                 });
 
             modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
@@ -333,12 +579,15 @@ namespace VayCayPlanner.Data.Migrations
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SubscriberId")
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("SubscriberId");
+                    b.HasKey("Id");
 
                     b.ToTable("TravelGroups");
                 });
@@ -354,19 +603,25 @@ namespace VayCayPlanner.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TravelGroupId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TravelGroupId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TripName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -423,39 +678,6 @@ namespace VayCayPlanner.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("VayCayPlanner.Data.Models.Traveler", b =>
-                {
-                    b.HasOne("VayCayPlanner.Data.Models.TravelGroup", null)
-                        .WithMany("TravelerIds")
-                        .HasForeignKey("TravelGroupId");
-
-                    b.HasOne("VayCayPlanner.Data.Models.Trip", null)
-                        .WithMany("Travelers")
-                        .HasForeignKey("TripId");
-                });
-
-            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
-                {
-                    b.HasOne("VayCayPlanner.Data.Models.Subscriber", null)
-                        .WithMany("TravelGroups")
-                        .HasForeignKey("SubscriberId");
-                });
-
-            modelBuilder.Entity("VayCayPlanner.Data.Models.Subscriber", b =>
-                {
-                    b.Navigation("TravelGroups");
-                });
-
-            modelBuilder.Entity("VayCayPlanner.Data.Models.TravelGroup", b =>
-                {
-                    b.Navigation("TravelerIds");
-                });
-
-            modelBuilder.Entity("VayCayPlanner.Data.Models.Trip", b =>
-                {
-                    b.Navigation("Travelers");
                 });
 #pragma warning restore 612, 618
         }

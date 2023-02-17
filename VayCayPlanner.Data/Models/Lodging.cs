@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +19,10 @@ namespace VayCayPlanner.Data.Models
         public DateTime? CheckOutDate { get; set; }
         public int? MaxOccupancy { get; set; }
         public int? Nights { get; set; }
+
+        [Column(TypeName = "money")]
         public decimal CostPerNight { get; set; }
-        //public decimal OtherFees { get; set; }
+        [Column(TypeName = "money")]
         public decimal TotalCost { get; set; }
         public string? WebLink { get; set; }
     }

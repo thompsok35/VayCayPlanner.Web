@@ -25,4 +25,7 @@ Bootstrap 5.0
 	class name cheat sheet: https://bootstrap-cheatsheet.themeselection.com/
 
 Auto Mapper syntax
-_mapper.Map<List<TravelersVM>>(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisGroup.Id).ToListAsync());
+	_mapper.Map<List<TravelersVM>>(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisGroup.Id).ToListAsync());
+
+Page Redirection
+return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });
