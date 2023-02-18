@@ -14,6 +14,7 @@ namespace VayCayPlanner.Data.Repositories.Contracts
         Task<TransportToFirstDestinationVM> CreateTransportToFirstDestination(DestinationDetailVM model);
         Task<bool> EditTransport(Transport model);
         Task<bool> AddTransport(TransportToFirstDestinationVM model);
+        Task<bool> AddTravelerToTransport(int travelerId, int transportId, int tripId);
         Task<bool> AddNextDestinationTransport(AddTransportDetailsVM model);
         Task<List<TripTransportsVM>> GetTripTransportsByTripId(int? id);
         Task<TripTransportsVM> GetTransportsByTripId(int? id);

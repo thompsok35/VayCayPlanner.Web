@@ -236,7 +236,7 @@ namespace VayCayPlanner.Data.Repositories
         private async Task<List<TravelersVM>> GetTransportTravelers(Transport transport)
         {
             List<TravelersVM> result = new List<TravelersVM>();
-            var travelers = await _dbContext.TravelerTransports.Where(x => x.Id == transport.Id && x.TripId == transport.TripId.Value).ToListAsync();
+            var travelers = await _dbContext.TravelerTransports.Where(x => x.TransportId == transport.Id && x.TripId == transport.TripId.Value).ToListAsync();
             
             if (travelers.Count > 0)
             {
@@ -360,6 +360,31 @@ namespace VayCayPlanner.Data.Repositories
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public async Task<bool> AddTravelerToTransport(int travelerId, int transportId, int tripId)
+        {
+            try
+            {
+                var isDup = await _dbContext.TravelerTransports.Where(x => x.TransportId == transportId && x.TravelerId == travelerId && x.TripId == tripId).FirstOrDefaultAsync();
+                if (isDup == null)
+                {
+                    var _travelerTransport = new TravelerTransport
+                    {
+                        TransportId = transportId,
+                        TravelerId = travelerId,
+                        TripId = tripId
+                    };
+                    _dbContext.Add(_travelerTransport);
+                    await _dbContext.SaveChangesAsync(); 
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
             }
         }
 

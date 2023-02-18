@@ -90,6 +90,54 @@ namespace VayCayPlanner.Web.Controllers
             return View(transportModel);
         }
 
+        // POST: Transports/AddTraveler
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddTraveler(int TravelerId, TravelerDestinationVM viewModel)
+        {
+            try
+            {
+                await _transportRepository.AddTravelerToTransport(TravelerId, viewModel.Id, viewModel.TripId);
+                return RedirectToAction("Details", "Transports", new { Id = viewModel.Id });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> RemoveTraveler(int? id, int? id2, int? id3)
+        {
+            if (id == null || _dbcontext.TravelerTransports == null)
+            {
+                return NotFound();
+            }
+
+            var travelerTransport = await _dbcontext.TravelerTransports
+                .FirstOrDefaultAsync(m => m.TravelerId == id && m.TransportId == id2 && m.TripId == id3);
+            if (travelerTransport != null)
+            {
+                //delete the record here
+                _dbcontext.TravelerTransports.Remove(travelerTransport);
+                await _dbcontext.SaveChangesAsync();
+                return RedirectToAction("Details", "Transports", new { Id = id2 });
+            }
+            else
+            {
+                return NotFound();
+            }
+            //return View(travelerDestination);
+        }
+
+
+
+
+
         // POST: Transports/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

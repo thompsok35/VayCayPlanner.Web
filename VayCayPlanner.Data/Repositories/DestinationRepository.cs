@@ -205,8 +205,6 @@ namespace VayCayPlanner.Data.Repositories
 
             var destination = await _dbContext.Destinations.Where(x => x.Id == id).FirstOrDefaultAsync();
             var trip = await _dbContext.Trips.Where(x => x.Id == destination.TripId).FirstOrDefaultAsync();
-            //var travelers = await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync();
-            //var travelersVM = _mapper.Map<List<TravelersVM>>(travelers);
             var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == trip.TravelGroupId).ToListAsync(), "Id", "FullName");
             var travelerDestinations = await _dbContext.TravelerDestinations.Where(x => x.DestinationId == id).ToListAsync();
             var travelerDestinationVm = await GetDestinationTravelers(travelerDestinations);
