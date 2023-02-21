@@ -7,6 +7,8 @@ using VayCayPlanner.Data.Repositories;
 using VayCayPlanner.Data.Repositories.Contracts;
 using VayCayPlanner.Common.ViewModels.Transports;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Cryptography.Xml;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace VayCayPlanner.Web.Controllers
 {
@@ -35,12 +37,17 @@ namespace VayCayPlanner.Web.Controllers
         // GET: Transports
         public async Task<IActionResult> Index(int? id)
         {
-            var trip = await _dbcontext.Transports.Where(x => x.TripId == id.Value).FirstOrDefaultAsync();
-            //var transports = _mapper.Map<TransportVM>(trip);
-
-            var model = await _transportRepository.GetTransportsByTripId(id);
-            
-            return View(model);
+            if (id == null)
+            {
+                var thisTrip = await _tripRepository.GetNextTrip();
+                var model = await _transportRepository.GetTransportsByTripId(thisTrip.Value);
+                return View(model);
+            }
+            else
+            {
+                var model = await _transportRepository.GetTransportsByTripId(id);
+                return View(model);
+            }            
         }
 
         // GET: Transports/Details/5
@@ -56,7 +63,8 @@ namespace VayCayPlanner.Web.Controllers
             {
                 return NotFound();
             }
-            //ViewData["Travelers"] = new SelectList(await _travelerRepository.GetTravelersByGroupId(transport.TravelGroupId), "Id", "FullName");
+            var thisTrip = await _tripRepository.GetTripById(transport.TripId);
+            ViewData["Trip"] = thisTrip;
             return View(transport);
         }
 
@@ -70,8 +78,27 @@ namespace VayCayPlanner.Web.Controllers
 
         public async Task<IActionResult> AddTransport(int? id)
         {
-            var model = await _transportRepository.GetTransportViewModel(id.Value);
-            //ViewData["TransportTypes"] = new SelectList(await _dbcontext.TransportTypes.ToListAsync(), "Id", "Name");
+            AddTransportVM? model = new AddTransportVM();
+            var thisDestination = await _destinationRepository.GetDestinationById(id.Value);
+            var destinations = await _destinationRepository.GetDestinationsByDate(id.Value);
+            var first = destinations.ElementAt(0);
+            var last = destinations.ElementAt(destinations.Count-1);
+            if (first.Id == id)
+            {
+                model = await _transportRepository.GetFirstTransportViewModel(id.Value);
+                return View(model);
+            } else if (last.Id == id)
+            {
+                model = await _transportRepository.GetLastTransportViewModel(id.Value);
+                return View(model);
+            }
+            else
+            {
+                model = await _transportRepository.GetNextTransportViewModel(id.Value);
+                return View(model);
+            }
+            var thisTrip = await _tripRepository.GetTripById(thisDestination.TripId);
+            ViewData["Trip"] = thisTrip;
             return View(model);
         }
 
@@ -87,7 +114,8 @@ namespace VayCayPlanner.Web.Controllers
             var nextDestination = await _destinationRepository.GetNextDestination(id.Value);
             var destination = await _destinationRepository.GetDestinationDetailById(nextDestination.Id);
             var transportModel = await _transportRepository.CreateTransportToFirstDestination(destination);
-            return View(transportModel);
+            return View(transportModel);            
+
         }
 
         // POST: Transports/AddTraveler
@@ -134,10 +162,6 @@ namespace VayCayPlanner.Web.Controllers
             //return View(travelerDestination);
         }
 
-
-
-
-
         // POST: Transports/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -147,8 +171,9 @@ namespace VayCayPlanner.Web.Controllers
         {
             //if (ModelState.IsValid)
             //{
-            await _transportRepository.AddTransport(transport);
-            return RedirectToAction("Index", "Transports", new { Id = transport.TripId });
+            var createdDate = await _transportRepository.AddTransport(transport);
+            var newTransport = await _dbcontext.Transports.Where(x => x.CreatedDate == createdDate).FirstOrDefaultAsync();
+            return RedirectToAction("Details", "Transports", new { Id = newTransport.Id });
             //}
             return View();
         }

@@ -45,6 +45,8 @@ namespace VayCayPlanner.Web.Controllers
             return View(await _tripRepository.GetUpcomingTripsAsync());
         }
 
+
+
         // GET: Trips/Past
         public async Task<IActionResult> PastTrips()
         {

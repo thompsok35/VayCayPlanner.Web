@@ -165,6 +165,12 @@ namespace VayCayPlanner.Data.Repositories
             return thisDestination;
         }
 
+        public async Task<Destination> GetDestinationById(int Id)
+        {
+            var result = await _dbContext.Destinations.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            return result;
+        }
+
         public async Task<Destination> GetFirstDestinationByTripId(int tripId)
         {
             var result = await _dbContext.Destinations.Where(x => x.TripId == tripId).FirstOrDefaultAsync();
@@ -240,6 +246,13 @@ namespace VayCayPlanner.Data.Repositories
             var thisDestination = await _dbContext.Destinations.Where(x => x.TripId == tripId).OrderBy(o => o.DepartureDate).FirstOrDefaultAsync();
             //var nextDestination = await _dbContext.Destinations.Where(x => x.DepartureDate >= destination.ArrivalDate).OrderBy(o => o.ArrivalDate).FirstOrDefaultAsync();
             return thisDestination;
+        }
+
+        public async Task<List<Destination>> GetDestinationsByDate(int Id)
+        {
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            var destinationList = await _dbContext.Destinations.Where(x => x.TripId == thisDestination.TripId).OrderBy(o => o.DepartureDate).ToListAsync();
+            return destinationList;
         }
 
         private async Task<List<TravelersVM>> GetDestinationTravelers(List<TravelerDestination> travelers)

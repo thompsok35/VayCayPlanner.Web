@@ -7,7 +7,7 @@
 <div class="banner">
     <div class="row">
         <div class="col" style="text-align: left">
-            <a asp-action="Index" asp-controller="Destinations">Back</a>
+            <a asp-action="Index" asp-controller="Trips">Back to Trips</a>
         </div>
         <div class="col" style="text-align: right">
             <a asp-action="Index" asp-controller="Lodgings">Next</a>
@@ -29,7 +29,7 @@
 <br />
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create" asp-route="@Model.TripId">Add New Transport</a>*@
 </p>
 <table class="table">
     <thead>

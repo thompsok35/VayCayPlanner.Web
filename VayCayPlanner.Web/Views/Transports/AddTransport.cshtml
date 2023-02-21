@@ -37,13 +37,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TripId" />
             <input type="hidden" asp-for="DestinationId" />
-            <select asp-for="TransportType" asp-items="Model?.TransportType" class="form-select">
+            <select asp-for="Id" asp-items="Model?.TransportType" class="form-select">                
                 <option>Select Transport Type</option>
             </select>
             <span asp-validation-for="TransportType" class="text-danger"></span>
             <div class="form-group">
                 <label asp-for="DepartFrom" class="control-label"></label>
                 <input asp-for="DepartFrom" class="form-control" />
+                <select asp-for="Id" asp-items="Model?.FromDestinations" class="form-select">
+                    <option>Select from location</option>
+                </select>
                 <span asp-validation-for="DepartFrom" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,7 +63,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Transports" asp-route-id="@Model?.TripId">Trip Transports</a>
 </div>
 
 

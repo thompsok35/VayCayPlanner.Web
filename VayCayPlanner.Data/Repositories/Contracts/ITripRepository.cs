@@ -14,6 +14,7 @@ namespace VayCayPlanner.Data.Repositories.Contracts
         Task<bool> UpdateTripEndDate(int id, DateTime departureDate);
         Task<DeleteTripVM> GetAllTripObjects(int tripId);
         Task<Trip> GetTripById(int Id);
+        Task<int?> GetNextTrip();
         Task<bool> DeleteAllTripObjects(int tripId);
         Task<Trip> GetTripByGroupId(int groupId);
         Task<TripDetailVM> GetTripDetail(int Id);

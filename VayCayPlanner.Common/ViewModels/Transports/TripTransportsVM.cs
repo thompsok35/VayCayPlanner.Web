@@ -21,7 +21,7 @@ namespace VayCayPlanner.Common.ViewModels.Transports
 
         public TripTransportsVM(List<TransportVM> transports, TripVM trip)
         {
-            TripTransports = transports;
+            TripTransports = transports.OrderBy(x => x.DepartureDatetime).ToList();
             TripName = trip.TripName;
         }
 

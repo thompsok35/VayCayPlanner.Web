@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace VayCayPlanner.Common.ViewModels.Transports
 {
-    public class AddTransportVM
+    public class AddTransportSelectOptionsVM
     {
         public int? Id { get; set; }
         public int? TripId { get; set; }
@@ -27,8 +27,7 @@ namespace VayCayPlanner.Common.ViewModels.Transports
 
         public SelectList? TransportType { get; set; }
 
-        public SelectList? FromDestinations { get; set; }
-        public SelectList? ToDestinations { get; set; }
+        public SelectList? Destination { get; set; }
 
         public List<TravelersVM>? DestinationTravelers { get; set; }
     }

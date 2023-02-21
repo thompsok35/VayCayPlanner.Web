@@ -13,7 +13,9 @@ namespace VayCayPlanner.Data.Repositories.Contracts
     {
         Task<bool> AddFirstDestination(CreateNewTripVM createNewTripVM);
         Task<Destination> EditDestination(Destination model);
-        Task<Destination> GetFirstDestinationByTripId(int tripId);        
+        Task<Destination> GetFirstDestinationByTripId(int tripId);
+        Task<Destination> GetDestinationById(int Id);
+        Task<List<Destination>> GetDestinationsByDate(int Id);
         Task<TripWithDestinationsVM> GetDestinationsByTripId(int tripId);
         Task<Destination> GetNextDestination(int id);
         Task<Destination> GetFirstDestination(int tripId);

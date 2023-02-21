@@ -29,3 +29,6 @@ Auto Mapper syntax
 
 Page Redirection
 return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });
+
+
+https://dotnettutorials.net/lesson/asp-dot-net-mvc-viewdata/

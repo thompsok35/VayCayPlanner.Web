@@ -111,34 +111,52 @@ namespace VayCayPlanner.Data.Repositories
                 var thisTripVM = _mapper.Map<TripVM>(thisTrip);
                 var transports = await _dbContext.Transports.Where(x => x.TripId == id.Value).ToListAsync();
                 var transportVM = _mapper.Map<List<TransportVM>>(transports);
-
-                    TripTransportsVM result = new TripTransportsVM(transportVM, thisTripVM)
-                    {
-                        //Id = item.Id,
-                        //ArrivalDatetime = item.ArrivalDatetime,
-                        ////ArrivalDestinationId = item.ArrivalDestinationId,
-                        //CostPerTraveler = item.CostPerTraveler,
-                        //DestinationId = item.DestinationId,
-                        ////DepartureDestinationId = item.DepartureDestinationId,
-                        ////PreferredAirport = item.PreferredAirport,
-                        //TripId = item.TripId,
-                        //DepartureDatetime = item.DepartureDatetime,
-                        //Description = item.Description,
-                        //FromAddress = item.FromAddress,
-                        //ToAddress = item.ToAddress,
-                        //TransportType = item.TransportType,
-                        ////ModifiedDate = DateTime.Now
-                    };
-                return result;
+                TripTransportsVM model = new TripTransportsVM(transportVM, thisTripVM);
+                model.TripId = thisTrip.Id;
+                
+                return model;
             }
             return null;
         }
 
-        public async Task<AddTransportVM> GetTransportViewModel(int desId)
-        {            
+        /// <summary>
+        /// Pass in the Id of the first destination 
+        /// </summary>
+        /// <param name="desId"></param>
+        /// <returns>From destination is the home city</returns>
+        public async Task<AddTransportVM> GetFirstTransportViewModel(int desId)
+        {
             var thisDestination = await _dbContext.Destinations.Where(x => x.Id == desId).FirstOrDefaultAsync();
+            
+            var thisTrip = await _dbContext.Trips.Where(x => x.Id == thisDestination.TripId).FirstOrDefaultAsync();
+            var listDestinations = new SelectList(await _dbContext.Destinations.Where(x => x.TripId == thisTrip.Id).ToListAsync(), "Country", "City");
+            var transportType = new SelectList(await _dbContext.TransportTypes.ToListAsync(), "Id", "Name");
+            var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisTrip.TravelGroupId).ToListAsync(), "Id", "FullName");
+            var thisTransport = new AddTransportVM
+            {
+                TripId = thisTrip.Id,
+                TripName = thisTrip.TripName,
+                TravelGroupId = thisTrip.TravelGroupId.Value,
+                DestinationId = thisDestination.Id,
+                DepartFrom = $"City, Country",
+                FromDestinations = listDestinations,
+                ArriveIn = $"{thisDestination.City}, {thisDestination.Country}",
+                TransportType = transportType
+            };
+            return thisTransport;
+        }
+
+        /// <summary>
+        /// Pass in the Id of the selected destination 
+        /// </summary>
+        /// <param name="desId"></param>
+        /// <returns>Next destination details</returns>
+        public async Task<AddTransportVM> GetNextTransportViewModel(int desId)
+        {            
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == desId).FirstOrDefaultAsync();            
             var nextDestination = await _destinationRepository.GetNextDestination(desId);
             var thisTrip = await _dbContext.Trips.Where(x => x.Id == thisDestination.TripId).FirstOrDefaultAsync();
+            var listDestinations = new SelectList(await _dbContext.Destinations.Where(x => x.TripId == thisTrip.Id).ToListAsync(), "Id", "City");
             var transportType = new SelectList(await _dbContext.TransportTypes.ToListAsync(), "Id", "Name");
             var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisTrip.TravelGroupId).ToListAsync(), "Id", "FullName");
             var thisTransport = new AddTransportVM
@@ -148,7 +166,35 @@ namespace VayCayPlanner.Data.Repositories
                 TravelGroupId = thisTrip.TravelGroupId.Value,
                 DestinationId = thisDestination.Id,
                 DepartFrom = $"{thisDestination.City}, {thisDestination.Country}",
+                FromDestinations = listDestinations,
                 ArriveIn = $"{nextDestination.City}, {nextDestination.Country}",
+                TransportType = transportType
+            };
+            return thisTransport;
+        }
+
+        /// <summary>
+        /// Pass in the Id of the last destination 
+        /// </summary>
+        /// <param name="desId"></param>
+        /// <returns>To destination is the home city</returns>
+        public async Task<AddTransportVM> GetLastTransportViewModel(int desId)
+        {
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == desId).FirstOrDefaultAsync();
+            
+            var thisTrip = await _dbContext.Trips.Where(x => x.Id == thisDestination.TripId).FirstOrDefaultAsync();
+            var listDestinations = new SelectList(await _dbContext.Destinations.Where(x => x.TripId == thisTrip.Id).ToListAsync(), "Id", "City");
+            var transportType = new SelectList(await _dbContext.TransportTypes.ToListAsync(), "Id", "Name");
+            var travelerList = new SelectList(await _dbContext.Travelers.Where(x => x.TravelGroupId == thisTrip.TravelGroupId).ToListAsync(), "Id", "FullName");
+            var thisTransport = new AddTransportVM
+            {
+                TripId = thisTrip.Id,
+                TripName = thisTrip.TripName,
+                TravelGroupId = thisTrip.TravelGroupId.Value,
+                DestinationId = thisDestination.Id,
+                DepartFrom = $"{thisDestination.City}, {thisDestination.Country}",
+                FromDestinations = listDestinations,
+                ArriveIn = $"City, Country",
                 TransportType = transportType
             };
             return thisTransport;
@@ -156,14 +202,20 @@ namespace VayCayPlanner.Data.Repositories
 
         public async Task<AddTransportDetailsVM> GetTransportDetails(AddTransportVM model)
         {
+            var transportType = await _dbContext.TransportTypes.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == model.DestinationId).FirstOrDefaultAsync();
             var thisTransport = new AddTransportDetailsVM
             {                
                 DestinationId = model.DestinationId.Value,
                 TripId = model.TripId.Value,
                 TripName = model.TripName,
-                //TransportType = model.TransportType.,
+                City = thisDestination.City,
+                Country = thisDestination.Country,
+                DepartureDatetime = thisDestination.DepartureDate.Value,
+                TransportType = transportType.Name,
                 FromAddress = model.DepartFrom,
                 ToAddress = model.ArriveIn,
+                ArrivalDatetime = thisDestination.DepartureDate.Value
                 //TransportTravelers = await GetTripTravelers(model.TravelGroupId.Value)
             };
             return thisTransport;
@@ -330,9 +382,9 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
-        public async Task<bool> AddTransport( TransportToFirstDestinationVM model)
+        public async Task<DateTime> AddTransport( TransportToFirstDestinationVM model)
         {
-            //var thisTransport = _mapper.Map<Transport>(model);
+            DateTime result = DateTime.Now;
             Transport thisTransport = new Transport
             {
                 TripId = model.TripId,
@@ -347,7 +399,7 @@ namespace VayCayPlanner.Data.Repositories
                 PreferredAirport = model.PreferredAirport,
                 ToAddress = model.ToAddress,
                 TransportType = model.TransportType,
-                CreatedDate = DateTime.Now,
+                CreatedDate = result,
                 ModifiedDate = DateTime.Now
             };
 
@@ -355,11 +407,11 @@ namespace VayCayPlanner.Data.Repositories
             {
                 _dbContext.Add(thisTransport);
                 await _dbContext.SaveChangesAsync();
-                return true;
+                return result;
             }
             catch (Exception)
             {
-                return false;
+                return result;
             }
         }
 

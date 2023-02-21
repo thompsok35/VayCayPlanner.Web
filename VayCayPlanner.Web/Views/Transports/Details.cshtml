@@ -1,15 +1,16 @@
 ﻿@model VayCayPlanner.Common.ViewModels.Transports.TravelerTransportDetailsVM
 @{
     ViewData["Title"] = "Details";
+    var trip = ViewData["Trip"] as VayCayPlanner.Data.Models.Trip; 
 }
 
 <div class="banner">
     <div class="row">
         <div class="col" style="text-align: left">
-            <a asp-action="Index" asp-controller="Home">Back</a>
+            <a asp-action="Index" asp-controller="Transports" asp-route-id="@trip?.Id">Transports</a>
         </div>
         <div class="col" style="text-align: right">
-            <a asp-action="Create" asp-controller="Transports" asp-route-id="@Model?.DestinationId">Next</a>
+            <a asp-action="Index" asp-controller="Destinations" asp-route-id="@trip?.Id">Destinations</a>
         </div>
     </div>
     <div class="row" style="text-align: center">
@@ -181,6 +182,6 @@
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Index" asp-route="@Model?.TripId">Back to List</a>*@
 </div>
 

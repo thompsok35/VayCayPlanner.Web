@@ -42,6 +42,16 @@ namespace VayCayPlanner.Data.Repositories
             _logger = logger;
         }
 
+        public async Task<int?> GetNextTrip()
+        {
+            var result = await _dbContext.Trips.Where(x => x.StartDate >= DateTime.Today).OrderBy(z => z.StartDate).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                return result.Id;
+            }
+            return null;
+        }
+
         public async Task<CreateNewTripVM> CreateNewTrip(string tripName)
         {
             var _travelers = new List<TravelersVM>();

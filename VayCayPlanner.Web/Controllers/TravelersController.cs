@@ -62,7 +62,7 @@ namespace VayCayPlanner.Web.Controllers
             var model = new CreateTravelerVM
             {
                 //You can pre-populate data into the fields of the view model here...
-                //The SelectList provides the source data for drop doen
+                //The SelectList provides the source data for drop down
                 TravelGroups = new SelectList(_travelGroupRepository.MyTravelGroupMemberships().Result, "Id", "GroupName")
             };
             return View(model);
