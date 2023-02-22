@@ -9,7 +9,7 @@
             <a asp-action="Index" asp-controller="Home">Back</a>
         </div>
         <div class="col" style="text-align: right">
-            <a asp-action="Create" asp-controller="Transports" asp-route-id="@Model?.DestinationId">Next</a>
+            <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.TripId">Next</a>
         </div>  
     </div>
     <div class="row" style="text-align: center">
@@ -109,12 +109,11 @@
             <div class="form-group">
                 <input type="submit" value="Add" class="btn btn-primary"/>                
             </div>
-            @*<div>
-                <button type="button" class="btn btn-primary btn-sm" width="15">
-                    <a><button asp-action="Index" asp-route-id="@Model?.TripId">Destinations</button></a>
-                </button>
-                
-            </div>*@
+            <div class="col" style="text-align: right">
+
+                <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.TripId">Next</a>
+                         
+            </div>
         </div>
     </form>
 </div>

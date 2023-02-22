@@ -77,13 +77,13 @@ namespace VayCayPlanner.Web.Controllers
         {
             try
             {
-                await _destinationRepository.AddDestinationToTrip(destination);
-                return RedirectToAction("Index", "Destinations", new { Id = destination.TripId });                
+                var createdDate = await _destinationRepository.AddDestinationToTrip(destination);
+                var newDestination = await _context.Destinations.Where(x => x.CreatedDate == createdDate).FirstOrDefaultAsync();
+                return RedirectToAction("Details", "Destinations", new { Id = newDestination.Id });                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                //add log
             }
             
             //if (ModelState.IsValid)

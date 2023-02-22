@@ -96,8 +96,9 @@ namespace VayCayPlanner.Data.Repositories
             }
         }
 
-        public async Task<bool> AddDestinationToTrip(AddDestinationVM model)
+        public async Task<DateTime> AddDestinationToTrip(AddDestinationVM model)
         {
+            var createdDate = DateTime.Now;
             try
             {
                 var thisTrip = await _dbContext.Trips.Where(x => x.Id == model.TripId).FirstOrDefaultAsync();
@@ -109,19 +110,19 @@ namespace VayCayPlanner.Data.Repositories
                     Country = model.Country,
                     ArrivalDate = model.ArrivalDate,
                     DepartureDate = model.DepartureDate,
-                    CreatedDate = DateTime.Now,
+                    CreatedDate = createdDate,
                     ModifiedDate = DateTime.Now
                 };
                 _dbContext.Add(Destination);
 
                 await _dbContext.SaveChangesAsync();
                 await _tripRepository.UpdateTripEndDate(model.TripId, model.DepartureDate.Value);
-                return true;
+                return createdDate;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.StackTrace);
-                return false;
+                return createdDate;
             }
         }
 
