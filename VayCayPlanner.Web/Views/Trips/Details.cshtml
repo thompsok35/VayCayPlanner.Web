@@ -62,9 +62,71 @@
         </dd>
     </dl>
 </div>
-<div>
+@*<div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.Id">Destinations</a> |
     <a asp-action="Index">Back to List</a>
+</div>*@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Travelers</h5>
+                <p class="card-text">Manage your travel groups.</p>
+                <a asp-action="Details" asp-controller="TravelGroups" asp-route-id="@Model?.TravelGroupId">Travelers</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Destinations</h5>
+                <p class="card-text">This is a short card.</p>
+                <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.Id">Destinations</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Tranports</h5>
+                <p class="card-text">.</p>
+                <a asp-action="Index" asp-controller="Transports" asp-route-id="@Model?.Id">Transports</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Lodging</h5>
+                <p class="card-text">Track the places you will be staying in.</p>
+                <a asp-action="Index" asp-controller="Lodgings" asp-route-id="@Model?.Id">Lodgings</a>
+            </div>
+        </div>
+    </div>
+        <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Activities</h5>
+                <p class="card-text">Track the places you will be staying in.</p>
+                <a asp-action="Index" asp-controller="Lodgings" asp-route-id="@Model?.Id">Activities</a>
+            </div>
+        </div>
+    </div>
+        <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Budget</h5>
+                <p class="card-text">Track each traveler's expenses for this trip.</p>
+                <a asp-action="Index" asp-controller="Lodgings" asp-route-id="@Model?.Id">My Budget</a>
+            </div>
+        </div>
+    </div>
 </div>
 

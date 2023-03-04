@@ -128,6 +128,7 @@ namespace VayCayPlanner.Data.Repositories
             {
                 Id = thisTrip.Id,
                 TripName = thisTrip.TripName,
+                TravelGroupId = thisTrip.TravelGroupId.Value,
                 StartDate = thisTrip.StartDate,
                 EndDate = thisTrip.EndDate,
                 DaysUntilDeparture = (thisTrip.StartDate.Value - DateTime.Today).Days,

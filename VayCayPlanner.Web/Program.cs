@@ -38,6 +38,7 @@ builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
 builder.Services.AddScoped<ITripRepository, TripRepository>();
 builder.Services.AddScoped<IDestinationRepository, DestinationRepository>();
 builder.Services.AddScoped<ITransportRepository, TransportRepository>();
+builder.Services.AddScoped<ILodgingRepository, LodgingRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

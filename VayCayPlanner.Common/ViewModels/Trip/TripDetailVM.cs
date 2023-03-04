@@ -33,7 +33,7 @@ namespace VayCayPlanner.Common.ViewModels.Trip
         public int Travelers { get; set; }
 
         //[Display(Name = "Activities")]
-        //public int Activities { get; set; }
+        public int TravelGroupId { get; set; }
 
         //[Display(Name = "Transports")]
         //public int Transports { get; set; }

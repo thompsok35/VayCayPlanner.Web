@@ -23,18 +23,14 @@
 <div class="row align-items-center">
     <div class="col" style="text-align: center">
         <br />
-        <h4>My Trips</h4>
+        <h4>My Upcoming Trips</h4>
         <br />
     </div>
 </div>
-<br />
-
-@*<h1>My Upcoming Trips</h1>*@
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -75,5 +71,37 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center">@Html.DisplayFor(modelItem => item.TripName)</h5>
+                    <br />
+                    <div class ="row">
+                        <div class="col" style="text-align: left">                        
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.StartDate)</p>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <p>@Html.DisplayFor(modelItem => item.EndDate)</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class ="row">
+                        <div class="col" style="text-align: left">
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    } 
+</div>
 

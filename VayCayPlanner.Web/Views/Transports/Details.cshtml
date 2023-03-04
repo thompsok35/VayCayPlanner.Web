@@ -169,12 +169,11 @@
             <div class="form-group">
                 <input type="submit" value="Add" class="btn btn-primary" />
             </div>
-            @*<div>
-            <button type="button" class="btn btn-primary btn-sm" width="15">
-            <a><button asp-action="Index" asp-route-id="@Model?.TripId">Destinations</button></a>
-            </button>
+            <div class="col" style="text-align: right">
 
-            </div>*@
+                <a asp-action="Index" asp-controller="Transports" asp-route-id="@Model?.TripId">Done</a>
+
+            </div>
         </div>
     </form>
 </div>

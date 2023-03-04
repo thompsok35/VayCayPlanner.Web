@@ -1,6 +1,103 @@
-﻿namespace VayCayPlanner.Web.Views.Transports
-{
-    public class Index
-    {
-    }
+﻿@model IEnumerable<VayCayPlanner.Common.ViewModels.Lodgings.LodgingsVM>
+
+
+@{
+    ViewData["Title"] = "Index";
+    var trip = ViewData["Trip"] as VayCayPlanner.Data.Models.Trip;
 }
+
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Trips">Back to Trips</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-controller="Lodgings">Next</a>
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <span>1 - Name Trip >  2 - Add a Destination >  3 - Add Travelers  >  4 - Transportation >  <strong>5 - Lodging</strong></span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>Transports for @trip.TripName </h4>
+        <br />
+    </div>
+</div>
+<br />
+
+<p>
+    @*<a asp-action="Create" asp-route="@Model.TripId">Add New Transport</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LodgingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPerNight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nights)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LodgingType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostPerNight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nights)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

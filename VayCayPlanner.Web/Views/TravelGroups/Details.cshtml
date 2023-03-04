@@ -73,9 +73,15 @@
     <div class="col align-self-start">       
         <a asp-controller="Travelers" asp-action="Add" asp-route-id="@Model?.Id">Add Travelers</a>
     </div>
-    <div class="col align-content-end">
+    <div class="col" style="text-align: right">
+
+        <a asp-action="Index" asp-controller="Trips">Done</a>
+
+    </div>
+
+    @*<div class="col align-content-end">
         <a asp-action="Index">My Group Memberships</a>  |
         <a asp-action="MyTravelGroups">My Travel Groups</a>  |
         <a asp-action="Edit" asp-route-id="@Model?.Id">Edit @Model.GroupName</a>
-    </div>
+    </div>*@
 </div>

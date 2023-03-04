@@ -15,6 +15,7 @@ namespace VayCayPlanner.Data.Repositories.Contracts
         Task<Destination> EditDestination(Destination model);
         Task<Destination> GetFirstDestinationByTripId(int tripId);
         Task<Destination> GetDestinationById(int Id);
+        Task<string> GetDestinationNameById(int Id);
         Task<List<Destination>> GetDestinationsByDate(int Id);
         Task<TripWithDestinationsVM> GetDestinationsByTripId(int tripId);
         Task<Destination> GetNextDestination(int id);

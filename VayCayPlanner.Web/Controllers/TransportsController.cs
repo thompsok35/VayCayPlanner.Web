@@ -40,6 +40,7 @@ namespace VayCayPlanner.Web.Controllers
             if (id == null)
             {
                 var thisTrip = await _tripRepository.GetNextTrip();
+
                 var model = await _transportRepository.GetTransportsByTripId(thisTrip.Value);
                 return View(model);
             }

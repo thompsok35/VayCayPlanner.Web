@@ -172,6 +172,13 @@ namespace VayCayPlanner.Data.Repositories
             return result;
         }
 
+        public async Task<string> GetDestinationNameById(int Id)
+        {
+            var thisDestination = await _dbContext.Destinations.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            var result = $"{thisDestination.City}, {thisDestination.Country}";
+            return result;
+        }
+
         public async Task<Destination> GetFirstDestinationByTripId(int tripId)
         {
             var result = await _dbContext.Destinations.Where(x => x.TripId == tripId).FirstOrDefaultAsync();
