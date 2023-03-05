@@ -102,13 +102,17 @@ namespace VayCayPlanner.Web.Controllers
             {
                 return NotFound();
             }
-
             var lodging = await _dbcontext.Lodgings.FindAsync(id);
-            if (lodging == null)
+            if (lodging != null)
             {
-                return NotFound();
+                var model = await _lodgingRepository.GetEditLodgingVM(lodging);
+                if (model == null)
+                {
+                    return NotFound();
+                }
+                return View(model); 
             }
-            return View(lodging);
+            return NotFound();
         }
 
         // POST: Lodgings/Edit/5
@@ -116,19 +120,18 @@ namespace VayCayPlanner.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,DestinationId,CheckInDate,CheckOutDate,MaxOccupancy,Nights,WebLink,Id,TravelGroupId,CreatedDate,ModifiedDate")] Lodging lodging)
+        public async Task<IActionResult> Edit(int id, EditLodgingVM lodging)
         {
             if (id != lodging.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
-                    _dbcontext.Update(lodging);
-                    await _dbcontext.SaveChangesAsync();
+                    await _lodgingRepository.EditLodging(lodging);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,7 +145,7 @@ namespace VayCayPlanner.Web.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             return View(lodging);
         }
 

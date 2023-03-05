@@ -155,7 +155,13 @@ namespace VayCayPlanner.Data.Repositories{
             return result;
         }
 
-
+        public async Task<EditLodgingVM> GetEditLodgingVM(Lodging lodging)
+        {
+            var model = _mapper.Map<EditLodgingVM>(lodging);
+            var lodgingTypes = new SelectList(await _dbContext.LodgingTypes.ToListAsync(), "Id", "Name");
+            model.LodgingTypes = lodgingTypes;
+            return model;
+        }
 
         public async Task<DateTime> AddLodging(AddLodgingVM model)
         {
@@ -230,10 +236,11 @@ namespace VayCayPlanner.Data.Repositories{
             }
         }
 
-        public async Task<bool> EditLodging(Lodging model)
+        public async Task<bool> EditLodging(EditLodgingVM model)
         {
             try
             {
+                var lodgingType = await _dbContext.LodgingTypes.FindAsync(model.LodgingTypeId);
                 var thisLodging = new Lodging
                 {
                     Id = model.Id,
@@ -242,15 +249,14 @@ namespace VayCayPlanner.Data.Repositories{
                     CheckInDate = model.CheckInDate,
                     CheckOutDate = model.CheckOutDate,
                     MaxOccupancy = model.MaxOccupancy,
+                    Nights = model.Nights,
                     WebLink = model.WebLink,
+                    TravelGroupId = model.TravelGroupId,
                     CreatedDate = model.CreatedDate,
                     CostPerNight = model.CostPerNight,
-                    LodgingType = model.LodgingType,
+                    LodgingType = lodgingType.Name,
                     TotalCost = model.TotalCost,
-                    //CreatedDate = result,
-                    ModifiedDate = DateTime.Now,
-                    //LodgingType = model.LodgingType,
-                    TravelGroupId = model.TravelGroupId,
+                    ModifiedDate = DateTime.Now,                     
                     TripId = model.TripId
                 };
                 _dbContext.Update(thisLodging);

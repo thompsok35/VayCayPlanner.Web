@@ -15,8 +15,9 @@ namespace VayCayPlanner.Data.Repositories.Contracts
         Task<List<LodgingsVM>> GetLodgingsByTripId(int? id);
         Task<LodgingDetailVM> GetTravelerLodgingDetails(int lodgingId);
         Task<Lodging> GetLodgingById(int Id);
+        Task<EditLodgingVM> GetEditLodgingVM(Lodging lodging);
         Task<DateTime> AddLodging(AddLodgingVM model);
-        Task<bool> EditLodging(Lodging model);
+        Task<bool> EditLodging(EditLodgingVM model);
         Task<bool> AddTravelerToLodging(int travelerId, int lodgingId, int tripId);
     }
 }
