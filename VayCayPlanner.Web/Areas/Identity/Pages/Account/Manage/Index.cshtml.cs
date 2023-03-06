@@ -126,6 +126,7 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account.Manage
             if (!setSubscriberResult.Succeeded)
             {
                 StatusMessage = "Unexpected error when trying to update your profile.";
+                
                 return RedirectToPage();
             }
 

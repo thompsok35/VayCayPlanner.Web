@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using VayCayPlanner.Data.Models;
+using VayCayPlanner.Data.Repositories.Contracts;
 
 namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
 {
@@ -22,10 +23,13 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<Subscriber> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ITripRepository _tripRepository;
 
-        public LoginModel(SignInManager<Subscriber> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Subscriber> signInManager, 
+            ILogger<LoginModel> logger, ITripRepository tripRepository)
         {
             _signInManager = signInManager;
+            _tripRepository = tripRepository;
             _logger = logger;
         }
 
@@ -116,6 +120,12 @@ namespace VayCayPlanner.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var myTrips = await _tripRepository.GetUpcomingTripsAsync();
+                    if (myTrips.Count > 0)
+                    {
+                        return RedirectToAction("Index", "Trips");
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

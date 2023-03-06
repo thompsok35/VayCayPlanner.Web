@@ -23,6 +23,7 @@
         <br />
         <h4>@Model.TripName</h4>
         <br />
+        <h4>Destinations</h4>
     </div>
 </div>
 <br />
@@ -30,13 +31,10 @@
 <p>
     <a asp-action="Create" asp-route-id="@Model.tripId">+ Destination</a>
 </p>
-<h3>Manage your trip Destinations</h3>
+@*<h3>Manage your trip Destinations</h3>*@
 <table class="table">
     <thead>
         <tr>
-@*            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>

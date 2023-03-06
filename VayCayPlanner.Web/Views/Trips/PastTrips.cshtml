@@ -1,16 +1,37 @@
 ﻿@model IEnumerable<VayCayPlanner.Data.Models.Trip>
 
-
 @{
-    ViewData["Title"] = "My Upcoming Trips";
+    ViewData["Title"] = "My Past Trips";
 }
 
-<h1>My Trips</h1>
+<div class="banner">
+    <div class="row">
+        <div class="col" style="text-align: left">
+            <a asp-action="Index" asp-controller="Trips">Back</a>
+        </div>
+        <div class="col" style="text-align: right">
+            <a asp-action="Index" asp-controller="Destinations" asp-route-id="@Model?.FirstOrDefault().Id">Next</a>
+        </div>  
+    </div>
+    <div class="row" style="text-align: center">
+        <span><strong>1 - Name Trip >  2 - Add a Destination > </strong> 3 - Add Travelers  >  4 - Transportation</span><a></a>
+    </div>
+</div>
+<hr />
+
+<div class="row align-items-center">
+    <div class="col" style="text-align: center">
+        <br />
+        <h4>My Past Trips</h4>
+        <br />
+    </div>
+</div>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -22,12 +43,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
-@*            <th>
+            <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -44,12 +65,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
-@*                <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.CreatedDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ModifiedDate)
-                </td>*@
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -58,5 +79,36 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@
 
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center">@Html.DisplayFor(modelItem => item.TripName)</h5>
+                    <br />
+                    <div class="row">
+                        <div class="col" style="text-align: left">
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.StartDate)</p>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <p>@Html.DisplayFor(modelItem => item.EndDate)</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col" style="text-align: left">
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                        <div class="col" style="text-align: right">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
